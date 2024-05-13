@@ -13,7 +13,7 @@ import { BrowserRouter } from 'react-router-dom';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/tetiana22/task-project">
+      <BrowserRouter basename="/task-project">
         <PersistGate persistor={persistor} loading={null}>
           <App />
           <ToastContainer
