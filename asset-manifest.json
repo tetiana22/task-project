@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/task-project/static/css/main.706c6398.css",
-    "main.js": "/task-project/static/js/main.2c243f88.js",
-    "static/js/882.fa365fa7.chunk.js": "/task-project/static/js/882.fa365fa7.chunk.js",
-    "static/js/777.534f0c56.chunk.js": "/task-project/static/js/777.534f0c56.chunk.js",
-    "static/js/71.06698630.chunk.js": "/task-project/static/js/71.06698630.chunk.js",
-    "static/js/963.3ef63a7e.chunk.js": "/task-project/static/js/963.3ef63a7e.chunk.js",
-    "static/js/97.cd3e96ad.chunk.js": "/task-project/static/js/97.cd3e96ad.chunk.js",
-    "static/js/16.4a126077.chunk.js": "/task-project/static/js/16.4a126077.chunk.js",
-    "static/js/143.603e02a5.chunk.js": "/task-project/static/js/143.603e02a5.chunk.js",
-    "static/js/24.43ad24a3.chunk.js": "/task-project/static/js/24.43ad24a3.chunk.js",
-    "static/js/934.cb2764df.chunk.js": "/task-project/static/js/934.cb2764df.chunk.js",
+    "main.js": "/task-project/static/js/main.105dbac3.js",
+    "static/js/882.400373dc.chunk.js": "/task-project/static/js/882.400373dc.chunk.js",
+    "static/js/777.497c28dd.chunk.js": "/task-project/static/js/777.497c28dd.chunk.js",
+    "static/js/71.88b9cc51.chunk.js": "/task-project/static/js/71.88b9cc51.chunk.js",
+    "static/js/963.ff926e23.chunk.js": "/task-project/static/js/963.ff926e23.chunk.js",
+    "static/js/97.dba63dd5.chunk.js": "/task-project/static/js/97.dba63dd5.chunk.js",
+    "static/js/16.b915ade9.chunk.js": "/task-project/static/js/16.b915ade9.chunk.js",
+    "static/js/143.36b72faf.chunk.js": "/task-project/static/js/143.36b72faf.chunk.js",
+    "static/js/24.12e2d291.chunk.js": "/task-project/static/js/24.12e2d291.chunk.js",
+    "static/js/934.dae93dc9.chunk.js": "/task-project/static/js/934.dae93dc9.chunk.js",
     "static/media/welcome-desk-2x.png": "/task-project/static/media/welcome-desk-2x.47352d931ddfe9011871.png",
     "static/media/welcome-tab-2x.png": "/task-project/static/media/welcome-tab-2x.47352d931ddfe9011871.png",
     "static/media/welcome-mob-2x.png": "/task-project/static/media/welcome-mob-2x.dbdef087e71e45db1268.png",
@@ -20,19 +20,19 @@
     "static/media/welcome-mob-1x.png": "/task-project/static/media/welcome-mob-1x.1b5cc85cb34c3cd6e85b.png",
     "index.html": "/task-project/index.html",
     "main.706c6398.css.map": "/task-project/static/css/main.706c6398.css.map",
-    "main.2c243f88.js.map": "/task-project/static/js/main.2c243f88.js.map",
-    "882.fa365fa7.chunk.js.map": "/task-project/static/js/882.fa365fa7.chunk.js.map",
-    "777.534f0c56.chunk.js.map": "/task-project/static/js/777.534f0c56.chunk.js.map",
-    "71.06698630.chunk.js.map": "/task-project/static/js/71.06698630.chunk.js.map",
-    "963.3ef63a7e.chunk.js.map": "/task-project/static/js/963.3ef63a7e.chunk.js.map",
-    "97.cd3e96ad.chunk.js.map": "/task-project/static/js/97.cd3e96ad.chunk.js.map",
-    "16.4a126077.chunk.js.map": "/task-project/static/js/16.4a126077.chunk.js.map",
-    "143.603e02a5.chunk.js.map": "/task-project/static/js/143.603e02a5.chunk.js.map",
-    "24.43ad24a3.chunk.js.map": "/task-project/static/js/24.43ad24a3.chunk.js.map",
-    "934.cb2764df.chunk.js.map": "/task-project/static/js/934.cb2764df.chunk.js.map"
+    "main.105dbac3.js.map": "/task-project/static/js/main.105dbac3.js.map",
+    "882.400373dc.chunk.js.map": "/task-project/static/js/882.400373dc.chunk.js.map",
+    "777.497c28dd.chunk.js.map": "/task-project/static/js/777.497c28dd.chunk.js.map",
+    "71.88b9cc51.chunk.js.map": "/task-project/static/js/71.88b9cc51.chunk.js.map",
+    "963.ff926e23.chunk.js.map": "/task-project/static/js/963.ff926e23.chunk.js.map",
+    "97.dba63dd5.chunk.js.map": "/task-project/static/js/97.dba63dd5.chunk.js.map",
+    "16.b915ade9.chunk.js.map": "/task-project/static/js/16.b915ade9.chunk.js.map",
+    "143.36b72faf.chunk.js.map": "/task-project/static/js/143.36b72faf.chunk.js.map",
+    "24.12e2d291.chunk.js.map": "/task-project/static/js/24.12e2d291.chunk.js.map",
+    "934.dae93dc9.chunk.js.map": "/task-project/static/js/934.dae93dc9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.706c6398.css",
-    "static/js/main.2c243f88.js"
+    "static/js/main.105dbac3.js"
   ]
 }
