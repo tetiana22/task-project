@@ -21,10 +21,10 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
 
   cursor: pointer;
-
+  /* 
   :hover {
     background-color: rgba(31, 31, 31, 0.4);
-  }
+  } */
 
   &.active {
     color: white;

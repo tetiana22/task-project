@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
-  position: relative;
+  /* position: relative; */
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin: 0 auto;
   display: flex;
   @media (min-width: 1440px) {
     max-width: 144rem;
     display: flex;
-    background-color: grey;
+
     justify-content: center;
   }
 `;

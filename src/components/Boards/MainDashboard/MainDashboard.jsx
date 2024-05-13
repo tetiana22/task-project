@@ -68,6 +68,7 @@ const MainDashboard = () => {
         <AddColumnModal
           dashboardId={currentDashboard?._id}
           onClose={handleCloseModal}
+          onClick={e => e.stopPropagation()}
         />
       )}
     </Wrapper>

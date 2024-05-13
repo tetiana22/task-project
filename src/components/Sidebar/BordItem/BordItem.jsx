@@ -85,12 +85,11 @@ const BoardItem = ({ board, index, onActive, activePojectIndex }) => {
             >
               {checkTextLength(board.title)}
             </BoardTitle>
-          </Board>{' '}
-          <IconsBlock>
+
             <IconEdit aria-label="edit icon" onClick={handleOpen}>
               <use href={sprite + `#icon-pencil`} />
             </IconEdit>
-            <EditBoardModal onClose={handleClose} isOpen={open} />
+
             <IconDel
               aria-label="delit icon"
               onClick={() => {
@@ -99,7 +98,8 @@ const BoardItem = ({ board, index, onActive, activePojectIndex }) => {
             >
               <use href={sprite + `#icon-trash`} />
             </IconDel>
-          </IconsBlock>
+          </Board>
+          <EditBoardModal onClose={handleClose} isOpen={open} />
         </StyledLink>
       </li>
     </>
