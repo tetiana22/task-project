@@ -12,19 +12,21 @@ export const Item = styled.li`
 
 export const StyledLink = styled(NavLink)`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   height: 61px;
-  padding: 20px 24px;
   margin-bottom: 4px;
   transition: all 150ms linear;
   text-decoration: none;
 
   cursor: pointer;
-  /* 
+
   :hover {
     background-color: rgba(31, 31, 31, 0.4);
-  } */
+    color: white;
+
+    stroke: rgba(255, 255, 255, 225);
+  }
 
   &.active {
     color: white;
@@ -34,7 +36,7 @@ export const StyledLink = styled(NavLink)`
       content: '';
       display: block;
       position: absolute;
-      height: 61px;
+      /* height: 61px; */
       width: 4px;
       right: 0px;
       background-color: ${props => props.theme.sidebarLightningFill};
@@ -46,9 +48,10 @@ export const StyledLink = styled(NavLink)`
 
 export const Board = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   transition: all 150ms linear;
+  padding: 0 20px;
   text-decoration: none;
   width: 100%;
 `;
@@ -61,7 +64,7 @@ export const BoardIcon = styled.svg`
   stroke: rgba(255, 255, 255, 0.5);
   transition: all 150ms linear;
 
-  &.active {
+  :hover {
     stroke: rgba(255, 255, 255, 225);
   }
 `;

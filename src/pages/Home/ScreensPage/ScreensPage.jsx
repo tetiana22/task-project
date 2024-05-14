@@ -10,7 +10,7 @@ const ScreensPage = () => {
   const dispatch = useDispatch();
   const menuMode = useSelector(selectIsMenuOpen);
   const currentBg = useSelector(state => state?.dashboards?.currentBg);
-  const currentName = useSelector(state => state?.dashboards?.currentName);
+  const currentName = useSelector(state => state?.dashboards.boards.title);
 
   const handleScreenClick = () => {
     if (menuMode) {
@@ -19,7 +19,11 @@ const ScreensPage = () => {
   };
 
   return (
-    <Wrapper onClick={handleScreenClick} bgcUrl={currentBg} isOpen={menuMode}>
+    <Wrapper
+      onClick={handleScreenClick}
+      background={currentBg}
+      isOpen={menuMode}
+    >
       <HeaderDashboard children={currentName} />
 
       <MainDashboard />

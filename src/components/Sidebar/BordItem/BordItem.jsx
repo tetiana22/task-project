@@ -18,9 +18,10 @@ import {
   IconEdit,
   IconDel,
   StyledLink,
+  Div,
 } from './BordItem.styled';
 
-const BoardItem = ({ board, index, onActive, activePojectIndex }) => {
+const BoardItem = ({ board, index, onActive, activePojectIndex, name }) => {
   const dispatch = useDispatch();
   // const currBoardId = useSelector(state => state.currentBoardId);
   const [open, setOpen] = useState(false);
@@ -60,48 +61,42 @@ const BoardItem = ({ board, index, onActive, activePojectIndex }) => {
 
   return (
     <>
-      <li
-        name={board._id}
-        // onClick={handleNavigate}
-
-        className={activePojectIndex === index ? 'active' : ''}
-        draggable={false}
-        onDragStart={handleDragStart}
-        onContextMenu={handleContextMenu}
-      >
+      <Board>
         <StyledLink to={`${board.title}`}>
-          {' '}
-          <Board>
-            <BoardIcon className={activePojectIndex === index ? 'active' : ''}>
-              <use href={sprite + board.icon} />
-            </BoardIcon>
-            <BoardTitle
-              onClick={() => {
-                onActive(index);
-                dispatch(closeMenuMode());
-                dispatch(getDashboardById(board._id));
-              }}
-              className={activePojectIndex === index ? 'active' : ''}
-            >
-              {checkTextLength(board.title)}
-            </BoardTitle>
+          <BoardIcon className={activePojectIndex === index ? 'active' : ''}>
+            <use href={sprite + board.icon} />
+          </BoardIcon>
 
-            <IconEdit aria-label="edit icon" onClick={handleOpen}>
-              <use href={sprite + `#icon-pencil`} />
-            </IconEdit>
-
-            <IconDel
-              aria-label="delit icon"
-              onClick={() => {
-                dispatch(deleteDashboard(board._id));
-              }}
-            >
-              <use href={sprite + `#icon-trash`} />
-            </IconDel>
-          </Board>
-          <EditBoardModal onClose={handleClose} isOpen={open} />
+          <BoardTitle
+            onClick={() => {
+              onActive(index);
+              dispatch(closeMenuMode());
+              dispatch(getDashboardById(board._id));
+            }}
+            className={activePojectIndex === index ? 'active' : ''}
+          >
+            {checkTextLength(board.title)}
+          </BoardTitle>
         </StyledLink>
-      </li>
+        <IconsBlock>
+          <IconEdit aria-label="edit icon" onClick={handleOpen}>
+            <use href={sprite + `#icon-pencil`} />
+          </IconEdit>
+          <EditBoardModal
+            onClose={handleClose}
+            isOpen={open}
+            board={board._id}
+          />
+          <IconDel
+            aria-label="delit icon"
+            onClick={() => {
+              dispatch(deleteDashboard(board._id));
+            }}
+          >
+            <use href={sprite + `#icon-trash`} />
+          </IconDel>
+        </IconsBlock>
+      </Board>
     </>
   );
 };

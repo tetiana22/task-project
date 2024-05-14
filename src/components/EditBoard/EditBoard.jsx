@@ -23,7 +23,7 @@ import { useState } from 'react';
 import data from '../../assets/fonts/images/backs-small/backs.json';
 import { editBoard } from '../../redux/cards/cardsReducers';
 
-const EditBoard = ({ _id }) => {
+const EditBoard = ({ _id, name }) => {
   const [bgdImg, setBgdImg] = useState('');
 
   const [icons, setIcon] = useState('');
@@ -46,16 +46,16 @@ const EditBoard = ({ _id }) => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      text: '',
+      title: name,
       icon: icons,
-      backgroundURL: bgdImg,
+      background: bgdImg,
     },
     resolver: yupResolver(editColumnSchema),
   });
-  const onSubmit = values => {
-    const { text, icon, backgroundURL } = values;
+  const onSubmit = (values, e) => {
+    const { title, icon, background } = values;
 
-    const updatedData = { name: text, icon, backgroundURL };
+    const updatedData = { name: title, icon, background };
     console.log(values);
     dispatch(editBoard({ boardId: _id, updatedData }));
     reset();
@@ -65,18 +65,18 @@ const EditBoard = ({ _id }) => {
   };
   const handleIcon = el => {
     setIcon(el);
-    reset();
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="text"
-        id="text"
+        id="title"
+        name="title"
         placeholder="Project office"
-        {...register('text')}
-        error={touched.text && errors.text && errors.text.message}
+        {...register('title')}
+        error={touched.title && errors.title && errors.title.message}
       />
-      {errors.text && <Error>{errors.text.message}</Error>}
+      {errors.title && <Error>{errors.title.message}</Error>}
       <FormWrapper>
         <FormTitle>Icons</FormTitle>
         <RadioBtnWrapper>
@@ -120,7 +120,7 @@ const EditBoard = ({ _id }) => {
               <DefaultRadioBtn
                 type="radio"
                 value={background.url}
-                {...register('backgroundURL')}
+                {...register('background')}
               />
             </label>
           ))}

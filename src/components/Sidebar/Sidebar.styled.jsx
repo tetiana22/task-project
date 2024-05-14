@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 export const Backdrop = styled.div`
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: ${props => (props.isOpen ? 'block' : 'none')};
   background-color: rgba(0, 0, 0, 0.5); /* Прозорий сірий колір */
   z-index: 99;
-  display: ${props => (props.isOpen ? 'block' : 'none')};
 `;
 export const Aside = styled.div`
   position: absolute;
   top: 0;
   left: 0;
 
-  width: 260px;
+  width: 285px;
   padding: 24px;
 
   /* z-index: ; */

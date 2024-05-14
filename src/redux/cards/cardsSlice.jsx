@@ -12,7 +12,7 @@ const {
 const initialState = {
   boards: [],
 
-  currentBoardId: null,
+  currentBoardId: {},
   // cards: [],
   // cardId: null,
   // columns: [],
@@ -65,7 +65,7 @@ const boardsSlice = createSlice({
       .addCase(editBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const { _id, name, icon, backgroundURL } = action.payload;
+        const { _id, name, icon, background } = action.payload;
 
         const boardIndex = state.boards.findIndex(item => item._id === _id);
 
@@ -73,10 +73,10 @@ const boardsSlice = createSlice({
           ...state.boards[boardIndex],
           name,
           icon,
-          backgroundURL,
+          background,
         };
         state.currentName = name;
-        state.currentBg = backgroundURL;
+        state.currentBg = background;
       })
 
       .addCase(addColumn.fulfilled, (state, action) => {

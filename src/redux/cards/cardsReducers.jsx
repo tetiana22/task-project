@@ -92,7 +92,7 @@ export const editBoard = createAsyncThunk(
   'editBoard',
   async ({ _id, updatedData }, thunkAPI) => {
     try {
-      const { data } = await authInstance.put(`board/${_id}`, updatedData);
+      const { data } = await authInstance.put(`/board/${_id}`, updatedData);
 
       return data;
     } catch (error) {

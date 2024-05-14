@@ -48,17 +48,17 @@ const AddBoard = () => {
     mode: 'onBlur',
     defaultValues: {
       title: '',
-      backgroundURL: bgdImg,
+      background: bgdImg,
       icon: icons,
     },
     resolver: yupResolver(editColumnSchema),
   });
 
   const onSubmit = data => {
-    const { title, icon } = data;
+    const { title, icon, background } = data;
     console.log(data);
 
-    dispatch(createBoard({ title, icon }));
+    dispatch(createBoard({ title, icon, background }));
 
     reset();
   };
@@ -78,9 +78,9 @@ const AddBoard = () => {
         id="title"
         placeholder="Title"
         {...register('title')}
-        error={touched.text && errors.text && errors.text.message}
+        error={touched.title && errors.title && errors.title.message}
       />
-      {errors.text && <Error>{errors.text.message}</Error>}
+      {errors.title && <Error>{errors.title.message}</Error>}
 
       <FormWrapper>
         <FormTitle>Icons</FormTitle>
@@ -125,7 +125,7 @@ const AddBoard = () => {
               <DefaultRadioBtn
                 type="radio"
                 value={background.url}
-                {...register('backgroundURL')}
+                {...register('background')}
               />
             </label>
           ))}
