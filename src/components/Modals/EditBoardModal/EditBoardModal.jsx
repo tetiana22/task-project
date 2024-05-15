@@ -11,7 +11,7 @@ import {
 } from '../EditProfileModal/EditProfileModal.styled';
 import { Close } from 'assets/fonts/images/icons/Close';
 
-const EditBoardModal = ({ isOpen, onClose }) => {
+const EditBoardModal = ({ isOpen, onClose, boardId }) => {
   if (!isOpen) return null;
   return (
     // <Modal modalId={modalNames.EDIT_BOARD}>
@@ -23,7 +23,7 @@ const EditBoardModal = ({ isOpen, onClose }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <EditBoard />
+        <EditBoard boardId={boardId} />
       </ModalContainer>
     </Div>
     // </Modal>

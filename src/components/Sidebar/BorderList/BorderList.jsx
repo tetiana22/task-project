@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import BoardItem from '../BordItem/BordItem';
 import { List } from './BorderList.styled';
-import { useDispatch } from 'react-redux';
-import { useRef, useState } from 'react';
-import { getAllDashboards } from '../../../redux/cards/cardsReducers';
+import {
+  getAllDashboards,
+  deleteDashboard,
+} from '../../../redux/cards/cardsReducers';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
+import { useRef, useState } from 'react';
+import EditBoard from 'components/EditBoard/EditBoard';
+
 const BoardList = () => {
   const boards = useSelector(state => state.dashboards.boards);
-  console.log(boards);
   const dispatch = useDispatch();
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const listRef = useRef(null);
@@ -18,6 +21,7 @@ const BoardList = () => {
   useEffect(() => {
     dispatch(getAllDashboards());
   }, [dispatch]);
+
   const switchActiveProject = index => {
     setActiveProjectIndex(index);
   };
@@ -47,6 +51,13 @@ const BoardList = () => {
     }
   };
 
+  const handleDeleteBoard = boardId => {
+    dispatch(deleteDashboard(boardId));
+  };
+  const handleEditBoard = boardId => {
+    dispatch(EditBoard(boardId));
+  };
+
   return (
     <div>
       {boards.length > 0 && (
@@ -63,7 +74,10 @@ const BoardList = () => {
               index={index}
               onActive={handleActiveProject}
               activeProjectIndex={activeProjectIndex}
-            ></BoardItem>
+              onDelete={handleDeleteBoard}
+              boardId={board._id}
+              onEdit={handleEditBoard}
+            />
           ))}
         </List>
       )}

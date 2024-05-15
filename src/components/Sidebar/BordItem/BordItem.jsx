@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import {
   // deleteColumn,
   deleteDashboard,
+  getAllDashboards,
   getDashboardById,
 } from '../../../redux/cards/cardsReducers'; // Assuming this is an action creator
 // import { useNavigate } from 'react-router-dom';
@@ -21,13 +22,15 @@ import {
   Div,
 } from './BordItem.styled';
 
-const BoardItem = ({ board, index, onActive, activePojectIndex, name }) => {
+const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
   const dispatch = useDispatch();
   // const currBoardId = useSelector(state => state.currentBoardId);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
+
   // const navigate = useNavigate();
 
   // const handleNavigate = e => {
@@ -62,7 +65,7 @@ const BoardItem = ({ board, index, onActive, activePojectIndex, name }) => {
   return (
     <>
       <Board>
-        <StyledLink to={`${board.title}`}>
+        <StyledLink to={`${board._id}`}>
           <BoardIcon className={activePojectIndex === index ? 'active' : ''}>
             <use href={sprite + board.icon} />
           </BoardIcon>
@@ -85,8 +88,9 @@ const BoardItem = ({ board, index, onActive, activePojectIndex, name }) => {
           <EditBoardModal
             onClose={handleClose}
             isOpen={open}
-            board={board._id}
+            boardId={boardId}
           />
+
           <IconDel
             aria-label="delit icon"
             onClick={() => {

@@ -46,11 +46,10 @@ const boardsSlice = createSlice({
       .addCase(deleteDashboard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.dashboards.findIndex(
-          item => item._id === action.payload.deletedBoard._id
+        state.currentBoardId = action.payload;
+        state.boards = state.boards.filter(
+          board => board._id !== action.payload._id
         );
-
-        state.dashboards.splice(index, 1);
       })
       // .addCase(getDashboardById.fulfilled, (state, action) => {
       //   state.isLoading = false;
@@ -65,18 +64,10 @@ const boardsSlice = createSlice({
       .addCase(editBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const { _id, name, icon, background } = action.payload;
-
-        const boardIndex = state.boards.findIndex(item => item._id === _id);
-
-        state.boards[boardIndex] = {
-          ...state.boards[boardIndex],
-          name,
-          icon,
-          background,
-        };
-        state.currentName = name;
-        state.currentBg = background;
+        state.currentBoardId = action.payload;
+        state.boards = state.boards.filter(
+          board => board._id !== action.payload._id
+        );
       })
 
       .addCase(addColumn.fulfilled, (state, action) => {

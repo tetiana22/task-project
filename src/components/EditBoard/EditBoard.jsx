@@ -23,7 +23,7 @@ import { useState } from 'react';
 import data from '../../assets/fonts/images/backs-small/backs.json';
 import { editBoard } from '../../redux/cards/cardsReducers';
 
-const EditBoard = ({ _id, name }) => {
+const EditBoard = ({ boardId }) => {
   const [bgdImg, setBgdImg] = useState('');
 
   const [icons, setIcon] = useState('');
@@ -38,6 +38,7 @@ const EditBoard = ({ _id, name }) => {
     '#icon-colors',
     '#icon-hexagon',
   ];
+
   const {
     register,
     handleSubmit,
@@ -46,19 +47,19 @@ const EditBoard = ({ _id, name }) => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      title: name,
+      title: '',
       icon: icons,
       background: bgdImg,
     },
     resolver: yupResolver(editColumnSchema),
   });
-  const onSubmit = (values, e) => {
+  const onSubmit = values => {
     const { title, icon, background } = values;
 
-    const updatedData = { name: title, icon, background };
-    console.log(values);
-    dispatch(editBoard({ boardId: _id, updatedData }));
-    reset();
+    const updatedData = { title, icon, background };
+
+    dispatch(editBoard({ _id: boardId, updatedData }));
+    console.log({ _id: boardId });
   };
   const handleBgDImg = url => {
     setBgdImg(url);
