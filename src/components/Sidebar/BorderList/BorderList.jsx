@@ -26,8 +26,8 @@ const BoardList = () => {
     setActiveProjectIndex(index);
   };
 
-  const handleActiveProject = index => {
-    switchActiveProject(index);
+  const handleActiveProject = boardId => {
+    switchActiveProject(boardId);
     dispatch(closeMenuMode());
   };
 
@@ -77,6 +77,7 @@ const BoardList = () => {
               onDelete={handleDeleteBoard}
               boardId={board._id}
               onEdit={handleEditBoard}
+              title={board.title}
             />
           ))}
         </List>

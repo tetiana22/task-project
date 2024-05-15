@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-// Assuming these are action creators
-import {
-  // deleteColumn,
-  deleteDashboard,
-  getAllDashboards,
-  getDashboardById,
-} from '../../../redux/cards/cardsReducers'; // Assuming this is an action creator
-// import { useNavigate } from 'react-router-dom';
+import { deleteDashboard } from '../../../redux/cards/cardsReducers';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
 import EditBoardModal from 'components/Modals/EditBoardModal/EditBoardModal';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Board,
   BoardIcon,
@@ -19,31 +13,23 @@ import {
   IconEdit,
   IconDel,
   StyledLink,
-  Div,
 } from './BordItem.styled';
+import { setCurrentBoardId } from '../../../redux/cards/cardsSlice';
 
 const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
   const dispatch = useDispatch();
-  // const currBoardId = useSelector(state => state.currentBoardId);
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const handleNavigate = e => {
+    if (e.dataset === 'icon') {
+      return;
+    }
+    navigate(`/home/${board._id}`);
+    dispatch(setCurrentBoardId(board._id));
+  };
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
-
-  // const navigate = useNavigate();
-
-  // const handleNavigate = e => {
-  //   if (e.target.dataset.icon) {
-  //     return; // If the click is on an icon, return early
-  //   }
-  //   navigate(`/home/${board._id}`);
-
-  //   dispatch(closeMenuMode());
-  //   if (board._id !== currBoardId) {
-  //     dispatch(deleteColumn());
-  //   }
-  // };
 
   const checkTextLength = text => {
     const str = text.split('');
@@ -54,27 +40,19 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
     return str.splice(0, 10).join('') + '...';
   };
 
-  const handleDragStart = event => {
-    event.preventDefault();
-  };
-
-  const handleContextMenu = event => {
-    event.preventDefault();
-  };
-
   return (
     <>
       <Board>
-        <StyledLink to={`${board._id}`}>
+        <StyledLink to={`/home/${boardId}`}>
           <BoardIcon className={activePojectIndex === index ? 'active' : ''}>
             <use href={sprite + board.icon} />
           </BoardIcon>
 
           <BoardTitle
-            onClick={() => {
-              onActive(index);
+            onClick={e => {
+              onActive(boardId);
               dispatch(closeMenuMode());
-              dispatch(getDashboardById(board._id));
+              handleNavigate(e);
             }}
             className={activePojectIndex === index ? 'active' : ''}
           >

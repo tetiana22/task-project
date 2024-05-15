@@ -1,17 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { ColumnTask } from '../ColumnTask/ColumnTask';
+
 import { ContentWrapper, Wrapper } from './MainDashboard.styled';
 import AddColumnModal from '../../Modals/AddColumModal/AddColumnModal';
-import { useSelector } from 'react-redux';
+
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 
 const MainDashboard = () => {
-  const columnLength = useSelector(state => state?.dashboards?.columnLength);
-  const currentDashboard = useSelector(
-    state => state?.dashboards?.currentBoardId
-  );
-  const columns = useSelector(state => state?.dashboards?.columnId);
-
   const [open, setOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -20,12 +14,10 @@ const MainDashboard = () => {
 
   const onOpen = () => {
     setOpen(true);
-    setIsDragging(false);
   };
 
   const handleCloseModal = () => {
     setOpen(false);
-    setIsDragging(true);
   };
 
   const handleMouseDown = e => {
@@ -52,25 +44,19 @@ const MainDashboard = () => {
   };
 
   return (
-    <Wrapper length={columnLength} ref={scrollRef}>
+    <Wrapper>
       <ContentWrapper
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        {columns &&
-          columns.map(item => <ColumnTask key={item._id} item={item} />)}
+        {/* {columns &&
+          columns.map(item => <ColumnTask key={item._id} item={item} />)} */}
 
         <ButtonPlus approve={true} onOpen={onOpen} text="Add column" />
       </ContentWrapper>
 
-      {open && setIsDragging && (
-        <AddColumnModal
-          dashboardId={currentDashboard?._id}
-          onClose={handleCloseModal}
-          onClick={e => e.stopPropagation()}
-        />
-      )}
+      {open && <AddColumnModal onClose={handleCloseModal} />}
     </Wrapper>
   );
 };

@@ -51,7 +51,7 @@ export const App = () => {
                 }
               >
                 {' '}
-                <Route path=":boardName" element={<ScreensPage />} />
+                <Route path="/home/:boardId" element={<ScreensPage />} />
               </Route>
               <Route
                 path="auth/:id"

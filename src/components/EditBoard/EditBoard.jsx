@@ -60,6 +60,7 @@ const EditBoard = ({ boardId }) => {
 
     dispatch(editBoard({ _id: boardId, updatedData }));
     console.log({ _id: boardId });
+    reset();
   };
   const handleBgDImg = url => {
     setBgdImg(url);

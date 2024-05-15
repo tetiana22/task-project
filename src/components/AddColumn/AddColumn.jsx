@@ -7,13 +7,11 @@ import {
 } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addColumn } from '../../redux/cards/cardsReducers';
-import { selectColumns } from '../../redux/selectors';
 
-const AddColumn = () => {
+const AddColumn = ({ bordId }) => {
   const dispatch = useDispatch();
-  const columns = useSelector(selectColumns);
 
   const {
     register,
@@ -23,21 +21,15 @@ const AddColumn = () => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      text: '',
+      title: '',
     },
     resolver: yupResolver(editColumnSchema),
   });
 
-  const onSubmit = (data, bordId) => {
-    const alreadyExistsIndex = columns.findIndex;
+  const onSubmit = data => {
+    dispatch(addColumn({ bordId, data }));
+    console.log({ bordId, data });
 
-    if (alreadyExistsIndex >= 0) {
-      const alreadyExistsColumn = columns[alreadyExistsIndex];
-      return `${alreadyExistsColumn.name} is already added to contact list`;
-    } else {
-      dispatch(addColumn({ bordId, data }));
-      // console.log({ text });
-    }
     reset();
   };
 
@@ -45,12 +37,12 @@ const AddColumn = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="text"
-        id="text"
+        id="title"
         placeholder="To do"
-        {...register('text')}
-        error={touched.text && errors.text && errors.text.message}
+        {...register('title')}
+        error={touched.title && errors.title && errors.title.message}
       />
-      {errors.text && <Error>{errors.text.message}</Error>}
+      {errors.title && <Error>{errors.title.message}</Error>}
 
       <ButtonPlus type="submit" approve="true" text="Add" />
     </Form>

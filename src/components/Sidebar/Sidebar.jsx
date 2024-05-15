@@ -25,7 +25,7 @@ import {
 } from './Sidebar.styled';
 import { logoutUser } from '../../redux/authorization/authReducer';
 
-const Sidebar = () => {
+const Sidebar = ({ boardId }) => {
   const dispatch = useDispatch();
   //   const activeUserTheme = useSelector(selectTheme);
   const menuMode = useSelector(selectIsMenuOpen);
@@ -87,6 +87,7 @@ const Sidebar = () => {
             <TextLogOut>Log out</TextLogOut>
           </BtnLogOut>
         </div>
+
         {isModalOpen && <AddBoardModal onClose={handleClose} />}
       </Aside>
     </Backdrop>

@@ -6,13 +6,12 @@ const {
   editBoard,
   getAllDashboards,
   deleteDashboard,
-  getDashboardById,
 } = require('./cardsReducers');
 
 const initialState = {
   boards: [],
 
-  currentBoardId: {},
+  currentBoardId: null,
   // cards: [],
   // cardId: null,
   // columns: [],
@@ -28,17 +27,24 @@ const initialState = {
 const boardsSlice = createSlice({
   name: 'dashboards',
   initialState,
+  reducers: {
+    setCurrentBoardId(state, { payload }) {
+      state.currentBoardId = payload;
+    },
+  },
 
   extraReducers: builder =>
     builder
       .addCase(getAllDashboards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.boards = action.payload;
+        state.currentBoardId = action.payload;
         state.error = null;
       })
       .addCase(createBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
+
         state.currentBoardId = action.payload._id;
         state.boards = [...state.boards, action.payload];
         // state.boards.push(action.payload);
@@ -73,7 +79,7 @@ const boardsSlice = createSlice({
       .addCase(addColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.currentBoardId.columns.push(action.payload);
+        state.boards.columns.push(action.payload);
       })
       .addCase(editColumn.fulfilled, (state, action) => {
         const { _id, text } = action.payload;
@@ -89,8 +95,8 @@ const boardsSlice = createSlice({
           createBoard.pending,
           editBoard.pending,
           getAllDashboards.pending,
-          deleteDashboard.pending,
-          getDashboardById.pending
+          deleteDashboard.pending
+          // getDashboardById.pending
         ),
         state => {
           state.isLoading = true;
@@ -104,8 +110,8 @@ const boardsSlice = createSlice({
           createBoard.rejected,
           editBoard.rejected,
           getAllDashboards.rejected,
-          deleteDashboard.rejected,
-          getDashboardById.rejected
+          deleteDashboard.rejected
+          // getDashboardById.rejected
         ),
         (state, action) => {
           state.isLoading = false;
@@ -114,3 +120,4 @@ const boardsSlice = createSlice({
       ),
 });
 export const boardsReducer = boardsSlice.reducer;
+export const { setCurrentBoardId } = boardsSlice.actions;

@@ -5,12 +5,15 @@ import MainDashboard from 'components/Boards/MainDashboard/MainDashboard';
 import { selectIsMenuOpen } from '../../../redux/menu/selectors';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
 import { Wrapper } from './ScreensPage.styled';
+import { useParams } from 'react-router-dom';
 
 const ScreensPage = () => {
   const dispatch = useDispatch();
+  const { boardId } = useParams();
+  const boards = useSelector(state => state.dashboards.boards);
+  const currentBoard = boards.find(board => board._id === boardId);
   const menuMode = useSelector(selectIsMenuOpen);
-  const currentBg = useSelector(state => state?.dashboards?.currentBg);
-  const currentName = useSelector(state => state?.dashboards.boards.title);
+  console.log(currentBoard);
 
   const handleScreenClick = () => {
     if (menuMode) {
@@ -19,14 +22,10 @@ const ScreensPage = () => {
   };
 
   return (
-    <Wrapper
-      onClick={handleScreenClick}
-      background={currentBg}
-      isOpen={menuMode}
-    >
-      <HeaderDashboard children={currentName} />
+    <Wrapper onClick={handleScreenClick} isOpen={menuMode}>
+      <HeaderDashboard board={currentBoard} />
 
-      <MainDashboard />
+      <MainDashboard board={currentBoard} />
     </Wrapper>
   );
 };

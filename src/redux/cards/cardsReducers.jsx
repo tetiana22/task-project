@@ -3,12 +3,9 @@ import { authInstance } from '../authorization/authReducer';
 
 export const addColumn = createAsyncThunk(
   'addColumn',
-  async ({ _id, text, owner }, thunkAPI) => {
+  async ( _id, thunkAPI) => {
     try {
-      const { data } = await authInstance.post(`/${_id}`, {
-        text,
-        owner,
-      });
+      const { data } = await authInstance.post(`columns/${_id}`)
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -50,18 +47,18 @@ export const getAllDashboards = createAsyncThunk(
     }
   }
 );
-export const getDashboardById = createAsyncThunk(
-  'dashboards/getById',
-  async (_id, thunkAPI) => {
-    try {
-      const { data } = await authInstance.get(`boards/${_id}`);
+// export const getDashboardById = createAsyncThunk(
+//   'dashboards/getById',
+//   async (_id, thunkAPI) => {
+//     try {
+//       const { data } = await authInstance.get(`boards/${_id}`);
 
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const deleteDashboard = createAsyncThunk(
   'dashboards/deleteDashboard',

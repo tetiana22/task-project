@@ -1,10 +1,7 @@
-// import FiltersModal from 'components/Modals/FiltersModal/FiltersModal';
-
-const HeaderDashboard = ({ children }) => {
+const HeaderDashboard = ({ board }) => {
   return (
     <div>
-      <h2>{children}</h2>
-      {/* <FiltersModal /> */}
+      <h2>{board.title}</h2>
     </div>
   );
 };
