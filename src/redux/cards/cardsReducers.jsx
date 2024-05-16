@@ -1,11 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authInstance } from '../authorization/authReducer';
 
+export const allColumns = createAsyncThunk(
+  'getcolumns',
+  async (boardId, thunkAPI) => {
+    try {
+      const { data } = await authInstance.get(`columns/${boardId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addColumn = createAsyncThunk(
   'addColumn',
-  async ( _id, thunkAPI) => {
+  async ({ title, boardId }, thunkAPI) => {
     try {
-      const { data } = await authInstance.post(`columns/${_id}`)
+      const { data } = await authInstance.post(`/columns/`, { title, boardId });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

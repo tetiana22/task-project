@@ -5,10 +5,14 @@ import AddColumnModal from '../../Modals/AddColumModal/AddColumnModal';
 
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 
-const MainDashboard = () => {
+import ColumnList from '../ColumnList/ColumnList';
+
+const MainDashboard = ({ board }) => {
   const [open, setOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  const boardId = board._id;
+  console.log(boardId);
   const scrollRef = useRef(null);
   const [startX, setStartX] = useState(0);
 
@@ -50,13 +54,11 @@ const MainDashboard = () => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        {/* {columns &&
-          columns.map(item => <ColumnTask key={item._id} item={item} />)} */}
-
+        <ColumnList boardId={boardId} />
         <ButtonPlus approve={true} onOpen={onOpen} text="Add column" />
       </ContentWrapper>
 
-      {open && <AddColumnModal onClose={handleCloseModal} />}
+      {open && <AddColumnModal onClose={handleCloseModal} boardId={boardId} />}
     </Wrapper>
   );
 };

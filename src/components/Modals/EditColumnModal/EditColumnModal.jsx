@@ -10,7 +10,7 @@ import {
 import { Close } from 'assets/fonts/images/icons/Close';
 import EditColumn from '../../EditColumn/EditColumn';
 
-const EditColumnModal = ({ onClose }) => {
+const EditColumnModal = ({ onClose, columnId }) => {
   return (
     // <Modal modalId={modalNames.EDIT_COLUMN}>
     <Div onClick={onClose}>
@@ -21,7 +21,7 @@ const EditColumnModal = ({ onClose }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <EditColumn />
+        <EditColumn columnId={columnId} />
       </ModalContainer>
     </Div>
     // </Modal>

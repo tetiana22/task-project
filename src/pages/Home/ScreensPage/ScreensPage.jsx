@@ -12,6 +12,7 @@ const ScreensPage = () => {
   const { boardId } = useParams();
   const boards = useSelector(state => state.dashboards.boards);
   const currentBoard = boards.find(board => board._id === boardId);
+
   const menuMode = useSelector(selectIsMenuOpen);
   console.log(currentBoard);
 

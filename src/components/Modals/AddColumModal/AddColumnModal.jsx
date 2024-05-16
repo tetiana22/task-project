@@ -9,7 +9,7 @@ import {
 } from '../EditProfileModal/EditProfileModal.styled';
 import { Close } from 'assets/fonts/images/icons/Close';
 import AddColumn from 'components/AddColumn/AddColumn';
-const AddColumModal = ({ onClose }) => {
+const AddColumModal = ({ onClose, boardId }) => {
   return (
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
@@ -19,7 +19,7 @@ const AddColumModal = ({ onClose }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <AddColumn />
+        <AddColumn boardId={boardId} />
       </ModalContainer>
     </Div>
   );

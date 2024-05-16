@@ -6,16 +6,16 @@ const {
   editBoard,
   getAllDashboards,
   deleteDashboard,
+  allColumns,
 } = require('./cardsReducers');
 
 const initialState = {
   boards: [],
-
   currentBoardId: null,
-  // cards: [],
-  // cardId: null,
-  // columns: [],
-  // columnId: null,
+  cards: [],
+  cardId: null,
+  columns: [],
+  columnId: null,
   isLoading: false,
   error: null,
   columnsLength: 0,
@@ -32,54 +32,46 @@ const boardsSlice = createSlice({
       state.currentBoardId = payload;
     },
   },
-
   extraReducers: builder =>
     builder
       .addCase(getAllDashboards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.boards = action.payload;
-        state.currentBoardId = action.payload;
         state.error = null;
       })
       .addCase(createBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-
         state.currentBoardId = action.payload._id;
-        state.boards = [...state.boards, action.payload];
-        // state.boards.push(action.payload);
+        const newBoard = { ...action.payload, columns: [] };
+        state.boards = [...state.boards, newBoard];
       })
       .addCase(deleteDashboard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.currentBoardId = action.payload;
         state.boards = state.boards.filter(
           board => board._id !== action.payload._id
         );
       })
-      // .addCase(getDashboardById.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.currentBoardId = action.payload;
-      //   state.error = null;
+      .addCase(allColumns.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.columns = action.payload;
 
-      //   state.currentBg = action.payload?.board?.backgroundURL;
-      //   state.currentName = action.payload?.board?.name;
-      //   state.columnsLength = action.payload?.columns?.length;
-      //   state.selectedPriority = 'show all';
-      // })
+        state.selectedPriority = 'show all';
+      })
       .addCase(editBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.currentBoardId = action.payload;
-        state.boards = state.boards.filter(
-          board => board._id !== action.payload._id
+        state.boards = state.boards.map(board =>
+          board._id === action.payload._id ? action.payload : board
         );
       })
-
       .addCase(addColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.boards.columns.push(action.payload);
+        state.columns.push(action.payload);
+        state.error = null;
       })
       .addCase(editColumn.fulfilled, (state, action) => {
         const { _id, text } = action.payload;
@@ -96,7 +88,6 @@ const boardsSlice = createSlice({
           editBoard.pending,
           getAllDashboards.pending,
           deleteDashboard.pending
-          // getDashboardById.pending
         ),
         state => {
           state.isLoading = true;
@@ -111,7 +102,6 @@ const boardsSlice = createSlice({
           editBoard.rejected,
           getAllDashboards.rejected,
           deleteDashboard.rejected
-          // getDashboardById.rejected
         ),
         (state, action) => {
           state.isLoading = false;
@@ -119,5 +109,6 @@ const boardsSlice = createSlice({
         }
       ),
 });
+
 export const boardsReducer = boardsSlice.reducer;
 export const { setCurrentBoardId } = boardsSlice.actions;
