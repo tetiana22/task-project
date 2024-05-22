@@ -90,7 +90,7 @@ export const IconsBlock = styled.div`
 `;
 
 export const IconEdit = styled.svg`
-  z-index: 9999;
+  z-index: 99;
   height: 16px;
   width: 16px;
   fill: transparent;
@@ -104,7 +104,7 @@ export const IconEdit = styled.svg`
 `;
 
 export const IconDel = styled.svg`
-  z-index: 9999;
+  z-index: 99;
   height: 16px;
   width: 16px;
   fill: transparent;

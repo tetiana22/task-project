@@ -1,5 +1,4 @@
-// import { Modal } from '../../mainModal/MainModal';
-// import { modalNames } from '../../../constant/constant';
+import React from 'react';
 import {
   Div,
   ModalContainer,
@@ -8,20 +7,23 @@ import {
   CloseModalCrossStyled,
 } from '../EditProfileModal/EditProfileModal.styled';
 import { Close } from 'assets/fonts/images/icons/Close';
-import AddColumn from 'components/AddColumn/AddColumn';
-const AddColumModal = ({ onClose, boardId }) => {
+
+import AddCard from 'components/AddCard/AddCard';
+
+const AddCardModal = ({ onClose, boardId, columnId }) => {
   return (
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Add column</ModalTitle>
+          <ModalTitle>Add Card</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <AddColumn boardId={boardId} onClose={onClose} />
+        <AddCard boardId={boardId} columnId={columnId} onClose={onClose} />
       </ModalContainer>
     </Div>
   );
 };
-export default AddColumModal;
+
+export default AddCardModal;

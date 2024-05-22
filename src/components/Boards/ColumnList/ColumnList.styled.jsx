@@ -18,7 +18,6 @@ export const ContentWrapper = styled.div`
 `;
 
 export const TaskList = styled.ul`
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 350px;

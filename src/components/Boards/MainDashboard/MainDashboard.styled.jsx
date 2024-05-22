@@ -12,7 +12,6 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  position: relative;
   display: flex;
   gap: 34px;
 `;

@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { editColumn } from '../../redux/cards/cardsReducers';
 
-const EditColumn = ({ text, columnId }) => {
+const EditColumn = ({ columnId }) => {
   const dispatch = useDispatch();
 
   const {
@@ -21,14 +21,14 @@ const EditColumn = ({ text, columnId }) => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      text: '',
-      columnId: '',
+      title: '',
     },
     resolver: yupResolver(editColumnSchema),
   });
 
-  const onSubmit = () => {
-    dispatch(editColumn(text, columnId));
+  const onSubmit = values => {
+    const { title } = values;
+    dispatch(editColumn({ columnId, title }));
     reset();
   };
 
@@ -36,12 +36,12 @@ const EditColumn = ({ text, columnId }) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="text"
-        id="text"
+        id="title"
         placeholder="Title"
-        {...register('text')}
-        error={touched.text && errors.text && errors.text.message}
+        {...register('title')}
+        error={touched.title && errors.title && errors.title.message}
       />
-      {errors.text && <Error>{errors.text.message}</Error>}
+      {errors.title && <Error>{errors.title.message}</Error>}
 
       <ButtonPlus type="submit" approve="true" text="Add" />
     </Form>

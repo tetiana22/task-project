@@ -10,9 +10,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { addColumn } from '../../redux/cards/cardsReducers';
 
-const AddColumn = ({ boardId }) => {
+const AddColumn = ({ boardId, onClose }) => {
   const dispatch = useDispatch();
-  console.log(boardId);
+
   const {
     register,
     handleSubmit,
@@ -30,6 +30,7 @@ const AddColumn = ({ boardId }) => {
     const { title } = values;
     dispatch(addColumn({ title, boardId }));
     reset();
+    onClose();
   };
 
   return (

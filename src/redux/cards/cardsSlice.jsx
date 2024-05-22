@@ -7,6 +7,11 @@ const {
   getAllDashboards,
   deleteDashboard,
   allColumns,
+  deleteColumn,
+  addCard,
+  allCards,
+  editCard,
+  deleteCard,
 } = require('./cardsReducers');
 
 const initialState = {
@@ -74,10 +79,22 @@ const boardsSlice = createSlice({
         state.error = null;
       })
       .addCase(editColumn.fulfilled, (state, action) => {
-        const { _id, text } = action.payload;
-        const columnIndex = state.columns.findIndex(item => item._id === _id);
-        state.columns[columnIndex].text = text;
+        state.columns = state.columns.map(column =>
+          column._id === action.payload._id ? action.payload : column
+        );
         state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(deleteColumn.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.columns = state.columns.filter(
+          column => column._id !== action.payload._id
+        );
+      })
+      .addCase(addCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.cards.push(action.payload);
         state.error = null;
       })
       .addMatcher(
@@ -87,7 +104,12 @@ const boardsSlice = createSlice({
           createBoard.pending,
           editBoard.pending,
           getAllDashboards.pending,
-          deleteDashboard.pending
+          deleteDashboard.pending,
+          deleteColumn.pending,
+          addCard.pending,
+          allCards.pending,
+          editCard.pending,
+          deleteCard.pending
         ),
         state => {
           state.isLoading = true;
@@ -101,7 +123,12 @@ const boardsSlice = createSlice({
           createBoard.rejected,
           editBoard.rejected,
           getAllDashboards.rejected,
-          deleteDashboard.rejected
+          deleteDashboard.rejected,
+          deleteColumn.rejected,
+          addCard.rejected,
+          allCards.rejected,
+          editCard.rejected,
+          deleteCard.rejected
         ),
         (state, action) => {
           state.isLoading = false;

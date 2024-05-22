@@ -25,6 +25,7 @@ export const ModalContainer = styled.div`
   border-radius: 8px;
   border: 1px solid ${props => props.theme.colors.priorityGreen};
   width: 335px;
+  height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

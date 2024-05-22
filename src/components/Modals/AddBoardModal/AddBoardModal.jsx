@@ -19,7 +19,7 @@ const AddBoardModal = ({ onClose }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <AddBoard />
+        <AddBoard onClose={onClose} />
       </ModalContainer>
     </Div>
   );

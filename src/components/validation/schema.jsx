@@ -34,3 +34,11 @@ export const editColumnSchema = yup.object().shape({
     .min(3, 'Title must be at least 3 characters long')
     .required('Title is required'),
 });
+
+export const addCardSchema = yup.object().shape({
+  title: yup.string().required('Title is required!'),
+  description: yup
+    .string()
+    .min(3, 'Title must be at least 3 characters long')
+    .max(230, 'Name must be at most 230 characters'),
+});

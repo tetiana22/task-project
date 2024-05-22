@@ -11,14 +11,18 @@ const ColumnList = ({ boardId }) => {
   useEffect(() => {
     dispatch(allColumns(boardId));
   }, [dispatch, boardId]);
-  console.log(columns);
+
   return (
     <div>
       <ListWrapper>
         {columns.map(column => (
-          <ColumnItem key={column._id} column={column} columnId={column._id} />
+          <ColumnItem
+            key={column._id}
+            column={column}
+            columnId={column._id}
+            boardId={boardId}
+          />
         ))}
-        ,
       </ListWrapper>
     </div>
   );
