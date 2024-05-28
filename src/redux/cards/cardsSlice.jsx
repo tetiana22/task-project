@@ -97,6 +97,13 @@ const boardsSlice = createSlice({
         state.cards.push(action.payload);
         state.error = null;
       })
+      .addCase(allCards.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.cards = action.payload;
+
+        state.selectedPriority = 'show all';
+      })
       .addMatcher(
         isAnyOf(
           addColumn.pending,

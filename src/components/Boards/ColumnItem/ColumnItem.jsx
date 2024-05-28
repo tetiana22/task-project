@@ -53,7 +53,11 @@ const ColumnItem = ({ column, columnId, boardId }) => {
             </IconDel>
           </IconsBlock>
         </Column>
-        <CardList columnTitle={column.title} column={column} />
+        <CardList
+          columnTitle={column.title}
+          boardId={boardId}
+          columnId={columnId}
+        />
         <ButtonPlus
           approve={true}
           text="Add anotner card"
