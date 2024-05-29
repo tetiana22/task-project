@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 export const FormTitle = styled.h3`
   font-size: 12px;
@@ -7,6 +7,7 @@ export const FormTitle = styled.h3`
   letter-spacing: -0.24px;
   margin-bottom: 4px;
 `;
+
 export const InputDesc = styled.input`
   width: calc(100% - 0%);
   height: 154px;
@@ -56,7 +57,6 @@ export const Label = styled.label`
   width: 14px;
   height: 14px;
   border-radius: 14px;
-
   cursor: pointer;
 
   &.active {
@@ -70,16 +70,16 @@ export const Label = styled.label`
       props.value === 'High' && '2px solid rgba(190, 219, 176, 1)'};
   }
 `;
+
 export const LabelItem = styled.div`
   width: 14px;
   height: 14px;
   border-radius: 14px;
-  z-index: 99;
+
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   background-color: ${props =>
     props.value === 'Without priority' && 'rgb(128,128,128)'};
   background-color: ${props =>
@@ -88,7 +88,6 @@ export const LabelItem = styled.div`
     props.value === 'Medium' && 'rgba(224, 156, 181, 1)'};
   background-color: ${props =>
     props.value === 'High' && 'rgba(190, 219, 176, 1)'};
-
   transition: all 250ms linear;
 
   &.active {
@@ -103,23 +102,21 @@ export const DateTitle = styled.div`
   font-family: Poppins;
   font-weight: 500;
   letter-spacing: -0.28px;
-
   cursor: pointer;
 `;
+
 export const Wrapper = styled.div`
   position: relative;
-  width: 233px;
+  width: 260px;
 
   .react-datepicker {
     overflow: hidden;
-
     margin-top: -28px;
     border-radius: 8px;
-    border: 1px solid green;
-
+    border: 4px solid green;
     background: greenyellow;
     outline: none;
-    width: 233px;
+    width: 260px;
     position: absolute;
     right: -307px;
     top: -190px;
@@ -132,11 +129,11 @@ export const Wrapper = styled.div`
       margin: -1px;
       border: 0;
       padding: 0;
-
       white-space: nowrap;
       clip-path: inset(100%);
       clip: rect(0 0 0 0);
       overflow: hidden;
+      display: none;
     }
 
     &__navigation {
@@ -155,15 +152,11 @@ export const Wrapper = styled.div`
     }
 
     &__week {
-      color: grey;
-      font-size: 14px;
-      font-family: Poppins;
-      line-height: 18px;
-      letter-spacing: -0.28px;
-
-      &:last-of-type {
-        margin-bottom: 18px;
-      }
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      justify-items: center;
+      padding: 0px;
+      margin: 0;
     }
 
     &__day {
@@ -172,9 +165,12 @@ export const Wrapper = styled.div`
       color: blue;
       font-size: 14px;
       font-family: Poppins;
-      width: 1.5rem;
-
       transition: all 250ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+      margin: 0px;
 
       &--today {
         background: greenyellow;
@@ -211,6 +207,7 @@ export const Wrapper = styled.div`
       border-radius: 24px;
       background: greenyellow;
       color: green;
+      cursor: pointer;
     }
 
     &__triangle {
@@ -218,17 +215,18 @@ export const Wrapper = styled.div`
     }
 
     &__header {
-      background-color: pink;
-      width: 231px;
+      background-color: greenyellow;
+      width: 260px;
       border-bottom: none;
-      padding: 18px 18px 14px;
+      /* padding: 18px 18px 14px; */
+      text-align: center;
     }
 
     &__day-names {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      justify-items: center;
       border-top: 1px solid gray;
       padding-top: 14px;
     }
@@ -238,44 +236,43 @@ export const Wrapper = styled.div`
       font-size: 14px;
       font-family: 'Poppins';
       font-style: normal;
-      font-weight: 500;
+      font-weight: 700;
       line-height: normal;
       letter-spacing: -0.28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &__current-month {
       color: black;
       font-size: 16px;
       font-family: Poppins;
-      font-weight: 500;
-      letter-spacing: -0.32px;
-      margin-bottom: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
   }
-  .react-datepicker__input-container input {
-  }
 `;
+
 export const RadioBtnWrapper = styled.div`
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   gap: 24px;
   padding-left: 8px;
 `;
+
 export const DefaultRadioBtn = styled.input`
   appearance: none;
-
   width: 1px;
   height: 1px;
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 `;
+
 export const FormWrapper = styled.div`
   position: relative;
 `;

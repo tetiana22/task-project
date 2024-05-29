@@ -1,14 +1,12 @@
-import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { addCardSchema } from 'components/validation/schema';
-
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-// import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
-import { useState } from 'react';
-// import data from '../../assets/fonts/images/backs-small/backs.json';
-import { addCard } from '../../redux/cards/cardsReducers';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
+import { addCardSchema } from 'components/validation/schema';
+import { addCard } from '../../redux/cards/cardsReducers';
 import {
   Input,
   Form,
@@ -25,13 +23,10 @@ import {
   FormWrapper,
   Label,
 } from './AddCard.styled';
+import 'react-datepicker/dist/react-datepicker.css'; // Ensure this is imported
 
 const options = ['Low', 'Medium', 'High', 'Without priority'];
-const dateOptions = {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-};
+const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
 
 const months = [
   'January',
@@ -53,7 +48,6 @@ const day = today.getDate();
 const formattedDate = `${month} ${day}`;
 
 const AddCard = ({ onClose, boardId, columnId }) => {
-  // const [deadline, setDeadline] = useState('');
   const [selectedLabel, setSelectedLabel] = useState(options[3]);
   const [startDate, setStartDate] = useState('');
   const cards = useSelector(state => state.dashboards.cards);
@@ -61,10 +55,6 @@ const AddCard = ({ onClose, boardId, columnId }) => {
     card => card.columnId === columnId
   ).length;
 
-  console.log(boardId);
-  console.log(columnId);
-  // const [bgdImg, setBgdImg] = useState('');
-  // const [icon, setIcon] = useState('');
   const customDate =
     startDate !== '' ? startDate.toLocaleString('en-GB', dateOptions) : null;
 
@@ -85,15 +75,10 @@ const AddCard = ({ onClose, boardId, columnId }) => {
     resolver: yupResolver(addCardSchema),
   });
 
-  let deadline = startDate;
-
   const onSubmit = values => {
     const index = currColumnCardsLgth;
     const { title, description, priority } = values;
-
-    // if (deadline === '') {
-    //   deadline(new Date().toISOString());
-    // }
+    const deadline = startDate;
 
     dispatch(
       addCard({
@@ -110,16 +95,6 @@ const AddCard = ({ onClose, boardId, columnId }) => {
     reset();
     onClose();
   };
-
-  // const handleBgDImg = url => {
-  //   setBgdImg(url);
-  // };
-
-  // const handleIcon = icon => {
-  //   setIcon(icon);
-  // };
-
-  // const formattedDate = new Date().toLocaleDateString(); // Оголошуємо formattedDate
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -151,15 +126,13 @@ const AddCard = ({ onClose, boardId, columnId }) => {
           {options.map((el, idx) => (
             <Label
               key={idx}
-              value={idx}
+              value={el}
               className={selectedLabel === el ? 'active' : ''}
-              id="labelOut"
             >
               <LabelItem
                 onClick={() => setSelectedLabel(el)}
                 value={el}
                 className={selectedLabel === el ? 'active' : ''}
-                id="in"
               />
               <DefaultRadioBtn
                 type="radio"
@@ -181,7 +154,7 @@ const AddCard = ({ onClose, boardId, columnId }) => {
           <DatePicker
             className="input-ref"
             minDate={new Date()}
-            timeFormat="dd/MM/yyyy"
+            dateFormat="dd/MM/yyyy"
             selected={startDate}
             onChange={date => setStartDate(date)}
             id="datePicker"

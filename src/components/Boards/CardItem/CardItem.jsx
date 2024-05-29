@@ -89,7 +89,6 @@ const CardItem = ({ item }) => {
                 <IconBell aria-label="bell icon">
                   <use href={`${sprite}#icon-bell`} />
                 </IconBell>
-                {/* <IconBellWrapper></IconBellWrapper> */}
               </>
             )}
             {today > formatedDeadline && (
@@ -117,7 +116,6 @@ const CardItem = ({ item }) => {
                   ))}
                 </PopupWrapper>
               )}
-              {/* {isPopupOpen && <CardmovePopup />} */}
             </MoverWrapper>
             <div>
               <IconEdit aria-label="edit icon" onClick={handleOpen}>
