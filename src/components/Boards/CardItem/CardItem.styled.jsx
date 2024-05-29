@@ -10,7 +10,8 @@ export const CardWrapper = styled.div`
   width: 100%;
   min-height: 154px;
   border-radius: 8px;
-  background-color: #1c1c1c;
+  background-color: #2b2b2b;
+
   overflow: hidden;
   opacity: ${props => (props.expired ? 0.4 : 1)};
   border-left: 8px solid
@@ -26,7 +27,7 @@ export const CardWrapper = styled.div`
         : 'transparent'};
   transition: background-color 0.3s ease;
   &:hover {
-    background-color: #2b2b2b;
+    background-color: #1c1c1c;
   }
 `;
 
@@ -58,7 +59,7 @@ export const Text = styled.div`
   &::after {
     content: '';
     position: absolute;
-    bottom: -18px;
+    bottom: -40px;
     width: 100%;
     height: 1px;
     background-color: #707070;
@@ -75,36 +76,40 @@ export const Stats = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 14px;
+  position: relative;
 `;
 
 export const Priority = styled.p`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding-left: 16px;
+  padding-top: 15px;
   gap: 4px;
-  color: #b0b0b0;
-  font-size: 10px;
+  color: #ffffff;
+  font-size: 12px;
   font-family: 'Poppins';
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.2px;
   margin: 0;
-  &::before {
+  &::after {
     content: 'Priority';
     color: #b0b0b0;
-    font-size: 8px;
+    font-size: 10px;
     font-family: 'Poppins';
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.16px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
   }
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 2px;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: ${props =>
       props.priority === 'Without priority'
@@ -124,15 +129,15 @@ export const Deadline = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   gap: 4px;
-  color: #b0b0b0;
-  font-size: 10px;
+  color: #fff;
+  font-size: 12px;
   font-family: 'Poppins';
   font-weight: 400;
   letter-spacing: -0.2px;
   &::before {
     content: 'Deadline';
     color: #b0b0b0;
-    font-size: 8px;
+    font-size: 10px;
     font-family: 'Poppins';
     font-weight: 400;
     letter-spacing: -0.16px;

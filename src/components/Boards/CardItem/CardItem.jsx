@@ -115,9 +115,7 @@ const CardItem = ({ item }) => {
                     </PopupItem>
                   ))}
                 </PopupWrapper>
-              )}
-            </MoverWrapper>
-            <div>
+              )}{' '}
               <IconEdit aria-label="edit icon" onClick={handleOpen}>
                 <use href={`${sprite}#icon-pencil`} />
               </IconEdit>
@@ -132,7 +130,7 @@ const CardItem = ({ item }) => {
               >
                 <use href={`${sprite}#icon-trash`} />
               </IconDel>
-            </div>
+            </MoverWrapper>
           </IconsGroup>
         </BottomWrapper>
       </CardWrapper>
