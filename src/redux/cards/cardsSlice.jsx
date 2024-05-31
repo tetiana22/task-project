@@ -12,6 +12,7 @@ const {
   allCards,
   editCard,
   deleteCard,
+  moveCard,
 } = require('./cardsReducers');
 
 const initialState = {
@@ -92,6 +93,25 @@ const boardsSlice = createSlice({
           column => column._id !== action.payload._id
         );
       })
+      .addCase(moveCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const { cardId, columnId, index } = action.payload;
+
+        const card = state.cards.find(card => card._id === cardId);
+        if (card) {
+          card.columnId = columnId;
+          card.index = index;
+        }
+
+        const columnCards = state.cards.filter(
+          card => card.columnId === columnId
+        );
+        columnCards.sort((a, b) => a.index - b.index);
+        columnCards.forEach((card, i) => {
+          card.index = i;
+        });
+      })
       .addCase(addCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cards.push(action.payload);
@@ -116,7 +136,8 @@ const boardsSlice = createSlice({
           addCard.pending,
           allCards.pending,
           editCard.pending,
-          deleteCard.pending
+          deleteCard.pending,
+          moveCard.pending
         ),
         state => {
           state.isLoading = true;
@@ -125,6 +146,7 @@ const boardsSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
+          moveCard.rejected,
           addColumn.rejected,
           editColumn.rejected,
           createBoard.rejected,

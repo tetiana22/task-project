@@ -169,3 +169,21 @@ export const editCard = createAsyncThunk(
     }
   }
 );
+export const moveCard = createAsyncThunk(
+  'cards/moveCard',
+  async ({ cardId, columnId, index }, thunkAPI) => {
+    try {
+      console.log('Sending request to move card', { cardId, columnId, index });
+      const response = await authInstance.patch(`cards/${cardId}`, {
+        columnId,
+        index,
+      });
+      const data = response.data;
+      console.log('Response data:', data);
+      return data;
+    } catch (error) {
+      console.error('Error moving card:', error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

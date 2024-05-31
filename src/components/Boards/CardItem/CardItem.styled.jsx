@@ -192,15 +192,16 @@ export const PopupWrapper = styled.ul`
   position: absolute;
   bottom: 130%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-70%);
   min-width: 160px;
+  min-height: 80px;
   padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid #3b82f6;
-  background: #1f2937;
+  border: 1px solid #518661;
+  background: #000;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
   gap: 4px;
   z-index: 99;
@@ -226,7 +227,10 @@ export const PopupItem = styled.li`
   transition: all 250ms linear;
   cursor: pointer;
   &:hover {
-    color: #e0e0e0;
+    color: #bedbb0; // Green color for title on hover
+    svg {
+      stroke: #bedbb0; // Green color for icon on hover
+    }
   }
 `;
 
@@ -240,4 +244,17 @@ export const PopupText = styled.p`
 export const PopupIcon = styled.svg`
   height: 16px;
   width: 16px;
+  stroke: #b0b0b0;
+  fill: transparent;
+  transition: stroke 250ms linear;
+`;
+
+export const Div = styled.div`
+  padding-right: 15px;
+  padding-bottom: 15px;
+`;
+export const PopTextWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

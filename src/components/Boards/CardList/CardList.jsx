@@ -28,7 +28,12 @@ const CardList = ({ columnId, columnTitle, boardId }) => {
   return (
     <List length={filteredCards.length}>
       {filteredCards.map(card => (
-        <CardItem key={card._id} item={card} columnTitle={columnTitle} />
+        <CardItem
+          cardId={card._id}
+          item={card}
+          columnTitle={columnTitle}
+          columnId={columnId}
+        />
       ))}
     </List>
   );

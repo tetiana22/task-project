@@ -18,18 +18,19 @@ import {
   Text,
   Title,
   TopWrapper,
+  Div,
 } from './CardItem.styled';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import EditColumnModal from '../../Modals/EditColumnModal/EditColumnModal';
 import { deleteColumn, editCard } from '../../../redux/cards/cardsReducers';
+import CardmovePopup from './Popitem';
 
-const CardItem = ({ item }) => {
+const CardItem = ({ item, columnTitle, columnId }) => {
   const [openCardModal, setOpenCardModal] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [delayPopup, setDelayPopup] = useState(false);
   const moveIconRef = useRef(null);
   const dispatch = useDispatch();
-
   const { title, _id, deadline, description, priority } = item;
   const delayOptions = [1, 3, 5, 7];
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -85,11 +86,11 @@ const CardItem = ({ item }) => {
           </Stats>
           <IconsGroup>
             {today === formatedDeadline && (
-              <>
+              <Div>
                 <IconBell aria-label="bell icon">
                   <use href={`${sprite}#icon-bell`} />
                 </IconBell>
-              </>
+              </Div>
             )}
             {today > formatedDeadline && (
               <DelayIcon onClick={handleDelayPopup} />
@@ -115,7 +116,14 @@ const CardItem = ({ item }) => {
                     </PopupItem>
                   ))}
                 </PopupWrapper>
-              )}{' '}
+              )}
+              {isPopupOpen && (
+                <CardmovePopup
+                  card={item}
+                  columnTitle={columnTitle}
+                  columnId={columnId}
+                />
+              )}
               <IconEdit aria-label="edit icon" onClick={handleOpen}>
                 <use href={`${sprite}#icon-pencil`} />
               </IconEdit>
