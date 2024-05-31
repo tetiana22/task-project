@@ -38,7 +38,7 @@ const CardmovePopup = ({ card, columnTitle }) => {
               key={idx}
             >
               <PopTextWrap>
-                <PopupText>Move to {title} </PopupText>
+                <PopupText> {title} </PopupText>
                 <PopupIcon>
                   <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                 </PopupIcon>

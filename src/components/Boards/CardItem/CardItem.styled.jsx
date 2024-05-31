@@ -193,8 +193,8 @@ export const PopupWrapper = styled.ul`
   bottom: 130%;
   left: 50%;
   transform: translateX(-70%);
-  min-width: 160px;
-  min-height: 80px;
+  min-width: 150px;
+  min-height: 56px;
   padding: 12px;
   display: flex;
   flex-direction: column;
