@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-const {
+import {
   addColumn,
   editColumn,
   createBoard,
@@ -13,7 +13,8 @@ const {
   editCard,
   deleteCard,
   moveCard,
-} = require('./cardsReducers');
+} from './cardsReducers';
+import { toast } from 'react-toastify';
 
 const initialState = {
   boards: [],
@@ -44,11 +45,13 @@ const boardsSlice = createSlice({
         state.isLoading = false;
         state.boards = action.payload;
         state.error = null;
+        state.currentBg = action.payload.background;
       })
       .addCase(createBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
         state.currentBoardId = action.payload._id;
+        state.currentBg = action.payload.background;
         const newBoard = { ...action.payload, columns: [] };
         state.boards = [...state.boards, newBoard];
       })
@@ -63,7 +66,7 @@ const boardsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.columns = action.payload;
-
+        state.currentBg = action.payload.background;
         state.selectedPriority = 'show all';
       })
       .addCase(editBoard.fulfilled, (state, action) => {
@@ -94,23 +97,35 @@ const boardsSlice = createSlice({
         );
       })
       .addCase(moveCard.fulfilled, (state, action) => {
+        console.log('moveCard.fulfilled action payload:', action.payload);
+
         state.isLoading = false;
         state.error = null;
-        const { cardId, columnId, index } = action.payload;
+        const { cardId, columnId, updatedCards } = action.payload;
 
-        const card = state.cards.find(card => card._id === cardId);
-        if (card) {
-          card.columnId = columnId;
-          card.index = index;
-        }
+        // Видалення картки з попередньої колонки
+        state.cards = state.cards.filter(card => card._id !== cardId);
 
-        const columnCards = state.cards.filter(
-          card => card.columnId === columnId
-        );
-        columnCards.sort((a, b) => a.index - b.index);
-        columnCards.forEach((card, i) => {
-          card.index = i;
+        // Додавання картки в нову колонку на правильну позицію
+        updatedCards.forEach(updatedCard => {
+          const cardIndex = state.cards.findIndex(
+            card => card._id === updatedCard._id
+          );
+          if (cardIndex !== -1) {
+            state.cards[cardIndex] = updatedCard;
+          } else {
+            state.cards.push(updatedCard);
+          }
         });
+
+        // Оновлення колонок
+        state.columns = state.columns.map(column => {
+          if (column._id === columnId) {
+            column.cards = updatedCards;
+          }
+          return column;
+        });
+        toast.success('Card moved successfully');
       })
       .addCase(addCard.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -123,6 +138,20 @@ const boardsSlice = createSlice({
         state.cards = action.payload;
 
         state.selectedPriority = 'show all';
+      })
+      .addCase(editCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.cards = state.cards.map(card =>
+          card._id === action.payload._id ? action.payload : card
+        );
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.cards = state.cards.filter(
+          card => card._id !== action.payload._id
+        );
       })
       .addMatcher(
         isAnyOf(
@@ -137,10 +166,12 @@ const boardsSlice = createSlice({
           allCards.pending,
           editCard.pending,
           deleteCard.pending,
-          moveCard.pending
+          moveCard.pending,
+          editCard.pending,
+          deleteCard.pending
         ),
         state => {
-          state.isLoading = true;
+          state.isLoading = false;
           state.error = null;
         }
       )
@@ -156,6 +187,8 @@ const boardsSlice = createSlice({
           deleteColumn.rejected,
           addCard.rejected,
           allCards.rejected,
+          editCard.rejected,
+          deleteCard.rejected,
           editCard.rejected,
           deleteCard.rejected
         ),

@@ -12,9 +12,8 @@ const ScreensPage = () => {
   const { boardId } = useParams();
   const boards = useSelector(state => state.dashboards.boards);
   const currentBoard = boards.find(board => board._id === boardId);
-
+  const currentBg = currentBoard ? currentBoard.background : '';
   const menuMode = useSelector(selectIsMenuOpen);
-  console.log(currentBoard);
 
   const handleScreenClick = () => {
     if (menuMode) {
@@ -23,7 +22,11 @@ const ScreensPage = () => {
   };
 
   return (
-    <Wrapper onClick={handleScreenClick} isOpen={menuMode}>
+    <Wrapper
+      onClick={handleScreenClick}
+      $isOpen={menuMode}
+      currentBg={currentBg}
+    >
       <HeaderDashboard board={currentBoard} />
 
       <MainDashboard board={currentBoard} />

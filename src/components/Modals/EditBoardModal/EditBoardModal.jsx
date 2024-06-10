@@ -23,7 +23,7 @@ const EditBoardModal = ({ isOpen, onClose, boardId }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <EditBoard boardId={boardId} />
+        <EditBoard onClose={onClose} boardId={boardId} />
       </ModalContainer>
     </Div>
     // </Modal>

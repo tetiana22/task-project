@@ -21,11 +21,16 @@ import {
   Div,
 } from './CardItem.styled';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
-import EditColumnModal from '../../Modals/EditColumnModal/EditColumnModal';
-import { deleteColumn, editCard } from '../../../redux/cards/cardsReducers';
-import CardmovePopup from './Popitem';
 
-const CardItem = ({ item, columnTitle, columnId }) => {
+import {
+  allCards,
+  deleteCard,
+  editCard,
+} from '../../../redux/cards/cardsReducers';
+import CardmovePopup from './Popitem';
+import EditCardModal from 'components/Modals/EditCardModal/EditCardModal';
+
+const CardItem = ({ item, columnTitle, columnId, boardId, cardId }) => {
   const [openCardModal, setOpenCardModal] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [delayPopup, setDelayPopup] = useState(false);
@@ -34,10 +39,10 @@ const CardItem = ({ item, columnTitle, columnId }) => {
   const { title, _id, deadline, description, priority } = item;
   const delayOptions = [1, 3, 5, 7];
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  const today = new Date().toLocaleString('en-GB', options);
+  const today = new Date();
   const parsedDate = new Date(deadline);
   const formatedDeadline = parsedDate.toLocaleString('en-GB', options);
-  const expiredCard = new Date(today) > parsedDate;
+  const expiredCard = today > parsedDate;
 
   const checkTextLength = text => {
     return text.length <= 80 ? text : text.slice(0, 80) + '...';
@@ -72,27 +77,33 @@ const CardItem = ({ item, columnTitle, columnId }) => {
   const handleOpen = () => setOpenCardModal(true);
   const handleClose = () => setOpenCardModal(false);
 
+  const handleDelete = () => {
+    dispatch(deleteCard(cardId));
+    dispatch(allCards(boardId));
+  };
+
   return (
     <>
-      <CardWrapper priority={priority} expired={expiredCard}>
+      <CardWrapper $priority={priority} $expired={expiredCard}>
         <TopWrapper>
           <Title>{title}</Title>
           <Text>{checkTextLength(description)}</Text>
         </TopWrapper>
         <BottomWrapper>
           <Stats>
-            <Priority priority={priority}>{priority}</Priority>
+            <Priority $priority={priority}>{priority}</Priority>
             <Deadline>{formatedDeadline}</Deadline>
           </Stats>
           <IconsGroup>
-            {today === formatedDeadline && (
+            {today.toLocaleDateString('en-GB', options) ===
+              formatedDeadline && (
               <Div>
                 <IconBell aria-label="bell icon">
                   <use href={`${sprite}#icon-bell`} />
                 </IconBell>
               </Div>
             )}
-            {today > formatedDeadline && (
+            {today.toLocaleDateString('en-GB', options) > formatedDeadline && (
               <DelayIcon onClick={handleDelayPopup} />
             )}
             <MoverWrapper>
@@ -105,10 +116,10 @@ const CardItem = ({ item, columnTitle, columnId }) => {
               </ActiveIcon>
               {delayPopup && (
                 <PopupWrapper>
-                  {delayOptions.map((item, idx) => (
+                  {delayOptions.map((item, index) => (
                     <PopupItem
                       onClick={() => handleDeadline(deadline, item)}
-                      key={idx}
+                      key={index}
                     >
                       <PopupText>
                         {item > 1 ? `${item} days delay` : `${item} day delay`}
@@ -122,20 +133,21 @@ const CardItem = ({ item, columnTitle, columnId }) => {
                   card={item}
                   columnTitle={columnTitle}
                   columnId={columnId}
+                  boardId={boardId}
+                  title={title}
                 />
               )}
               <IconEdit aria-label="edit icon" onClick={handleOpen}>
                 <use href={`${sprite}#icon-pencil`} />
               </IconEdit>
               {openCardModal && (
-                <EditColumnModal onClose={handleClose} columnId={_id} />
+                <EditCardModal
+                  isOpen={openCardModal}
+                  onClose={handleClose}
+                  cardId={cardId}
+                />
               )}
-              <IconDel
-                aria-label="delete icon"
-                onClick={() => {
-                  dispatch(deleteColumn(_id));
-                }}
-              >
+              <IconDel aria-label="delete icon" onClick={handleDelete}>
                 <use href={`${sprite}#icon-trash`} />
               </IconDel>
             </MoverWrapper>

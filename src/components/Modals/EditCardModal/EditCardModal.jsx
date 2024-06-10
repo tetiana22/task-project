@@ -1,28 +1,29 @@
-import NeedHelp from 'components/NeedHelp/NeedHelp';
-import { Close } from 'assets/fonts/images/icons/Close';
+import React from 'react';
+import EditCard from 'components/EditCard/EditCard';
 import {
   Div,
   ModalContainer,
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
-} from '../EditProfileModal/EditProfileModal.styled';
+} from './EditCardModal.styled';
+import { Close } from 'assets/fonts/images/icons/Close';
 
-const NeedHelpModal = ({ isOpen, onClose }) => {
+const EditCardModal = ({ isOpen, onClose, cardId }) => {
   if (!isOpen) return null;
   return (
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
-          <ModalTitle>Need help</ModalTitle>
+          <ModalTitle>Edit card</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <NeedHelp onClose={onClose} />
+        <EditCard onClose={onClose} cardId={cardId} />
       </ModalContainer>
     </Div>
   );
 };
 
-export default NeedHelpModal;
+export default EditCardModal;

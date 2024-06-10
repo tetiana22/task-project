@@ -30,6 +30,9 @@ export const TaskList = styled.ul`
 
   overflow-y: ${props => (props.length < 3 ? 'hidden' : 'scroll')};
   width: ${props => (props.length < 3 ? '342px' : '350px')};
+  overflow-x: scroll;
+
+  overflow-x: ${props => (props.length < '335px' ? 'hidden' : 'scroll')};
 
   ::-webkit-scrollbar {
     width: 8px;

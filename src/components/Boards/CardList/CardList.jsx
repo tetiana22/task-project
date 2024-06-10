@@ -16,10 +16,8 @@ const CardList = ({ columnId, columnTitle, boardId }) => {
     dispatch(allCards(boardId));
   }, [dispatch, boardId]);
 
-  // Filter cards by columnId first
   const cardsInColumn = cards.filter(card => card.columnId === columnId);
 
-  // Further filter cards by selected priority
   const filteredCards =
     selectedPriority === 'show all'
       ? cardsInColumn
@@ -29,10 +27,12 @@ const CardList = ({ columnId, columnTitle, boardId }) => {
     <List length={filteredCards.length}>
       {filteredCards.map(card => (
         <CardItem
+          key={card._id}
           cardId={card._id}
           item={card}
           columnTitle={columnTitle}
           columnId={columnId}
+          boardId={boardId}
         />
       ))}
     </List>

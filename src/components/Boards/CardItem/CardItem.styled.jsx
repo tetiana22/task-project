@@ -10,25 +10,22 @@ export const CardWrapper = styled.div`
   width: 100%;
   min-height: 154px;
   border-radius: 8px;
-  background-color: #2b2b2b;
+  background-color: #1c1c1c;
 
   overflow: hidden;
-  opacity: ${props => (props.expired ? 0.4 : 1)};
+  opacity: ${props => (props.$expired ? 0.4 : 1)};
   border-left: 8px solid
     ${props =>
-      props.priority === 'Without priority'
+      props.$priority === 'Without priority'
         ? 'rgb(128, 128, 128)'
-        : props.priority === 'Low'
+        : props.$priority === 'Low'
         ? 'rgba(143, 161, 208, 1)'
-        : props.priority === 'Medium'
+        : props.$priority === 'Medium'
         ? 'rgba(224, 156, 181, 1)'
-        : props.priority === 'High'
+        : props.$priority === 'High'
         ? 'rgba(190, 219, 176, 1)'
         : 'transparent'};
   transition: background-color 0.3s ease;
-  &:hover {
-    background-color: #1c1c1c;
-  }
 `;
 
 export const TopWrapper = styled.div`
@@ -112,13 +109,13 @@ export const Priority = styled.p`
     height: 10px;
     border-radius: 50%;
     background-color: ${props =>
-      props.priority === 'Without priority'
+      props.$priority === 'Without priority'
         ? 'rgb(128, 128, 128)'
-        : props.priority === 'Low'
+        : props.$priority === 'Low'
         ? 'rgba(143, 161, 208, 1)'
-        : props.priority === 'Medium'
+        : props.$priority === 'Medium'
         ? 'rgba(224, 156, 181, 1)'
-        : props.priority === 'High'
+        : props.$priority === 'High'
         ? 'rgba(190, 219, 176, 1)'
         : 'transparent'};
   }

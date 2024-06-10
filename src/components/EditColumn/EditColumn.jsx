@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { editColumn } from '../../redux/cards/cardsReducers';
 
-const EditColumn = ({ columnId }) => {
+const EditColumn = ({ columnId, onClose }) => {
   const dispatch = useDispatch();
 
   const {
@@ -30,6 +30,7 @@ const EditColumn = ({ columnId }) => {
     const { title } = values;
     dispatch(editColumn({ columnId, title }));
     reset();
+    onClose();
   };
 
   return (
@@ -43,7 +44,7 @@ const EditColumn = ({ columnId }) => {
       />
       {errors.title && <Error>{errors.title.message}</Error>}
 
-      <ButtonPlus type="submit" approve="true" text="Add" />
+      <ButtonPlus type="submit" approve="true" text="Edit" />
     </Form>
   );
 };

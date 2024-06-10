@@ -1,18 +1,12 @@
 import { needHelpSchema } from 'components/validation/schema';
-import {
-  Form,
-  Button,
-  Input,
-  Error,
-  TextInput,
-} from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+import { Form, Button, Input, Error, TextInput } from './NeedHelp.styled';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { needHelp } from '../../redux/authorization/authReducer';
 
-const NeedHelp = () => {
+const NeedHelp = ({ onClose }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -37,6 +31,7 @@ const NeedHelp = () => {
 
     dispatch(needHelp(formData));
     reset();
+    onClose();
   };
 
   return (

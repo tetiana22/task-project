@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { deleteDashboard } from '../../../redux/cards/cardsReducers';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {
+  deleteDashboard,
+  getAllDashboards,
+} from '../../../redux/cards/cardsReducers';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
 import EditBoardModal from 'components/Modals/EditBoardModal/EditBoardModal';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { setCurrentBoardId } from '../../../redux/cards/cardsSlice';
 import {
   Board,
   BoardIcon,
@@ -14,12 +18,12 @@ import {
   IconDel,
   StyledLink,
 } from './BordItem.styled';
-import { setCurrentBoardId } from '../../../redux/cards/cardsSlice';
 
 const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
   const handleNavigate = e => {
     if (e.dataset === 'icon') {
       return;
@@ -27,8 +31,8 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
     navigate(`/home/${board._id}`);
     dispatch(setCurrentBoardId(board._id));
   };
-  const handleOpen = () => setOpen(true);
 
+  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const checkTextLength = text => {
@@ -40,6 +44,11 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
     return str.splice(0, 10).join('') + '...';
   };
 
+  const handleDelete = () => {
+    dispatch(deleteDashboard(board._id));
+    dispatch(getAllDashboards());
+  };
+
   return (
     <>
       <Board>
@@ -47,7 +56,6 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
           <BoardIcon className={activePojectIndex === index ? 'active' : ''}>
             <use href={sprite + board.icon} />
           </BoardIcon>
-
           <BoardTitle
             onClick={e => {
               onActive(boardId);
@@ -68,13 +76,7 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
             isOpen={open}
             boardId={boardId}
           />
-
-          <IconDel
-            aria-label="delit icon"
-            onClick={() => {
-              dispatch(deleteDashboard(board._id));
-            }}
-          >
+          <IconDel aria-label="delete icon" onClick={handleDelete}>
             <use href={sprite + `#icon-trash`} />
           </IconDel>
         </IconsBlock>

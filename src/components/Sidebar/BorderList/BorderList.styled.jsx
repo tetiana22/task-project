@@ -5,13 +5,12 @@ export const List = styled.ul`
   left: 50%;
   top: -100%;
   transform: translate(-50%, calc(100% + 40px)); */
-  max-height: 126px;
+  max-height: 250px;
   padding: 0;
   margin-bottom: 40px;
   overflow-y: scroll;
   scroll-behavior: auto;
-  width: 225px;
-  height: 126px;
+
   ::-webkit-scrollbar {
     width: 200px;
     opacity: 0.4;
@@ -24,9 +23,9 @@ export const List = styled.ul`
     border-radius: 12px;
   }
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     width: 260px;
-  }
+  } */
 
   ::-webkit-scrollbar {
     width: 0;

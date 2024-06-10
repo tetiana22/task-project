@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { moveCard } from '../../../redux/cards/cardsReducers';
 import {
@@ -9,42 +9,57 @@ import {
   PopTextWrap,
 } from './CardItem.styled';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import { toast } from 'react-toastify';
 
-const CardmovePopup = ({ card, columnTitle }) => {
+const CardmovePopup = ({ card, columnTitle, columnId, boardId }) => {
   const dispatch = useDispatch();
+  const columns = useSelector(state => state.dashboards.columns || []);
   const cardId = card._id;
-  const cards = useSelector(state => state.dashboards.cards);
-  const columns = useSelector(state => state.dashboards.columns);
+  const cards = useSelector(state => state.dashboards.cards || []);
+  const isLoading = useSelector(state => state.dashboards.isLoading || false);
 
-  // Create a dynamic column map based on the current columns
+  const handleMoveCard = newColumnId => {
+    const currColumnCardsLgth = cards.filter(
+      card => card.columnId === columnId
+    ).length;
+    const index = currColumnCardsLgth;
+
+    dispatch(moveCard({ cardId, columnId: newColumnId, index }));
+  };
+
   const columnMap = columns.reduce((map, column) => {
     map[column.title] = column._id;
     return map;
   }, {});
 
-  const handleMoveCard = newColumnId => {
-    const currColumnCards = cards.filter(card => card.columnId === newColumnId);
-    const index = currColumnCards.length;
-    dispatch(moveCard({ cardId, columnId: newColumnId, index }));
-  };
+  useEffect(() => {
+    if (isLoading) {
+      toast.info('Moving card...');
+    } else {
+      toast.dismiss();
+    }
+  }, [isLoading]);
 
   return (
     <PopupWrapper>
-      {Object.keys(columnMap).map(
-        (title, idx) =>
-          title !== columnTitle && (
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        Object.keys(columnMap).map((title, idx) =>
+          title !== columnTitle ? (
             <PopupItem
               onClick={() => handleMoveCard(columnMap[title])}
               key={idx}
             >
               <PopTextWrap>
-                <PopupText> {title} </PopupText>
+                <PopupText>{title}</PopupText>
                 <PopupIcon>
                   <use href={`${sprite}#icon-arrow-circle-broken-right`} />
                 </PopupIcon>
               </PopTextWrap>
             </PopupItem>
-          )
+          ) : null
+        )
       )}
     </PopupWrapper>
   );

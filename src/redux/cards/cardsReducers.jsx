@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authInstance } from '../authorization/authReducer';
 
+//columns
 export const allColumns = createAsyncThunk(
   'getcolumns',
   async (boardId, thunkAPI) => {
@@ -48,6 +49,8 @@ export const editColumn = createAsyncThunk(
     }
   }
 );
+
+//boards
 export const getAllDashboards = createAsyncThunk(
   'dashboards/fetchAllDashboards',
   async (_, thunkAPI) => {
@@ -111,6 +114,7 @@ export const editBoard = createAsyncThunk(
   }
 );
 
+//cards
 export const allCards = createAsyncThunk(
   'getcards',
   async (boardId, thunkAPI) => {
@@ -158,9 +162,9 @@ export const deleteCard = createAsyncThunk(
 );
 export const editCard = createAsyncThunk(
   'editCard',
-  async ({ cardsId, title }, thunkAPI) => {
+  async ({ cardId, title }, thunkAPI) => {
     try {
-      const { data } = await authInstance.put(`cards/${cardsId}`, {
+      const { data } = await authInstance.put(`cards/${cardId}`, {
         title,
       });
       return data;
@@ -173,17 +177,18 @@ export const moveCard = createAsyncThunk(
   'cards/moveCard',
   async ({ cardId, columnId, index }, thunkAPI) => {
     try {
-      console.log('Sending request to move card', { cardId, columnId, index });
+      console.log('Dispatching moveCard with:', { cardId, columnId, index });
       const response = await authInstance.patch(`cards/${cardId}`, {
         columnId,
         index,
       });
-      const data = response.data;
-      console.log('Response data:', data);
+      console.log('Move card response:', response);
+      const { data } = response;
+      console.log('Move card data:', data);
       return data;
     } catch (error) {
-      console.error('Error moving card:', error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      console.error('Move card error:', error);
+      return thunkAPI.rejectWithValue(error.response?.data || 'Unknown error');
     }
   }
 );

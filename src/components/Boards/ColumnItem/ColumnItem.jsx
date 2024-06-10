@@ -12,6 +12,7 @@ import { Column, Wrap, Title } from './ColumnItem.styled';
 import CardList from '../CardList/CardList';
 import AddCardModal from 'components/Modals/AddCardModal/AddCardModal';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
+import { allColumns } from '../../../redux/cards/cardsReducers';
 
 const ColumnItem = ({ column, columnId, boardId }) => {
   const dispatch = useDispatch();
@@ -26,8 +27,12 @@ const ColumnItem = ({ column, columnId, boardId }) => {
   };
 
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => setOpen(false);
+
+  const handleDelete = () => {
+    dispatch(deleteColumn(columnId));
+    dispatch(allColumns(boardId));
+  };
 
   return (
     <>
@@ -43,12 +48,7 @@ const ColumnItem = ({ column, columnId, boardId }) => {
               <EditColumnModal onClose={handleClose} columnId={columnId} />
             )}
 
-            <IconDel
-              aria-label="delit icon"
-              onClick={() => {
-                dispatch(deleteColumn(columnId));
-              }}
-            >
+            <IconDel aria-label="delit icon" onClick={handleDelete}>
               <use href={sprite + `#icon-trash`} />
             </IconDel>
           </IconsBlock>

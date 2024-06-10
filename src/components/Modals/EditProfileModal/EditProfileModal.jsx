@@ -20,7 +20,7 @@ const EditProfileModal = ({ onClose }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <EditProfile />
+        <EditProfile onClose={onClose} />
       </ModalContainer>
     </Div>
     // </Modal>

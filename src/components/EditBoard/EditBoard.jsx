@@ -23,7 +23,7 @@ import { useState } from 'react';
 import data from '../../assets/fonts/images/backs-small/backs.json';
 import { editBoard } from '../../redux/cards/cardsReducers';
 
-const EditBoard = ({ boardId }) => {
+const EditBoard = ({ boardId, onClose }) => {
   const [bgdImg, setBgdImg] = useState('');
 
   const [icons, setIcon] = useState('');
@@ -61,6 +61,7 @@ const EditBoard = ({ boardId }) => {
     dispatch(editBoard({ _id: boardId, updatedData }));
     console.log({ _id: boardId });
     reset();
+    onClose();
   };
   const handleBgDImg = url => {
     setBgdImg(url);

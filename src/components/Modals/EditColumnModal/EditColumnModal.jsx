@@ -21,7 +21,7 @@ const EditColumnModal = ({ onClose, columnId }) => {
             <Close />
           </CloseModalCrossStyled>
         </ModalHeader>
-        <EditColumn columnId={columnId} />
+        <EditColumn onClose={onClose} columnId={columnId} />
       </ModalContainer>
     </Div>
     // </Modal>

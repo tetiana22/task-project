@@ -10,66 +10,7 @@ export const Item = styled.li`
   user-select: none;
 `;
 
-export const StyledLink = styled(NavLink)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 61px;
-  margin-bottom: 4px;
-  transition: all 150ms linear;
-  text-decoration: none;
-
-  cursor: pointer;
-
-  :hover {
-    background-color: rgba(31, 31, 31, 0.4);
-    color: white;
-
-    stroke: rgba(255, 255, 255, 225);
-  }
-
-  &.active {
-    color: white;
-    transition: all 150ms linear;
-
-    ::after {
-      content: '';
-      display: block;
-      position: absolute;
-      /* height: 61px; */
-      width: 4px;
-      right: 0px;
-      background-color: ${props => props.theme.sidebarLightningFill};
-      border-radius: 4px 0px 0px 4px;
-      opacity: 1;
-    }
-  }
-`;
-
-export const Board = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 150ms linear;
-  padding: 0 20px;
-  text-decoration: none;
-  width: 100%;
-`;
-
-export const BoardIcon = styled.svg`
-  height: 18px;
-  width: 18px;
-  margin-right: 8px;
-  fill: transparent;
-  stroke: rgba(255, 255, 255, 0.5);
-  transition: all 150ms linear;
-
-  :hover {
-    stroke: rgba(255, 255, 255, 225);
-  }
-`;
-
-export const BoardTitle = styled.p`
+export const BoardTitle = styled.h2`
   display: block;
   width: 100%;
   padding: 20px 0;
@@ -79,10 +20,54 @@ export const BoardTitle = styled.p`
   font-weight: 500;
   letter-spacing: -0.28px;
   transition: all 150ms linear;
+`;
 
-  &.active {
-    color: white;
+export const StyledLink = styled(NavLink)`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 61px;
+  transition: all 150ms linear;
+  text-decoration: none;
+  cursor: pointer;
+  flex-grow: 1;
+`;
+
+export const Board = styled.div`
+  display: flex;
+
+  align-items: center;
+  transition: all 150ms linear;
+  text-decoration: none;
+  width: 100%;
+  background-color: transparent;
+
+  &:focus,
+  &:hover {
+    border-radius: 8px;
+    background: rgba(78, 77, 77, 0.4);
+
+    ${StyledLink} {
+      color: white;
+
+      svg {
+        stroke: white;
+      }
+
+      ${BoardTitle} {
+        color: white;
+      }
+    }
   }
+`;
+
+export const BoardIcon = styled.svg`
+  height: 18px;
+  width: 18px;
+  margin-right: 8px;
+  fill: transparent;
+  stroke: rgba(255, 255, 255, 0.5);
+  transition: all 150ms linear;
 `;
 
 export const IconsBlock = styled.div`
@@ -98,8 +83,8 @@ export const IconEdit = styled.svg`
   margin: 0 8px;
   transition: all 150ms linear;
 
-  :hover {
-    stroke: rgba(255, 255, 255, 225);
+  &:hover {
+    stroke: white;
   }
 `;
 
@@ -111,7 +96,7 @@ export const IconDel = styled.svg`
   stroke: rgba(255, 255, 255, 0.5);
   transition: all 150ms linear;
 
-  :hover {
-    stroke: rgba(255, 255, 255, 225);
+  &:hover {
+    stroke: white;
   }
 `;

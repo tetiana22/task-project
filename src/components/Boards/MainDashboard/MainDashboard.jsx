@@ -7,14 +7,14 @@ import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 
 import ColumnList from '../ColumnList/ColumnList';
 
-const MainDashboard = ({ board }) => {
+const MainDashboard = ({ board, background }) => {
   const [open, setOpen] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
+  // const [isDragging, setIsDragging] = useState(false);
 
   const boardId = board._id;
-  console.log(boardId);
-  const scrollRef = useRef(null);
-  const [startX, setStartX] = useState(0);
+
+  // const scrollRef = useRef(null);
+  // const [startX, setStartX] = useState(0);
 
   const onOpen = () => {
     setOpen(true);
@@ -24,35 +24,35 @@ const MainDashboard = ({ board }) => {
     setOpen(false);
   };
 
-  const handleMouseDown = e => {
-    if (e.button === 0) {
-      const target = e.target.tagName.toLowerCase();
-      if (target !== 'input' && target !== 'textarea') {
-        setIsDragging(true);
-        setStartX(e.pageX - scrollRef.current.offsetLeft);
-      }
-    }
-  };
+  // const handleMouseDown = e => {
+  //   if (e.button === 0) {
+  //     const target = e.target.tagName.toLowerCase();
+  //     if (target !== 'input' && target !== 'textarea') {
+  //       setIsDragging(true);
+  //       setStartX(e.pageX - scrollRef.current.offsetLeft);
+  //     }
+  //   }
+  // };
 
-  const handleMouseMove = e => {
-    if (!isDragging || open) return;
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 0.05;
-    scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - walk;
-  };
+  // const handleMouseMove = e => {
+  //   if (!isDragging || open) return;
+  //   const x = e.pageX - scrollRef.current.offsetLeft;
+  //   const walk = (x - startX) * 0.05;
+  //   scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - walk;
+  // };
 
-  const handleMouseUp = e => {
-    if (e.button === 0) {
-      setIsDragging(false);
-    }
-  };
+  // const handleMouseUp = e => {
+  //   if (e.button === 0) {
+  //     setIsDragging(false);
+  //   }
+  // };
 
   return (
     <Wrapper>
       <ContentWrapper
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        // onMouseDown={handleMouseDown}
+        // onMouseMove={handleMouseMove}
+        // onMouseUp={handleMouseUp}
       >
         <ColumnList boardId={boardId} />
         <ButtonPlus approve={true} onOpen={onOpen} text="Add column" />

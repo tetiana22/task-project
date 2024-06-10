@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { addCardSchema } from 'components/validation/schema';
-import { addCard } from '../../redux/cards/cardsReducers';
+import { editColumnSchema } from 'components/validation/schema';
+import { editCard } from '../../redux/cards/cardsReducers';
 import {
   Input,
   Form,
@@ -22,8 +22,8 @@ import {
   DefaultRadioBtn,
   FormWrapper,
   Label,
-} from './AddCard.styled';
-import 'react-datepicker/dist/react-datepicker.css'; // Ensure this is imported
+} from '../AddCard/AddCard.styled';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const options = ['Low', 'Medium', 'High', 'Without priority'];
 const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -47,13 +47,9 @@ const month = months[today.getMonth()];
 const day = today.getDate();
 const formattedDate = `${month} ${day}`;
 
-const AddCard = ({ onClose, boardId, columnId }) => {
+const EditCard = ({ onClose, cardId }) => {
   const [selectedLabel, setSelectedLabel] = useState(options[3]);
   const [startDate, setStartDate] = useState('');
-  const cards = useSelector(state => state.dashboards.cards);
-  // const currColumnCardsLgth = cards.filter(
-  //   card => card.columnId === columnId
-  // ).length;
 
   const customDate =
     startDate !== '' ? startDate.toLocaleString('en-GB', dateOptions) : null;
@@ -72,26 +68,16 @@ const AddCard = ({ onClose, boardId, columnId }) => {
       description: '',
       priority: selectedLabel,
     },
-    resolver: yupResolver(addCardSchema),
+    resolver: yupResolver(editColumnSchema),
   });
 
   const onSubmit = values => {
-    const currColumnCardsLgth = cards.filter(
-      card => card.columnId === columnId
-    ).length;
-    const index = currColumnCardsLgth;
-    const { title, description, priority } = values;
-    const deadline = startDate;
+    const { title } = values;
 
     dispatch(
-      addCard({
-        boardId,
+      editCard({
+        cardId,
         title,
-        description,
-        priority,
-        deadline,
-        index,
-        columnId,
       })
     );
 
@@ -165,9 +151,9 @@ const AddCard = ({ onClose, boardId, columnId }) => {
         </Wrapper>
       </FormWrapper>
 
-      <ButtonPlus type="submit" approve={true} text="Create" />
+      <ButtonPlus type="submit" approve={true} text="Edit" />
     </Form>
   );
 };
 
-export default AddCard;
+export default EditCard;
