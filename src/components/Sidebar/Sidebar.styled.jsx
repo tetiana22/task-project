@@ -9,12 +9,15 @@ export const Backdrop = styled.div`
   height: 100%;
   display: ${props => (props.$isOpen ? 'block' : 'none')};
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99;
+  z-index: 98; // Ensure this is behind the Aside
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
 `;
 
 export const Aside = styled.div`
-  position: absolute;
-  display: ${props => (props.$isOpen ? 'block' : 'none')};
+  position: fixed;
   top: 0;
   left: 0;
   width: 285px;
@@ -24,8 +27,8 @@ export const Aside = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: ${props => props.theme.colors.backgroundColor};
-  transform: translateX(-100%);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 99; // Ensure this is above the Backdrop
 
   ${props =>
     props.$isOpen
@@ -38,9 +41,9 @@ export const Aside = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    position: fixed;
     transform: translateX(0);
     width: 260px;
+    display: block;
   }
 `;
 

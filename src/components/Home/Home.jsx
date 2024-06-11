@@ -15,11 +15,10 @@ const HomePage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Sidebar />
       <HomePageContainer>
         <MainContainer>
           <Header /> {location.pathname === '/home' && <Board />}
-          {/* В outlet БУДЕ РЕНДЕРИТИСЯ БОРД */}
+          <Sidebar />
           <Suspense fallback={<div>Loading....</div>}>
             <Outlet />
           </Suspense>

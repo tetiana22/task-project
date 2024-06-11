@@ -42,3 +42,21 @@ export const addCardSchema = yup.object().shape({
     .min(3, 'Title must be at least 3 characters long')
     .max(230, 'Name must be at most 230 characters'),
 });
+
+export const updateUserSchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(32, 'Name must be at most 32 characters'),
+
+  email: yup.string().email('Invalid email'),
+  password: yup
+    .string()
+    .trim()
+    .min(8, 'Password must be at least 8 characters')
+    .max(64, 'Password must be at most 64 characters')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*?&]+$/,
+      'Password must contain at least one uppercase letter, and one lowercase letter'
+    ),
+});

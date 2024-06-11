@@ -13,8 +13,8 @@ import {
 import { selectUserData } from '../../redux/selectors';
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
-import Sidebar from 'components/Sidebar/Sidebar';
 import { openMenuMode } from '../../redux/menu/menuSlice';
+import { selectIsMenuOpen } from '../../redux/menu/selectors';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,9 +27,7 @@ const Header = () => {
   const userName = userData?.userName;
   const userAvatar = userData?.avatarURL;
 
-  const handleOpenMenu = () => {
-    dispatch(openMenuMode());
-  };
+  const menuMode = useSelector(selectIsMenuOpen);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -38,13 +36,20 @@ const Header = () => {
     setIsModalOpen(false);
   };
 
+  console.log('Rendering Header');
+
   return (
     <HeaderSection>
-      <BurgerBtn type="button" onClick={handleOpenMenu}>
+      <BurgerBtn
+        type="button"
+        onClick={() => dispatch(openMenuMode())}
+        $isOpen={menuMode}
+      >
         <Burger width={24} height={24} fillColor={'#161616'} />
       </BurgerBtn>
-      <Sidebar />
+
       <UserLogoContainer onClick={openModal}>
+        {console.log('UserLogoContainer rendered')}
         {userName ? (
           <div>
             <UserNameText>{userName}</UserNameText>

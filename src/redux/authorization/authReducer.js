@@ -84,11 +84,24 @@ export const updateUser = createAsyncThunk(
   'users/profile',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await authInstance.put('users/update', formData);
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('Not authorized');
+      }
+
+      const { data } = await authInstance.put('users/update', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );

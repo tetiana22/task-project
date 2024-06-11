@@ -18,7 +18,6 @@ const initialState = {
     theme: null,
     avatarURL: '',
   },
-
   isLoggedIn: false,
   error: null,
   isLoading: false,
@@ -50,9 +49,8 @@ const authSlice = createSlice({
       .addCase(changeTheme.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.theme = action.payload;
+        state.userData.theme = action.payload;
       })
-
       .addCase(signin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
@@ -71,7 +69,6 @@ const authSlice = createSlice({
         state.userData = action.payload;
         state.isLoggedIn = true;
       })
-
       .addMatcher(
         isAnyOf(
           registration.pending,
@@ -93,7 +90,8 @@ const authSlice = createSlice({
           currentUser.rejected,
           logoutUser.rejected,
           needHelp.rejected,
-          refreshUser.rejected
+          refreshUser.rejected,
+          updateUser.rejected
         ),
         (state, action) => {
           state.isLoading = false;

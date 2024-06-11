@@ -5,21 +5,20 @@ import { yupResolver } from '@hookform/resolvers/yup'; // Import yupResolver
 import { updateUser } from '../../redux/authorization/authReducer'; // Import updateUser action
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
-import { registrationSchema } from 'components/validation/schema';
+import { updateUserSchema } from 'components/validation/schema';
 import {
   Wrapper,
   UserButton,
   Icon,
   HiddenInput,
   Avatar,
-} from './EditProfile.styled.component';
-import {
   Form,
   Button,
   Input,
   Error,
   Wrap,
-} from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+} from './EditProfile.styled.component';
+
 import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
 import { toast } from 'react-toastify';
 import { Container } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
@@ -47,7 +46,7 @@ const EditProfile = () => {
       password: '',
       avatarURL: '',
     },
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(updateUserSchema),
   });
   const handleFileSelect = event => {
     const file = event.target.files[0];

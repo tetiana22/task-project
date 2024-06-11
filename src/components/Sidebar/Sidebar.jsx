@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeMenuMode } from '../../redux/menu/menuSlice';
 import { selectIsMenuOpen } from '../../redux/menu/selectors';
@@ -28,6 +28,18 @@ const Sidebar = ({ boardId }) => {
   const dispatch = useDispatch();
   const menuMode = useSelector(selectIsMenuOpen);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 1440);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 1440);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleOpen = () => {
     setIsModalOpen(true);
@@ -38,47 +50,53 @@ const Sidebar = ({ boardId }) => {
   };
 
   const handleBackdropClick = () => {
-    dispatch(closeMenuMode());
+    if (!isWideScreen) {
+      dispatch(closeMenuMode());
+    }
   };
 
   return (
-    <Backdrop $isOpen={menuMode} onClick={handleBackdropClick}>
-      <Aside $isOpen={menuMode} onClick={e => e.stopPropagation()}>
-        <div style={{ width: '100%' }}>
-          <Logo to="/">
-            <IconLogo>
-              <use href={sprite + '#icon-logo'} />
-            </IconLogo>
-            <LogoText>Task Pro</LogoText>
-          </Logo>
-          <MyBoardsText>My boards</MyBoardsText>
-          <AddBoardBlock>
-            <CreateNewBoard onClick={handleOpen}>
-              Create a new board
-            </CreateNewBoard>
-            <BtnAdd type="button" onClick={handleOpen}>
-              <IconPlus aria-label="add icon">
-                <use href={sprite + `#icon-plus`} />
-              </IconPlus>
-            </BtnAdd>
-          </AddBoardBlock>
-          <ContentWrapper>
-            <BoardList />
-          </ContentWrapper>
-        </div>
+    <>
+      <Backdrop
+        $isOpen={menuMode && !isWideScreen}
+        onClick={handleBackdropClick}
+      />
+      <Aside
+        $isOpen={menuMode || isWideScreen}
+        onClick={e => e.stopPropagation()}
+      >
+        <Logo to="/">
+          <IconLogo>
+            <use href={sprite + '#icon-logo'} />
+          </IconLogo>
+          <LogoText>Task Pro</LogoText>
+        </Logo>
+        <MyBoardsText>My boards</MyBoardsText>
+        <AddBoardBlock>
+          <CreateNewBoard onClick={handleOpen}>
+            Create a new board
+          </CreateNewBoard>
+          <BtnAdd type="button" onClick={handleOpen}>
+            <IconPlus aria-label="add icon">
+              <use href={sprite + `#icon-plus`} />
+            </IconPlus>
+          </BtnAdd>
+        </AddBoardBlock>
+        <ContentWrapper>
+          <BoardList />
+        </ContentWrapper>
 
-        <div style={{ width: '100%' }}>
-          <NeedHelpBlock />
-          <BtnLogOut type="button" onClick={() => dispatch(logoutUser())}>
-            <IconLogOut aria-label="logout icon">
-              <use href={sprite + `#icon-login`} />
-            </IconLogOut>
-            <TextLogOut>Log out</TextLogOut>
-          </BtnLogOut>
-        </div>
+        <NeedHelpBlock />
+        <BtnLogOut type="button" onClick={() => dispatch(logoutUser())}>
+          <IconLogOut aria-label="logout icon">
+            <use href={sprite + `#icon-login`} />
+          </IconLogOut>
+          <TextLogOut>Log out</TextLogOut>
+        </BtnLogOut>
+
         {isModalOpen && <AddBoardModal onClose={handleClose} />}
       </Aside>
-    </Backdrop>
+    </>
   );
 };
 
