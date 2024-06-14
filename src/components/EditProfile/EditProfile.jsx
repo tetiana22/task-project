@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form'; // Import useForm
-import { yupResolver } from '@hookform/resolvers/yup'; // Import yupResolver
-import { updateUser } from '../../redux/authorization/authReducer'; // Import updateUser action
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { updateUser, currentUser } from '../../redux/authorization/authReducer';
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
 import { updateUserSchema } from 'components/validation/schema';
@@ -24,15 +24,19 @@ import { toast } from 'react-toastify';
 import { Container } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
 import { Eye } from 'assets/fonts/images/icons/Eye';
 import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
-const EditProfile = () => {
+
+const EditProfile = ({ onClose }) => {
   const dispatch = useDispatch();
-  const avatarURL = useSelector(state => state.auth.avatarURL);
-  const theme = useSelector(state => state.auth.theme);
+  const userData = useSelector(state => state.auth.userData);
+  const avatarURL = userData?.avatarURL;
+  const theme = userData?.theme;
   const [selectedAvatar, setSelectedAvatar] = useState(avatarURL);
   const [showPassword, setShowPassword] = useState(false);
+
   const swapPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const {
     register,
     handleSubmit,
@@ -48,30 +52,32 @@ const EditProfile = () => {
     },
     resolver: yupResolver(updateUserSchema),
   });
+
   const handleFileSelect = event => {
     const file = event.target.files[0];
-    if (!file) {
-      return; // Перевірити, чи файл існує
-    }
+    if (!file) return;
     if (file.size > 50 * 1024) {
       toast.error('The file size must not exceed 50 KB');
       return;
     }
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedAvatar(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSelectedAvatar(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
-  const onSubmit = data => {
-    // Додати avatarURL до об'єкту data
+
+  const onSubmit = async data => {
     data.avatarURL = selectedAvatar;
-    dispatch(updateUser(data));
-    console.log(data);
+    const { name, email, password } = data;
+    await dispatch(
+      updateUser({ name, email, password, avatarURL: selectedAvatar })
+    );
+    await dispatch(currentUser()); // Re-fetch user data
     reset();
+    onClose();
   };
+
   return (
     <Container>
       <Wrapper>
@@ -135,4 +141,5 @@ const EditProfile = () => {
     </Container>
   );
 };
+
 export default EditProfile;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Burger from 'assets/fonts/images/icons/Burger';
 import EditProfileModal from 'components/Modals/EditProfileModal/EditProfileModal';
@@ -19,24 +19,25 @@ import { selectIsMenuOpen } from '../../redux/menu/selectors';
 const Header = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const avatarURL = useSelector(state => state.avatarURL);
-  const theme = useSelector(state => state.auth.theme);
   const userData = useSelector(selectUserData);
-  const userEmail = userData?.email ?? 'Sign in';
-  const userEmailSplit = userEmail.split('@')[0];
-  const userName = userData?.userName;
-  const userAvatar = userData?.avatarURL;
-
+  const avatarURL = userData?.avatarURL;
+  const theme = useSelector(state => state.auth.theme);
+  const userEmail = userData?.email;
+  const userEmailSplit = userEmail?.split('@')[0];
+  const userName = userData?.name;
   const menuMode = useSelector(selectIsMenuOpen);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  console.log('Rendering Header');
+  useEffect(() => {
+    console.log('User data updated:', userData);
+  }, [userData]);
 
   return (
     <HeaderSection>
@@ -49,7 +50,6 @@ const Header = () => {
       </BurgerBtn>
 
       <UserLogoContainer onClick={openModal}>
-        {console.log('UserLogoContainer rendered')}
         {userName ? (
           <div>
             <UserNameText>{userName}</UserNameText>
@@ -57,13 +57,10 @@ const Header = () => {
         ) : (
           <div>{userEmailSplit}</div>
         )}
-        {userAvatar ? (
-          <Avatar src={userAvatar} alt="userPhoto" />
+        {avatarURL ? (
+          <Avatar src={avatarURL} alt="userPhoto" />
         ) : (
-          <Ava
-            src={avatarURL || (theme === 'light' ? userLight : userDark)}
-            alt="Avatar"
-          />
+          <Ava src={theme === 'light' ? userLight : userDark} alt="Avatar" />
         )}
       </UserLogoContainer>
       {isModalOpen && <EditProfileModal onClose={closeModal} />}

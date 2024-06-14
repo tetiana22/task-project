@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const authInstance = axios.create({
-  baseURL: 'https://final-project-backend-hsxg.onrender.com/',
+  baseURL: 'https://taskpro-backend-8.onrender.com/',
 });
 
 export const setToken = token => {
@@ -82,7 +82,7 @@ export const changeTheme = createAsyncThunk(
 );
 export const updateUser = createAsyncThunk(
   'users/profile',
-  async (formData, thunkAPI) => {
+  async ({ name, email, password, avatarURL }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
@@ -91,11 +91,15 @@ export const updateUser = createAsyncThunk(
         return thunkAPI.rejectWithValue('Not authorized');
       }
 
-      const { data } = await authInstance.put('users/update', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await authInstance.put(
+        'users/update',
+        { name, email, password, avatarURL },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       return data;
     } catch (error) {

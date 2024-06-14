@@ -35,11 +35,11 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        const { name, email, password, avatarURL } = action.payload;
-        state.userData.name = name;
-        state.userData.email = email;
-        state.userData.password = password;
-        state.userData.avatarURL = avatarURL;
+        state.userData.name = action.payload;
+        state.userData.email = action.payload;
+        state.userData.password = action.payload;
+        state.userData.avatarURL = action.payload;
+        state.userData = action.payload;
         state.isLoading = false;
       })
       .addCase(needHelp.fulfilled, (state, action) => {
