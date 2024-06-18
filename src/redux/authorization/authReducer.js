@@ -91,6 +91,8 @@ export const updateUser = createAsyncThunk(
         return thunkAPI.rejectWithValue('Not authorized');
       }
 
+      console.log('Sending data:', { name, email, password, avatarURL });
+
       const { data } = await authInstance.put(
         'users/update',
         { name, email, password, avatarURL },
@@ -101,7 +103,8 @@ export const updateUser = createAsyncThunk(
         }
       );
 
-      return data;
+      console.log('Response data:', { name, email, password, avatarURL });
+      return { name, email, password, avatarURL };
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || error.message
@@ -122,19 +125,19 @@ export const needHelp = createAsyncThunk(
   }
 );
 
-export const refreshUser = createAsyncThunk(
-  'users/refreshUser',
-  async (_, thunkApi) => {
-    const state = thunkApi.getState();
-    const token = state.auth.token;
-    if (!token) return thunkApi.rejectWithValue('You don’t have any token!');
-    try {
-      setToken(token);
-      const { data } = await authInstance.get('/users/current');
+// export const refreshUser = createAsyncThunk(
+//   'users/refreshUser',
+//   async (_, thunkApi) => {
+//     const state = thunkApi.getState();
+//     const token = state.auth.token;
+//     if (!token) return thunkApi.rejectWithValue('You don’t have any token!');
+//     try {
+//       setToken(token);
+//       const { data } = await authInstance.get('/users/current');
 
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
+//       return data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue(error.message);
+//     }
+//   }
+// );

@@ -21,20 +21,16 @@ const NeedHelpBlock = () => {
   return (
     <Wrapper>
       <Image src={plant} alt="need help image" />
-
       <Text>
         If you need help with <AccentText>TaskPro</AccentText>, check out our
         support resources or reach out to our customer support team.
       </Text>
-
       <ButtonWrapper onClick={handleOpen}>
         <CircleIcon>
           <use href={sprite + '#icon-help-circle'} />
         </CircleIcon>
-
         <ButtonText>Need help?</ButtonText>
       </ButtonWrapper>
-
       <NeedHelpModal isOpen={open} onClose={handleClose} />
     </Wrapper>
   );

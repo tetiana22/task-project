@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { updateUser, currentUser } from '../../redux/authorization/authReducer';
+import { updateUser } from '../../redux/authorization/authReducer';
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
 import { updateUserSchema } from 'components/validation/schema';
@@ -18,7 +18,6 @@ import {
   Error,
   Wrap,
 } from './EditProfile.styled.component';
-
 import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
 import { toast } from 'react-toastify';
 import { Container } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
@@ -45,10 +44,10 @@ const EditProfile = ({ onClose }) => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      name: '',
-      email: '',
+      name: userData?.name || '',
+      email: userData?.email || '',
       password: '',
-      avatarURL: '',
+      avatarURL: selectedAvatar,
     },
     resolver: yupResolver(updateUserSchema),
   });
@@ -68,12 +67,16 @@ const EditProfile = ({ onClose }) => {
   };
 
   const onSubmit = async data => {
-    data.avatarURL = selectedAvatar;
+    data.avatarURL = selectedAvatar; // Set avatarURL to selectedAvatar
+
+    console.log('Selected avatar URL:', selectedAvatar);
+    console.log('Form data before dispatch:', data);
+
     const { name, email, password } = data;
     await dispatch(
       updateUser({ name, email, password, avatarURL: selectedAvatar })
     );
-    await dispatch(currentUser()); // Re-fetch user data
+
     reset();
     onClose();
   };
@@ -141,5 +144,4 @@ const EditProfile = ({ onClose }) => {
     </Container>
   );
 };
-
 export default EditProfile;

@@ -7,7 +7,6 @@ import {
   updateUser,
   changeTheme,
   needHelp,
-  refreshUser,
 } from './authReducer';
 
 const initialState = {
@@ -21,6 +20,7 @@ const initialState = {
   isLoggedIn: false,
   error: null,
   isLoading: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -35,12 +35,8 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.userData.name = action.payload;
-        state.userData.email = action.payload;
-        state.userData.password = action.payload;
-        state.userData.avatarURL = action.payload;
-        state.userData = action.payload;
-        state.isLoading = false;
+        console.log('Update user fulfilled:', action.payload);
+        state.userData = { ...state.userData, ...action.payload };
       })
       .addCase(needHelp.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -60,23 +56,31 @@ const authSlice = createSlice({
       .addCase(currentUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.userData = action.payload;
+        state.isRefreshing = false;
+        state.userData = {
+          ...state.userData,
+          ...action.payload,
+          avatarURL: action.payload.avatarURL || state.userData.avatarURL,
+        };
+        state.isRefreshing = false;
+      })
+      .addCase(currentUser.pending, (state, action) => {
+        state.isRefreshing = true;
+      })
+      .addCase(currentUser.rejected, (state, action) => {
+        state.isRefreshing = false;
       })
       .addCase(logoutUser.fulfilled, () => {
         return initialState;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.userData = action.payload;
-        state.isLoggedIn = true;
-      })
+
       .addMatcher(
         isAnyOf(
           registration.pending,
           signin.pending,
-          currentUser.pending,
+
           logoutUser.pending,
-          needHelp.pending,
-          refreshUser.pending
+          needHelp.pending
         ),
         state => {
           state.isLoading = true;
@@ -90,7 +94,7 @@ const authSlice = createSlice({
           currentUser.rejected,
           logoutUser.rejected,
           needHelp.rejected,
-          refreshUser.rejected,
+
           updateUser.rejected
         ),
         (state, action) => {

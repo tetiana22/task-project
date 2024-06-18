@@ -85,7 +85,6 @@ const Sidebar = ({ boardId }) => {
         <ContentWrapper>
           <BoardList />
         </ContentWrapper>
-
         <NeedHelpBlock />
         <BtnLogOut type="button" onClick={() => dispatch(logoutUser())}>
           <IconLogOut aria-label="logout icon">
@@ -93,7 +92,6 @@ const Sidebar = ({ boardId }) => {
           </IconLogOut>
           <TextLogOut>Log out</TextLogOut>
         </BtnLogOut>
-
         {isModalOpen && <AddBoardModal onClose={handleClose} />}
       </Aside>
     </>

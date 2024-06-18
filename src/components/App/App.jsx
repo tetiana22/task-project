@@ -7,7 +7,7 @@ import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { refreshUser } from '../../redux/authorization/authReducer';
+import { currentUser } from '../../redux/authorization/authReducer';
 import { selectIsRefreshing } from '../../redux/selectors';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '../../assets/theme/theme';
@@ -27,7 +27,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(currentUser());
   }, [dispatch]);
   return (
     <>

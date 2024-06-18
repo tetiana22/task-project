@@ -35,9 +35,10 @@ const Header = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    console.log('User data updated:', userData);
-  }, [userData]);
+  // useEffect(() => {
+  //   console.log('User data updated:', userData);
+  //   console.log('Avatar URL:', avatarURL);
+  // }, [userData]);
 
   return (
     <HeaderSection>

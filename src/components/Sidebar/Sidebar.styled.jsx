@@ -91,6 +91,7 @@ export const CreateNewBoard = styled.p`
   font-family: Poppins;
   font-weight: 500;
   letter-spacing: -0.28px;
+  color: white;
   width: 76px;
   cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 export const UserLogoContainer = styled.div`
   position: relative;
@@ -28,8 +28,8 @@ export const UserNameText = styled.p`
 `;
 
 export const Avatar = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   margin-right: 8px;
   object-fit: cover;
@@ -64,15 +64,30 @@ export const HeaderSection = styled.header`
 
 export const BurgerBtn = styled.button`
   background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg,
   path {
     stroke: #fff;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease-out;
+  }
 
-    @media screen and (min-width: 768px) {
-      width: 32px;
-      height: 32px;
+  &:hover {
+    svg,
+    path {
+      transform: scale(1.2);
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 15px;
   }
 
   @media screen and (min-width: 1440px) {
