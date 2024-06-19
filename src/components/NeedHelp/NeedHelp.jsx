@@ -39,7 +39,7 @@ const NeedHelp = ({ onClose }) => {
       <Input
         type="email"
         id="email"
-        placeholder="Email address"
+        placeholder="taskpro.project@gmail.com"
         {...register('email')}
         error={touched.email && errors.email.message}
       />

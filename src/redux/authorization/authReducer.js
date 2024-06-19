@@ -117,7 +117,7 @@ export const needHelp = createAsyncThunk(
   'users/needHelp',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.post('users/feedback', formData);
+      const { data } = await authInstance.post('users/support', formData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
