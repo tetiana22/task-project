@@ -17,14 +17,14 @@ const NeedHelp = ({ onClose }) => {
     mode: 'onBlur',
     defaultValues: {
       email: '',
-      message: '',
+      comment: '',
     },
     resolver: yupResolver(needHelpSchema),
   });
 
   const onSubmit = formData => {
     console.log(formData);
-    if (!formData.message) {
+    if (!formData.comment) {
       toast.error('Sorry, but you need to describe your problem!');
       return;
     }
@@ -39,7 +39,7 @@ const NeedHelp = ({ onClose }) => {
       <Input
         type="email"
         id="email"
-        placeholder="taskpro.project@gmail.com"
+        placeholder="email"
         {...register('email')}
         error={touched.email && errors.email.message}
       />
@@ -47,12 +47,12 @@ const NeedHelp = ({ onClose }) => {
 
       <TextInput
         type="text"
-        id="message"
+        id="comment"
         placeholder="Comment"
-        {...register('message', { required: true })}
-        error={touched.message && errors.message.message}
+        {...register('comment', { required: true })}
+        error={touched.comment && errors.comment.message}
       />
-      {errors.message && <Error>{errors.message.message}</Error>}
+      {errors.comment && <Error>{errors.comment.message}</Error>}
 
       <Button type="submit">Send</Button>
     </Form>

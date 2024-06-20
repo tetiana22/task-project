@@ -25,7 +25,7 @@ export const registrationSchema = yup.object().shape({
 
 export const needHelpSchema = yup.object().shape({
   email: yup.string().matches(emailRegexp, 'Email is not valid').required(),
-  message: yup.string().min(7).max(230).required('Comment is required'),
+  comment: yup.string().min(7).max(230).required('Comment is required'),
 });
 
 export const editColumnSchema = yup.object().shape({

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const authInstance = axios.create({
   baseURL: 'https://taskpro-backend-8.onrender.com/',
@@ -102,8 +103,9 @@ export const updateUser = createAsyncThunk(
           },
         }
       );
+      toast.success('Your changes have been successfully accepted');
 
-      console.log('Response data:', { name, email, password, avatarURL });
+      console.log('Response data:', data);
       return { name, email, password, avatarURL };
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -118,6 +120,7 @@ export const needHelp = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const { data } = await authInstance.post('users/support', formData);
+      toast.success('You successfully send a message!!!');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
