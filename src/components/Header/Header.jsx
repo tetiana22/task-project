@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Burger from 'assets/fonts/images/icons/Burger';
 import EditProfileModal from 'components/Modals/EditProfileModal/EditProfileModal';
@@ -34,11 +34,6 @@ const Header = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  // useEffect(() => {
-  //   console.log('User data updated:', userData);
-  //   console.log('Avatar URL:', avatarURL);
-  // }, [userData]);
 
   return (
     <HeaderSection>
