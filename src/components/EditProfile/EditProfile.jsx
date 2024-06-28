@@ -66,16 +66,13 @@ const EditProfile = ({ onClose }) => {
     reader.readAsDataURL(file);
   };
 
-  const onSubmit = async data => {
-    data.avatarURL = selectedAvatar; // Set avatarURL to selectedAvatar
+  const onSubmit = data => {
+    data.avatarURL = selectedAvatar;
 
     console.log('Selected avatar URL:', selectedAvatar);
     console.log('Form data before dispatch:', data);
 
-    const { name, email, password } = data;
-    await dispatch(
-      updateUser({ name, email, password, avatarURL: selectedAvatar })
-    );
+    dispatch(updateUser(data));
 
     reset();
     onClose();
@@ -144,4 +141,5 @@ const EditProfile = ({ onClose }) => {
     </Container>
   );
 };
+
 export default EditProfile;

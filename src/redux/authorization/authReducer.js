@@ -19,9 +19,11 @@ export const registration = createAsyncThunk(
   async (formData, thunkApi) => {
     try {
       const { data } = await authInstance.post('users/register', formData);
+      toast.success('Registration successful!');
       setToken(data.token);
       return data;
     } catch (error) {
+      toast.error('Please write a correct email or password!');
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -47,8 +49,14 @@ export const signin = createAsyncThunk(
     try {
       const { data } = await authInstance.post('users/login', formData);
       setToken(data.token);
-      return data;
+      console.log(data.user);
+      return {
+        token: data.token,
+        userData: data.user,
+      };
+      // return data;
     } catch (error) {
+      toast.error('Please write a correct email or password!');
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -93,24 +101,23 @@ export const updateUser = createAsyncThunk(
       }
 
       console.log('Sending data:', { name, email, password, avatarURL });
+      setToken(token);
+      const { data } = await authInstance.put('users/update', {
+        name,
+        email,
+        password,
+        avatarURL,
+      });
 
-      const { data } = await authInstance.put(
-        'users/update',
-        { name, email, password, avatarURL },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
       toast.success('Your changes have been successfully accepted');
-
-      console.log('Response data:', data);
-      return { name, email, password, avatarURL };
+      return {
+        name,
+        email,
+        password,
+        avatarURL,
+      };
     } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || error.message
-      );
+      return thunkAPI.rejectWithValue(error.data?.message || error.message);
     }
   }
 );

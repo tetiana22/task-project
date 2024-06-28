@@ -15,7 +15,7 @@ const initialState = {
     name: null,
     email: null,
     theme: null,
-    avatarURL: '',
+    avatarURL: null,
   },
   isLoggedIn: false,
   error: null,
@@ -36,7 +36,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         console.log('Update user fulfilled:', action.payload);
-        state.userData = { ...state.userData, ...action.payload };
+        state.userData = action.payload;
       })
       .addCase(needHelp.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -50,18 +50,15 @@ const authSlice = createSlice({
       .addCase(signin.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.userData = action.payload;
+        state.userData = action.payload.userData;
+        console.log(state.userData);
         state.token = action.payload.token;
       })
       .addCase(currentUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.userData = {
-          ...state.userData,
-          ...action.payload,
-          avatarURL: action.payload.avatarURL || state.userData.avatarURL,
-        };
+        state.userData = action.payload;
         state.isRefreshing = false;
       })
       .addCase(currentUser.pending, (state, action) => {

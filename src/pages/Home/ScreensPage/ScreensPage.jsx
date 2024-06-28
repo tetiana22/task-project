@@ -6,6 +6,7 @@ import { selectIsMenuOpen } from '../../../redux/menu/selectors';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
 import { Wrapper } from './ScreensPage.styled';
 import { useParams } from 'react-router-dom';
+import Filter from 'components/Filter/Filter';
 
 const ScreensPage = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const ScreensPage = () => {
       $isOpen={menuMode}
       currentBg={currentBg}
     >
+      <Filter />
       <HeaderDashboard board={currentBoard} />
 
       <MainDashboard board={currentBoard} />

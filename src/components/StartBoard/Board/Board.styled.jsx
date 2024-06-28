@@ -17,6 +17,12 @@ export const Container = styled.div`
     padding: 24px;
   }
 `;
+export const FilterContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  flex-shrink: 0;
+`;
 
 export const TextBox = styled.div`
   width: 486px;

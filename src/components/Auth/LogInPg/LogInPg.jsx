@@ -4,9 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Eye } from 'assets/fonts/images/icons/Eye';
 import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
-
 import { signin } from '../../../redux/authorization/authReducer';
-import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Wrap, Input, Button, Form, Error } from './LoginPg.styled';
@@ -34,14 +32,7 @@ function LogIn() {
 
   const onSubmit = data => {
     console.log(data);
-    dispatch(signin(data))
-      .unwrap()
-      .then(() => {
-        toast.success('Registration successful!');
-      })
-      .catch(() => {
-        toast.error('Please write a correct email or password!');
-      });
+    dispatch(signin(data));
     reset();
   };
 

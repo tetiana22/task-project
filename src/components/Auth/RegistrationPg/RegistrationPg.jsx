@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registration } from '../../../redux/authorization/authReducer';
-import { toast } from 'react-toastify';
 import { registrationSchema } from '../../validation/schema';
 import {
   Input,
@@ -22,7 +21,7 @@ function Registration() {
     formState: { errors, touched = {}, isValid },
     reset,
   } = useForm({
-    mode: 'onBlur', // Validate on blur
+    mode: 'onBlur',
     defaultValues: {
       name: '',
       email: '',
@@ -32,15 +31,7 @@ function Registration() {
   });
 
   const onSubmit = data => {
-    console.log(data);
-    dispatch(registration(data))
-      .unwrap()
-      .then(() => {
-        toast.success('Registration successful!');
-      })
-      .catch(() => {
-        toast.error('Please write a correct email or password!');
-      });
+    dispatch(registration(data));
     reset();
   };
 

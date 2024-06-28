@@ -29,6 +29,7 @@ const initialState = {
   currentBg: '',
   currentName: '',
   selectedPriority: 'show all',
+  selectCurrentDasboard: {},
 };
 
 const boardsSlice = createSlice({
@@ -37,6 +38,9 @@ const boardsSlice = createSlice({
   reducers: {
     setCurrentBoardId(state, { payload }) {
       state.currentBoardId = payload;
+    },
+    selectPriority(state, action) {
+      state.selectedPriority = action.payload;
     },
   },
   extraReducers: builder =>
@@ -201,3 +205,4 @@ const boardsSlice = createSlice({
 
 export const boardsReducer = boardsSlice.reducer;
 export const { setCurrentBoardId } = boardsSlice.actions;
+export const { selectPriority } = boardsSlice.actions;
