@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,15 +22,17 @@ import { toast } from 'react-toastify';
 import { Container } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
 import { Eye } from 'assets/fonts/images/icons/Eye';
 import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
+import { useState } from 'react';
 
 const EditProfile = ({ onClose }) => {
   const dispatch = useDispatch();
   const userData = useSelector(state => state.auth.userData);
   const avatarURL = userData?.avatarURL;
   const theme = userData?.theme;
-  const [selectedAvatar, setSelectedAvatar] = useState(avatarURL);
+  // const [selectedAvatar, setSelectedAvatar] = useState(avatarURL);
   const [showPassword, setShowPassword] = useState(false);
-
+  const [localAvatarUrl, setlocalAvatarUrl] = useState(avatarURL);
+  const [avatarFile, setavatarFile] = useState(null);
   const swapPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -47,32 +48,50 @@ const EditProfile = ({ onClose }) => {
       name: userData?.name || '',
       email: userData?.email || '',
       password: '',
-      avatarURL: selectedAvatar,
+      avatarURL: localAvatarUrl,
     },
     resolver: yupResolver(updateUserSchema),
   });
-
-  const handleFileSelect = event => {
-    const file = event.target.files[0];
-    if (!file) return;
-    if (file.size > 50 * 1024) {
-      toast.error('The file size must not exceed 50 KB');
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSelectedAvatar(reader.result);
-    };
-    reader.readAsDataURL(file);
+  const handleChange = e => {
+    setlocalAvatarUrl(URL.createObjectURL(e.currentTarget.files[0]));
+    setavatarFile(e.currentTarget.files[0]);
   };
+  // const handleChange = event => {
+  //   const file = event.target.files[0];
+  //   if (!file) return;
+  //   if (file.size > 5 * 1024 * 1024) {
+  //     toast.error('The file size must not exceed 5 MB');
+  //     return;
+  //   }
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     setlocalAvatarUrl(reader.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
 
+  // const onSubmit = data => {
+  //   data.avatarURL = localAvatarUrl;
+
+  //   console.log('Selected avatar URL:', localAvatarUrl);
+  //   console.log('Form data before dispatch:', data);
+
+  //   dispatch(updateUser(data));
+
+  //   reset();
+  //   onClose();
+  // };
   const onSubmit = data => {
-    data.avatarURL = selectedAvatar;
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
 
-    console.log('Selected avatar URL:', selectedAvatar);
-    console.log('Form data before dispatch:', data);
+    if (avatarFile) {
+      formData.append('avatarURL', avatarFile);
+    }
 
-    dispatch(updateUser(data));
+    dispatch(updateUser(formData));
 
     reset();
     onClose();
@@ -82,7 +101,11 @@ const EditProfile = ({ onClose }) => {
     <Container>
       <Wrapper>
         <Avatar
-          src={selectedAvatar || (theme === 'dark' ? userLight : userDark)}
+          src={
+            localAvatarUrl ||
+            avatarURL ||
+            (theme === 'dark' ? userLight : userDark)
+          }
           alt="Avatar"
         />
         <UserButton
@@ -93,10 +116,11 @@ const EditProfile = ({ onClose }) => {
           </Icon>
           <HiddenInput
             className="input-field"
+            id="avatarURL"
+            name="avatarURL"
             type="file"
             accept="image/*"
-            name="imageURL"
-            onChange={handleFileSelect}
+            onChange={handleChange}
           />
         </UserButton>
       </Wrapper>

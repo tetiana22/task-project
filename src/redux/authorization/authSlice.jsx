@@ -15,7 +15,7 @@ const initialState = {
     name: null,
     email: null,
     theme: null,
-    avatarURL: null,
+    avatarURL: '',
   },
   isLoggedIn: false,
   error: null,
@@ -61,6 +61,7 @@ const authSlice = createSlice({
         state.userData = action.payload;
         state.isRefreshing = false;
       })
+
       .addCase(currentUser.pending, (state, action) => {
         state.isRefreshing = true;
       })

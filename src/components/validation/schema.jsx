@@ -49,5 +49,6 @@ export const updateUserSchema = yup.object().shape({
     .min(2, 'Name must be at least 2 characters')
     .max(32, 'Name must be at most 32 characters'),
 
-  email: yup.string().email('Invalid email'),
+  email: yup.string().matches(emailRegexp, 'Email is not valid'),
+  password: yup.string().min(8, 'Min length 8').max(64, 'Max length 64'),
 });

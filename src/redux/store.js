@@ -19,7 +19,7 @@ import { menuModeReducer } from './menu/menuSlice';
 const authConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'userData'],
+  whitelist: ['token'],
 };
 const persistedAuthReducer = persistReducer(authConfig, authReducer);
 export const store = configureStore({

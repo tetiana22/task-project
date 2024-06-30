@@ -89,39 +89,39 @@ export const changeTheme = createAsyncThunk(
     }
   }
 );
+// export const updateUser = createAsyncThunk(
+//   'users/profile',
+//   async (dataUser, thunkAPI) => {
+//     try {
+//       console.log('Sending data:', dataUser);
+
+//       const { data } = await authInstance.put('users/update', dataUser);
+//       toast.success('Your changes have been successfully accepted');
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.data?.message || error.message);
+//     }
+//   }
+// );
 export const updateUser = createAsyncThunk(
   'users/profile',
-  async ({ name, email, password, avatarURL }, thunkAPI) => {
+  async (dataUser, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const token = state.auth.token;
-
-      if (!token) {
-        return thunkAPI.rejectWithValue('Not authorized');
-      }
-
-      console.log('Sending data:', { name, email, password, avatarURL });
-      setToken(token);
-      const { data } = await authInstance.put('users/update', {
-        name,
-        email,
-        password,
-        avatarURL,
+      console.log('Sending data:', dataUser);
+      const { data } = await authInstance.put('users/update', dataUser, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
-
       toast.success('Your changes have been successfully accepted');
-      return {
-        name,
-        email,
-        password,
-        avatarURL,
-      };
+      // const { avatarURL, email, name, theme, updatedAt, _id } = data;
+      // return { avatarURL, email, name, theme, updatedAt, _id };
+      // return data;
+      const { updatedUser } = data;
+      return updatedUser;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.data?.message || error.message);
     }
   }
 );
-
 export const needHelp = createAsyncThunk(
   'users/needHelp',
   async (formData, thunkAPI) => {
