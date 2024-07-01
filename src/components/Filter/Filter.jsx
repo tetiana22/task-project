@@ -20,7 +20,7 @@ const Filter = () => {
 
         <Text>Filters</Text>
       </Wrapper>
-      {/* {open & <FilterModal onClose={handleClose} />} */}
+      {open && <FilterModal onClose={handleClose} />}
     </>
   );
 };

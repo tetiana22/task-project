@@ -29,7 +29,6 @@ const initialState = {
   currentBg: '',
   currentName: '',
   selectedPriority: 'show all',
-  selectCurrentDasboard: {},
 };
 
 const boardsSlice = createSlice({

@@ -26,7 +26,6 @@ const Header = () => {
   const userEmailSplit = userEmail?.split('@')[0];
   const userName = userData?.name;
   const menuMode = useSelector(selectIsMenuOpen);
-  console.log(avatarURL);
 
   const openModal = () => {
     setIsModalOpen(true);

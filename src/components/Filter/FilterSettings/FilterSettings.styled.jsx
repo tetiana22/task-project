@@ -1,45 +1,19 @@
 import styled from 'styled-components';
 
-export const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-`;
-
-export const SectionTitle = styled.h2`
-  color: grey;
-  font-size: 18px;
-  font-family: 'Poppins';
-  font-weight: 500;
-  letter-spacing: -0.36px;
-  margin-bottom: 14px;
-`;
-
 export const FormWrapper = styled.div`
-  width: 100%;
+  position: relative;
+`;
+export const Wrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: start;
-
-  margin-bottom: 24px;
-
-  &:first-of-type {
-    padding-top: 14px;
-    padding-bottom: 14px;
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
-  }
-
-  &:last-of-type {
-    position: relative;
-    margin-bottom: 0;
-  }
+  gap: 14px;
 `;
-
 export const FormTitle = styled.h3`
-  color: wheat;
+  color: white;
   font-size: 14px;
   font-family: 'Poppins';
   font-weight: 500;
@@ -47,51 +21,7 @@ export const FormTitle = styled.h3`
   margin-bottom: 14px;
 `;
 
-export const BgWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 252px;
-  gap: 4px;
-`;
-
-export const BgItem = styled.div`
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  background-color: orange;
-  background-position: center;
-  background-size: contain;
-
-  cursor: pointer;
-  transition: all 250ms linear;
-
-  &.active {
-    scale: 1.1;
-  }
-`;
-
-export const CustomRadioBtn = styled.div`
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
-
-  background-image: url(${props => props.url});
-  background-position: center;
-  background-size: cover;
-
-  cursor: pointer;
-  background-color: yellow;
-  transition: all 250ms linear;
-
-  &.active {
-    scale: 1.1;
-  }
-`;
-
-export const DefaultRadioBtn = styled.div`
+export const DefaultRadioBtn = styled.input`
   appearance: none;
   position: absolute;
   width: 1px;
@@ -99,7 +29,6 @@ export const DefaultRadioBtn = styled.div`
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
@@ -107,7 +36,7 @@ export const DefaultRadioBtn = styled.div`
 `;
 
 export const ShowAllLabel = styled.p`
-  color: blueviolet;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
   font-family: Poppins;
   letter-spacing: -0.24px;
@@ -122,98 +51,43 @@ export const ShowAllLabel = styled.p`
 export const RadioBtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
   gap: 12px;
+  padding-left: 8px;
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  position: relative;
-  width: 16px;
-  height: 14px;
-  border-radius: 14px;
-
   cursor: pointer;
+  gap: 8px;
 
-  &.active {
-    ${props =>
-      props.$priority === 'Without priority'
-        ? 'rgb(128, 128, 128)'
-        : props.$priority === 'Low'
-        ? 'rgba(143, 161, 208, 1)'
-        : props.$priority === 'Medium'
-        ? 'rgba(224, 156, 181, 1)'
-        : props.$priority === 'High'
-        ? 'rgba(190, 219, 176, 1)'
-        : 'transparent'};
+  span {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.24px;
+    color: rgba(255, 255, 255, 0.5);
+    &.active {
+      color: white;
+    }
   }
 `;
 
 export const LabelItem = styled.div`
   width: 14px;
   height: 14px;
-  border-radius: 14px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  ${props =>
-    props.$priority === 'Without priority'
-      ? 'rgb(128, 128, 128)'
-      : props.$priority === 'Low'
+  border-radius: 50%;
+  background-color: ${props =>
+    props.value === 'Without priority'
+      ? 'rgb(128,128,128)'
+      : props.value === 'Low'
       ? 'rgba(143, 161, 208, 1)'
-      : props.$priority === 'Medium'
+      : props.value === 'Medium'
       ? 'rgba(224, 156, 181, 1)'
-      : props.$priority === 'High'
-      ? 'rgba(190, 219, 176, 1)'
-      : 'transparent'};
-
+      : 'rgba(190, 219, 176, 1)'};
   transition: all 250ms linear;
 
   &.active {
-    width: 6px;
-    height: 6px;
-  }
-`;
-
-export const LabelText = styled.p`
-  display: block;
-  width: 100%;
-  color: blue;
-  font-size: 12px;
-  font-family: Poppins;
-  letter-spacing: -0.24px;
-
-  &.active {
-    color: blueviolet;
-  }
-
-  cursor: pointer;
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-export const BgcItem = styled.div`
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  width: 28px;
-  height: 28px;
-  background-position: center;
-  background-size: contain;
-  background-color: white;
-
-  cursor: pointer;
-  transition: all 250ms linear;
-
-  &.active {
-    scale: 1.1;
+    width: 16px;
+    height: 16px;
   }
 `;
