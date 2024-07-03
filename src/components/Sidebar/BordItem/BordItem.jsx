@@ -73,7 +73,7 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
           </IconEdit>
           <EditBoardModal
             onClose={handleClose}
-            isOpen={open}
+            $isOpen={open}
             boardId={boardId}
           />
           <IconDel aria-label="delete icon" onClick={handleDelete}>

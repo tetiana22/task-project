@@ -1,7 +1,8 @@
+import { Title } from './HeaderDasboards.styled';
 const HeaderDashboard = ({ board }) => {
   return (
     <div>
-      <h2>{board.title}</h2>
+      <Title>{board.title}</Title>
     </div>
   );
 };

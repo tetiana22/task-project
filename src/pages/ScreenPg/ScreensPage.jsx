@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import HeaderDashboard from 'components/Boards/HeaderDashboard/HeaderDashboard';
 import MainDashboard from 'components/Boards/MainDashboard/MainDashboard';
-import { selectIsMenuOpen } from '../../../redux/menu/selectors';
-import { closeMenuMode } from '../../../redux/menu/menuSlice';
-import { Wrapper } from './ScreensPage.styled';
+import { selectIsMenuOpen } from '../../redux/menu/selectors';
+import { closeMenuMode } from '../../redux/menu/menuSlice';
+import { Wrapper, Div } from './ScreensPage.styled';
 import { useParams } from 'react-router-dom';
 import Filter from 'components/Filter/Filter';
 
@@ -26,11 +26,12 @@ const ScreensPage = () => {
     <Wrapper
       onClick={handleScreenClick}
       $isOpen={menuMode}
-      currentBg={currentBg}
+      $currentBg={currentBg}
     >
-      <Filter />
-      <HeaderDashboard board={currentBoard} />
-
+      <Div>
+        <HeaderDashboard board={currentBoard} />
+        <Filter />
+      </Div>
       <MainDashboard board={currentBoard} />
     </Wrapper>
   );

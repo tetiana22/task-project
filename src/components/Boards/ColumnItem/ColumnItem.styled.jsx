@@ -9,7 +9,7 @@ export const Title = styled.p`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  color: white;
+  color: ${props => props.theme.buttonPlus.color};
 `;
 export const Column = styled.div`
   width: 100%;
@@ -18,12 +18,10 @@ export const Column = styled.div`
   border: none;
   text-decoration: none;
   cursor: pointer;
-
   display: flex;
   padding: 14px 78px 14px 79px;
   justify-content: space-between;
   align-items: center;
-
-  background-color: black;
+  background-color: ${props => props.theme.buttonPlus.background};
   border-radius: 8px;
 `;

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Link, TextBox, FilterContainer } from './Board.styled';
+import { Container, Link, TextBox } from './MainPage.styled';
 import AddBoardModal from 'components/Modals/AddBoardModal/AddBoardModal';
-import { selectIsMenuOpen } from '../../../redux/menu/selectors';
+import { selectIsMenuOpen } from '../../redux/menu/selectors';
 import { useSelector } from 'react-redux';
-import Filter from 'components/Filter/Filter';
 
-const Board = () => {
+const MainPg = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const menuMode = useSelector(selectIsMenuOpen);
   const openModal = () => {
@@ -18,9 +17,6 @@ const Board = () => {
 
   return (
     <div>
-      <FilterContainer>
-        <Filter />
-      </FilterContainer>
       <Container $isOpen={menuMode}>
         <TextBox>
           Before starting your project, it is essential{' '}
@@ -35,4 +31,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default MainPg;

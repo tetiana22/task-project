@@ -7,8 +7,8 @@ import {
   WelcomeWrapper,
   Wrap,
 } from './Auth.styled';
-import LogIn from 'components/Auth/LogInPg/LogInPg';
-import Registration from 'components/Auth/RegistrationPg/RegistrationPg';
+import LogIn from 'pages/Auth/LogInPg/LogInPg';
+import Registration from 'pages/Auth/RegistrationPg/RegistrationPg';
 
 function AuthPage() {
   const { id } = useParams();

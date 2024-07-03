@@ -9,7 +9,7 @@ export const Backdrop = styled.div`
   height: 100%;
   display: ${props => (props.$isOpen ? 'block' : 'none')};
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 98; // Ensure this is behind the Aside
+  z-index: 98;
 
   @media screen and (min-width: 1440px) {
     display: none;
@@ -26,9 +26,9 @@ export const Aside = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.backgroundColor};
+  background-color: ${props => props.theme.sidebar.background};
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  z-index: 99; // Ensure this is above the Backdrop
+  z-index: 99;
 
   ${props =>
     props.$isOpen
@@ -62,7 +62,7 @@ export const IconLogo = styled.svg`
 `;
 
 export const LogoText = styled.h1`
-  color: ${props => props.theme.colors.whiteColor};
+  color: ${props => props.theme.sidebar.textMain};
   font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
@@ -100,7 +100,7 @@ export const BtnAdd = styled.button`
   width: 40px;
   height: 36px;
   border-radius: 6px;
-  background-color: ${props => props.theme.colors.priorityGreen};
+  background-color: ${props => props.theme.sidebar.addButtonBackground};
   border: none;
   outline: none;
   padding: 8px 10px;
@@ -108,14 +108,14 @@ export const BtnAdd = styled.button`
   transition: all 150ms linear;
 
   &:hover {
-    background-color: ${props => props.theme.colors.plusBtnHover};
+    background-color: ${props => props.theme.sidebar.addButtonHover};
   }
 `;
 
 export const IconPlus = styled.svg`
   height: 20px;
   width: 20px;
-  stroke: ${props => props.theme.colors.svgBackColor};
+  stroke: ${props => props.theme.sidebar.addButtonColor};
 `;
 
 export const ContentWrapper = styled.div`

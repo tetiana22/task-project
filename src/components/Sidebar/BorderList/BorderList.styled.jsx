@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  /* position: relative;
-  left: 50%;
-  top: -100%;
-  transform: translate(-50%, calc(100% + 40px)); */
   max-height: 250px;
   padding: 0;
   margin-bottom: 40px;
@@ -23,9 +19,6 @@ export const List = styled.ul`
     border-radius: 12px;
   }
 
-  /* @media screen and (min-width: 768px) {
-    width: 260px;
-  } */
 
   ::-webkit-scrollbar {
     width: 0;

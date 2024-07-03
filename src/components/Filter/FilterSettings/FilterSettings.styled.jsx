@@ -13,7 +13,7 @@ export const Form = styled.form`
   gap: 14px;
 `;
 export const FormTitle = styled.h3`
-  color: white;
+  color: ${props => props.theme.needHelpModal.textMain};
   font-size: 14px;
   font-family: 'Poppins';
   font-weight: 500;

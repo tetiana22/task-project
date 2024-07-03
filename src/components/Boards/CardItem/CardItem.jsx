@@ -45,7 +45,7 @@ const CardItem = ({ item, columnTitle, columnId, boardId, cardId }) => {
   const expiredCard = today > parsedDate;
 
   const checkTextLength = text => {
-    return text.length <= 80 ? text : text.slice(0, 80) + '...';
+    return text.$length <= 80 ? text : text.slice(0, 80) + '...';
   };
 
   const handleOutsideClick = event => {

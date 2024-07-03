@@ -39,14 +39,14 @@ export const TaskList = styled.ul`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: ${props => props.theme.column.scrollTrack};
-    border: 1px solid ${props => props.theme.column.scrollBorder};
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 3px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: ${props => props.theme.column.scrollThumb};
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
   @media screen and (min-height: 780px) {
@@ -127,8 +127,8 @@ export const Button = styled.button`
   letter-spacing: -0.28px;
 
   border: none;
-  color: ${props => props.theme.column.buttonColor};
-  background-color: ${props => props.theme.column.buttonBackground};
+  color: ${props => props.theme.buttonPlus.background};
+  background-color: ${props => props.theme.buttonPlus.green};
   border-radius: 8px;
 
   transition: all 250ms linear;
@@ -136,6 +136,7 @@ export const Button = styled.button`
 
   &:hover {
     opacity: 0.9;
+    background-color: ${props => props.theme.buttonPlus.accent};
   }
 `;
 
@@ -147,7 +148,7 @@ export const ButtonPlus = styled.div`
 
   width: 28px;
   height: 28px;
-  background-color: ${props => props.theme.column.plusBackground};
+  background-color: ${props => props.theme.buttonPlus.background};
   margin-right: 8px;
   padding: 7px;
 

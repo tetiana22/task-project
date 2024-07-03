@@ -10,7 +10,7 @@ export const CardWrapper = styled.div`
   width: 100%;
   min-height: 154px;
   border-radius: 8px;
-  background-color: #1c1c1c;
+  background-color: #121212;
 
   overflow: hidden;
   opacity: ${props => (props.$expired ? 0.4 : 1)};
@@ -224,16 +224,15 @@ export const PopupItem = styled.li`
   transition: all 250ms linear;
   cursor: pointer;
   &:hover {
-    color: #bedbb0; // Green color for title on hover
+    color: ${props => props.theme.themePopup.textAccent};
     svg {
-      stroke: #bedbb0; // Green color for icon on hover
+      stroke: ${props => props.theme.themePopup.textAccent};
     }
   }
 `;
 
 export const PopupText = styled.p`
   font-size: 14px;
-  font-family: 'Poppins';
   font-weight: 400;
   letter-spacing: -0.28px;
 `;
@@ -241,7 +240,7 @@ export const PopupText = styled.p`
 export const PopupIcon = styled.svg`
   height: 16px;
   width: 16px;
-  stroke: #b0b0b0;
+  stroke: ${props => props.theme.themePopup.textSecondary};
   fill: transparent;
   transition: stroke 250ms linear;
 `;

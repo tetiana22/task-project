@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { editColumnSchema } from 'components/validation/schema';
+import { editColumnSchema } from 'validation/schema';
 import { editCard } from '../../redux/cards/cardsReducers';
 import {
   Input,
   Form,
   Error,
-} from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
 import { FormTitle } from 'components/AddBoard/AddBoard.styled';
 import {
   Wrapper,

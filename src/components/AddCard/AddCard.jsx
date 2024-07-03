@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { addCardSchema } from 'components/validation/schema';
+import { addCardSchema } from 'validation/schema';
 import { addCard } from '../../redux/cards/cardsReducers';
 import {
   Input,
   Form,
   Error,
-} from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
 import { FormTitle } from 'components/AddBoard/AddBoard.styled';
 import {
   Wrapper,
@@ -51,9 +51,6 @@ const AddCard = ({ onClose, boardId, columnId }) => {
   const [selectedLabel, setSelectedLabel] = useState(options[3]);
   const [startDate, setStartDate] = useState('');
   const cards = useSelector(state => state.dashboards.cards);
-  // const currColumnCardsLgth = cards.filter(
-  //   card => card.columnId === columnId
-  // ).length;
 
   const customDate =
     startDate !== '' ? startDate.toLocaleString('en-GB', dateOptions) : null;
@@ -160,6 +157,7 @@ const AddCard = ({ onClose, boardId, columnId }) => {
             dateFormat="dd/MM/yyyy"
             selected={startDate}
             onChange={date => setStartDate(date)}
+            shouldCloseOnSelect={false}
             id="datePicker"
           />
         </Wrapper>

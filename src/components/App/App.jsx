@@ -3,36 +3,35 @@ import Loader from 'components/Loader/Loader';
 import PrivateRoute from 'components/Routes/PrivateRoute';
 import PublicRoute from 'components/Routes/PublicRoute';
 
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { currentUser } from '../../redux/authorization/authReducer';
 import { selectIsRefreshing } from '../../redux/selectors';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme } from '../../assets/theme/theme';
+import { theme } from '../../constant/theme';
 
-const WelcomePage = lazy(() => import('pages/WelcomePg/WelcomePage'));
+const Welcome = lazy(() => import('../../pages/Welcome/WelcomePg'));
 const HomePage = lazy(() => import('pages/Home/Home'));
-const ScreensPage = lazy(() =>
-  import('../../pages/Home/ScreensPage/ScreensPage')
-);
-const AuthPage = lazy(() => import('components/Auth/Auth'));
-const LogIn = lazy(() => import('components/Auth/LogInPg/LogInPg'));
+const ScreensPage = lazy(() => import('../../pages/ScreenPg/ScreensPage'));
+const AuthPage = lazy(() => import('pages/Auth/Auth'));
+const LogIn = lazy(() => import('pages/Auth/LogInPg/LogInPg'));
 const Registration = lazy(() =>
-  import('components/Auth/RegistrationPg/RegistrationPg')
+  import('pages/Auth/RegistrationPg/RegistrationPg')
 );
 
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const [currentTheme] = useState(theme[0]);
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
   return (
     <>
       {' '}
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={currentTheme}>
         {isRefreshing ? (
           <Loader />
         ) : (
@@ -41,7 +40,7 @@ export const App = () => {
               <Route
                 index
                 element={
-                  <PublicRoute redirectTo="/home" component={<WelcomePage />} />
+                  <PublicRoute redirectTo="/home" component={<Welcome />} />
                 }
               />
               <Route

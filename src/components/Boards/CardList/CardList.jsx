@@ -24,7 +24,7 @@ const CardList = ({ columnId, columnTitle, boardId }) => {
       : cardsInColumn.filter(card => card.priority === selectedPriority);
 
   return (
-    <List length={filteredCards.length}>
+    <List length={filteredCards.$length}>
       {filteredCards.map(card => (
         <CardItem
           key={card._id}

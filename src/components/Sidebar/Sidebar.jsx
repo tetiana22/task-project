@@ -24,7 +24,7 @@ import {
 import { logoutUser } from '../../redux/authorization/authReducer';
 import NeedHelpBlock from './NeedHelp/NeedHelp';
 
-const Sidebar = ({ boardId }) => {
+const Sidebar = () => {
   const dispatch = useDispatch();
   const menuMode = useSelector(selectIsMenuOpen);
   const [isModalOpen, setIsModalOpen] = useState(false);

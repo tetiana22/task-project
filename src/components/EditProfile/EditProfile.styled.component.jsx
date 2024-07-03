@@ -38,7 +38,7 @@ export const UserButton = styled.button`
   width: 28px;
   height: 28px;
   border: none;
-  background-color: ${props => props.theme.colors.inputColor};
+  background-color: ${props => props.theme.editProfileModal.buttonBackground};
   transition: all 150ms linear;
   cursor: pointer;
 
@@ -57,7 +57,7 @@ export const Image = styled.img`
 export const Icon = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: ${props => props.theme.colors.blackColor};
+  stroke: ${props => props.theme.editProfileModal.iconPlusColor};
 `;
 
 export const HiddenInput = styled.input`
@@ -67,6 +67,8 @@ export const HiddenInput = styled.input`
 export const Wrap = styled.div`
   position: relative;
   width: 100%;
+  margin-bottom: 20px;
+
   button {
     display: flex;
     position: absolute;
@@ -74,28 +76,26 @@ export const Wrap = styled.div`
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    cursor: pointer;
     background-color: transparent;
-    opacity: 0.4;
   }
 `;
 
 export const Input = styled.input`
   width: 100%;
   padding: 14px 18px;
-  color: #fff;
+  color: ${props => props.theme.editProfileModal.textMain};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid #bedbb0;
+  border: 1px solid ${props => props.theme.editProfileModal.inputBorder};
   opacity: 0.4;
-  background: #1f1f1f;
+  background: ${props => props.theme.editProfileModal.background};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
-
+  position: relative;
   &:focus {
     outline: none;
   }
@@ -106,32 +106,20 @@ export const Input = styled.input`
   &::placeholder {
     color: #fff;
   }
-
-  &::after {
-    color: #fc8181;
-    border-color: #fc8181;
-
-    &::placeholder {
-      color: #fc8181;
-    }
-  }
-  @media screen and (min-width: 375px) {
-    width: calc(100% - 0%);
-  }
-  @media screen and (min-width: 768px) {
-    width: calc(100% - 0%);
-  }
 `;
 
 export const Error = styled.p`
   font-size: 12px;
   line-height: normal;
   color: #fc8181;
+  margin-top: 4px;
+  position: absolute;
+  left: 0;
 `;
 
 export const Button = styled.button`
   width: 100%;
-  color: #161616;
+  color: ${props => props.theme.editProfileModal.buttonText};
   text-align: center;
   border: none;
   text-decoration: none;
@@ -140,26 +128,19 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  background-color: #bedbb0;
+  background-color: ${props => props.theme.editProfileModal.buttonBackground};
   border-radius: 8px;
   padding: 14px;
   &:hover {
     transition: opacity 200ms linear;
-    background-color: #9dc888;
-  }
-
-  @media screen and (min-width: 375px) {
-    width: 284px;
-  }
-  @media screen and (min-width: 765px) {
-    width: 344px;
   }
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  width: 100%;
+  position: relative;
 `;
 
 export const Container = styled.div`

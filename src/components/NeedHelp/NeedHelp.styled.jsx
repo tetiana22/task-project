@@ -19,15 +19,15 @@ export const Wrap = styled.div`
 export const Input = styled.input`
   width: calc(100% - 0%);
   padding: 14px 18px;
-  color: #fff;
+  color: ${props => props.theme.needHelpModal.textMain};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid #bedbb0;
+  border: 2px solid ${props => props.theme.needHelpModal.border};
   opacity: 0.4;
-  background: #1f1f1f;
+  background: ${props => props.theme.needHelpModal.buttonColor};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
@@ -66,8 +66,8 @@ export const Error = styled.p`
 `;
 
 export const Button = styled.button`
-  width: calc(100% + 0%);
-  color: #161616;
+  width: 100%;
+  color: ${props => props.theme.needHelpModal.buttonColor};
   text-align: center;
   border: none;
   text-decoration: none;
@@ -76,20 +76,12 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  background-color: #bedbb0;
+  background-color: ${props => props.theme.needHelpModal.buttonBackground};
   border-radius: 8px;
   padding: 14px;
   &:hover {
     transition: opacity 200ms linear;
-    background-color: #9dc888;
-  }
-  @media screen and (min-width: 320px) {
-  }
-  @media screen and (min-width: 375px) {
-    width: 284px;
-  }
-  @media screen and (min-width: 765px) {
-    width: 344px;
+    background-color: ${props => props.theme.needHelpModal.buttonBackground};
   }
 `;
 export const Form = styled.form`
@@ -105,22 +97,26 @@ export const Container = styled.div`
 `;
 export const TextInput = styled.input`
   padding: 14px 19px 109px 18px;
-  color: #fff;
+  color: ${props => props.theme.needHelpModal.textMain};
   height: 49px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid #bedbb0;
+  border: 1px solid ${props => props.theme.needHelpModal.border};
   opacity: 0.4;
-  background: #1f1f1f;
+  background: ${props => props.theme.needHelpModal.inputBackround};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
   width: calc(100% - 0%);
+
   &:focus {
     outline: none;
+  }
+  &:hover {
+    opacity: 1;
   }
 
   &::placeholder {

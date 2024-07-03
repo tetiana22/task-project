@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
-  /* position: relative; */
   height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;

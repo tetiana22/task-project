@@ -89,20 +89,7 @@ export const changeTheme = createAsyncThunk(
     }
   }
 );
-// export const updateUser = createAsyncThunk(
-//   'users/profile',
-//   async (dataUser, thunkAPI) => {
-//     try {
-//       console.log('Sending data:', dataUser);
 
-//       const { data } = await authInstance.put('users/update', dataUser);
-//       toast.success('Your changes have been successfully accepted');
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.data?.message || error.message);
-//     }
-//   }
-// );
 export const updateUser = createAsyncThunk(
   'users/profile',
   async (dataUser, thunkAPI) => {
@@ -134,20 +121,3 @@ export const needHelp = createAsyncThunk(
     }
   }
 );
-
-// export const refreshUser = createAsyncThunk(
-//   'users/refreshUser',
-//   async (_, thunkApi) => {
-//     const state = thunkApi.getState();
-//     const token = state.auth.token;
-//     if (!token) return thunkApi.rejectWithValue('You don’t have any token!');
-//     try {
-//       setToken(token);
-//       const { data } = await authInstance.get('/users/current');
-
-//       return data;
-//     } catch (error) {
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );

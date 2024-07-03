@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { updateUser } from '../../redux/authorization/authReducer';
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
-import { updateUserSchema } from 'components/validation/schema';
+import { updateUserSchema } from 'validation/schema';
 import {
   Wrapper,
   UserButton,
@@ -18,8 +18,7 @@ import {
   Wrap,
 } from './EditProfile.styled.component';
 import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
-import { toast } from 'react-toastify';
-import { Container } from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+import { Container } from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
 import { Eye } from 'assets/fonts/images/icons/Eye';
 import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
 import { useState } from 'react';
@@ -29,7 +28,6 @@ const EditProfile = ({ onClose }) => {
   const userData = useSelector(state => state.auth.userData);
   const avatarURL = userData?.avatarURL;
   const theme = userData?.theme;
-  // const [selectedAvatar, setSelectedAvatar] = useState(avatarURL);
   const [showPassword, setShowPassword] = useState(false);
   const [localAvatarUrl, setlocalAvatarUrl] = useState(avatarURL);
   const [avatarFile, setavatarFile] = useState(null);

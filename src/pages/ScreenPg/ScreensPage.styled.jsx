@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${props => props.currentBg});
+  background-image: url(${props => props.$currentBg});
 
   @media screen and (min-width: 768px) {
     height: calc(100vh - 68px);
@@ -31,4 +31,10 @@ export const Wrapper = styled.div`
     padding: 10px 24px 0 24px;
     margin-left: 260px;
   }
+`;
+export const Div = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 40px;
 `;

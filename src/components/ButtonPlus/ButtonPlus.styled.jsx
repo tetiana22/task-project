@@ -17,16 +17,16 @@ export const Button = styled.button`
   letter-spacing: -0.28px;
   background-color: ${props =>
     props.$approve
-      ? props.theme.colors.inputColor
-      : props.theme.colors.blackColor};
+      ? props.theme.buttonPlus.green
+      : props.theme.buttonPlus.background};
   border-radius: 8px;
 
   &:hover {
     transition: opacity 200ms linear;
     background-color: ${props =>
       props.$approve
-        ? props.theme.colors.accentColor
-        : props.theme.colors.blackColor};
+        ? props.theme.buttonPlus.accent
+        : props.theme.buttonPlus.background};
   }
 `;
 
@@ -37,7 +37,7 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: ${props => props.theme.colors.blackColor};
+  background-color: ${props => props.theme.buttonPlus.background};
   transition: all 250ms linear;
   cursor: pointer;
 
@@ -54,11 +54,11 @@ export const Wrap = styled.div`
 export const Icon = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: ${props => props.theme.colors.whiteColor};
+  stroke: ${props => props.theme.buttonPlus.color};
 `;
 
 export const Text = styled.p`
-  color: ${props => props.theme.colors.blackColor};
+  color: ${props => props.theme.buttonPlus.plusText};
   font-size: 14px;
   font-family: 'Poppins';
   font-style: normal;

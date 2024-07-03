@@ -9,12 +9,14 @@ import {
   UserLogoContainer,
   UserNameText,
   Ava,
+  Div,
 } from './Header.styled';
 import { selectUserData } from '../../redux/selectors';
 import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
 import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
 import { openMenuMode } from '../../redux/menu/menuSlice';
 import { selectIsMenuOpen } from '../../redux/menu/selectors';
+import ThemePicker from 'components/ThemeSelect/ThemeSelect';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -44,22 +46,24 @@ const Header = () => {
       >
         <Burger width={24} height={24} fillColor={'#161616'} />
       </BurgerBtn>
-
-      <UserLogoContainer onClick={openModal}>
-        {userName ? (
-          <div>
-            <UserNameText>{userName}</UserNameText>
-          </div>
-        ) : (
-          <div>{userEmailSplit}</div>
-        )}
-        {avatarURL ? (
-          <Avatar src={avatarURL} alt="userPhoto" />
-        ) : (
-          <Ava src={theme === 'light' ? userLight : userDark} alt="Avatar" />
-        )}
-      </UserLogoContainer>
-      {isModalOpen && <EditProfileModal onClose={closeModal} />}
+      <Div>
+        <ThemePicker />
+        <UserLogoContainer onClick={openModal}>
+          {userName ? (
+            <div>
+              <UserNameText>{userName}</UserNameText>
+            </div>
+          ) : (
+            <div>{userEmailSplit}</div>
+          )}
+          {avatarURL ? (
+            <Avatar src={avatarURL} alt="userPhoto" />
+          ) : (
+            <Ava src={theme === 'light' ? userLight : userDark} alt="Avatar" />
+          )}
+        </UserLogoContainer>
+        {isModalOpen && <EditProfileModal onClose={closeModal} />}
+      </Div>
     </HeaderSection>
   );
 };

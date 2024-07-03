@@ -15,11 +15,10 @@ export const FormWrapper = styled.div`
 `;
 
 export const FormTitle = styled.h3`
-  color: ${props => props.theme.colors.whiteColor};
+  color: ${props => props.theme.modal.textMain};
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
-
   margin-bottom: 14px;
 `;
 
@@ -36,22 +35,16 @@ export const IconWrapper = styled.label``;
 
 export const Icon = styled.svg`
   cursor: pointer;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: ${props => props.theme.modal.icon};
   fill: transparent;
   transition: all 250ms linear;
 
-  &:hover {
-    stroke: ${props => props.theme.colors.whiteColor};
-  }
-
-  &.active {
+  &.active,
+  &:hover,
+  &:focus {
     scale: 1.3;
     transform: rotate(360deg);
-    stroke: ${props => props.theme.colors.whiteColor};
-  }
-
-  &:focus {
-    stroke: ${props => props.theme.colors.whiteColor};
+    stroke: ${props => props.theme.modal.iconClose};
   }
 `;
 
@@ -94,7 +87,7 @@ export const BgcItem = styled.div`
   height: 28px;
   background-position: center;
   background-size: contain;
-  background-color: ${props => props.theme.colors.whiteColor};
+  background-color: ${props => props.theme.modal.iconClose};
 
   cursor: pointer;
   transition: all 250ms linear;

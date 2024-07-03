@@ -9,21 +9,21 @@ export const FormTitle = styled.h3`
 `;
 
 export const InputDesc = styled.input`
-  width: calc(100% - 0%);
-  height: 154px;
-  padding: 14px 18px;
-  color: #fff;
+  padding: 14px 19px 109px 18px;
+  color: ${props => props.theme.needHelpModal.textMain};
+  height: 49px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid #bedbb0;
+  border: 1px solid ${props => props.theme.needHelpModal.border};
   opacity: 0.4;
-  background: #1f1f1f;
+  background: ${props => props.theme.needHelpModal.inputBackround};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
+  width: calc(100% - 0%);
 
   &:focus {
     outline: none;
@@ -43,12 +43,6 @@ export const InputDesc = styled.input`
     &::placeholder {
       color: #fc8181;
     }
-  }
-  @media screen and (min-width: 375px) {
-    width: calc(100% - 0%);
-  }
-  @media screen and (min-width: 768px) {
-    width: calc(100% - 0%);
   }
 `;
 
@@ -97,7 +91,7 @@ export const LabelItem = styled.div`
 `;
 
 export const DateTitle = styled.div`
-  color: greenyellow;
+  color: ${props => props.theme.calendar.month};
   font-size: 14px;
   font-family: Poppins;
   font-weight: 500;
@@ -113,8 +107,8 @@ export const Wrapper = styled.div`
     overflow: hidden;
     margin-top: -28px;
     border-radius: 8px;
-    border: 4px solid green;
-    background: greenyellow;
+    border: 2px solid ${props => props.theme.calendar.border};
+    background: ${props => props.theme.calendar.background};
     outline: none;
     width: 260px;
     position: absolute;
@@ -144,7 +138,7 @@ export const Wrapper = styled.div`
     &__navigation-icon {
       width: 4px;
       height: 8px;
-      color: green;
+      color: ${props => props.theme.calendar.background};
     }
 
     &__month {
@@ -162,7 +156,7 @@ export const Wrapper = styled.div`
     &__day {
       width: 24px;
       height: 24px;
-      color: blue;
+      color: ${props => props.theme.calendar.noActiveDay};
       font-size: 14px;
       font-family: Poppins;
       transition: all 250ms ease;
@@ -173,40 +167,40 @@ export const Wrapper = styled.div`
       margin: 0px;
 
       &--today {
-        background: greenyellow;
-        color: blue;
+        background: ${props => props.theme.calendar.accent};
+        color: ${props => props.theme.calendar.activeDay};
         border-radius: 50%;
       }
 
       &--outside-month {
         width: 24px;
         height: 24px;
-        color: gray;
+        color: ${props => props.theme.calendar.day};
       }
 
       &--keyboard-selected {
         border-radius: 24px;
-        background: greenyellow;
-        color: blue;
+        background: ${props => props.theme.calendar.background};
+        color: ${props => props.theme.calendar.noActiveDay};
       }
 
       &:hover {
         border-radius: 24px;
-        background: greenyellow;
-        color: blue;
+        background: ${props => props.theme.calendar.hover};
+        color: ${props => props.theme.calendar.activeDay};
       }
     }
 
     &__day--disabled {
       width: 24px;
       height: 24px;
-      color: gray;
+      color: ${props => props.theme.calendar.noActiveDay};
     }
 
     &__day--selected {
       border-radius: 24px;
-      background: greenyellow;
-      color: green;
+      background: ${props => props.theme.calendar.hover};
+      color: ${props => props.theme.calendar.activeDay};
       cursor: pointer;
     }
 
@@ -215,7 +209,7 @@ export const Wrapper = styled.div`
     }
 
     &__header {
-      background-color: greenyellow;
+      background-color: ${props => props.theme.calendar.background};
       width: 260px;
       border-bottom: none;
       /* padding: 18px 18px 14px; */
@@ -232,7 +226,7 @@ export const Wrapper = styled.div`
     }
 
     &__day-name {
-      color: black;
+      color: ${props => props.theme.calendar.month};
       font-size: 14px;
       font-family: 'Poppins';
       font-style: normal;
@@ -245,7 +239,7 @@ export const Wrapper = styled.div`
     }
 
     &__current-month {
-      color: black;
+      color: ${props => props.theme.calendar.month};
       font-size: 16px;
       font-family: Poppins;
       font-weight: 600;

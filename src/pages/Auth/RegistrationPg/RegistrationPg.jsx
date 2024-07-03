@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registration } from '../../../redux/authorization/authReducer';
-import { registrationSchema } from '../../validation/schema';
+import { registrationSchema } from '../../../validation/schema';
 import {
   Input,
   Button,

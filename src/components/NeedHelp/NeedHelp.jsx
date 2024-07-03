@@ -1,4 +1,4 @@
-import { needHelpSchema } from 'components/validation/schema';
+import { needHelpSchema } from 'validation/schema';
 import { Form, Button, Input, Error, TextInput } from './NeedHelp.styled';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';

@@ -37,7 +37,7 @@ export const Text = styled.p`
   font-size: 14px;
   line-height: 1.42;
   letter-spacing: -0.28px;
-  color: white;
+  color: ${props => props.theme.needHelpModal.textMain};
   margin-bottom: 18px;
 
   @media screen and (max-height: 720px) {
@@ -46,7 +46,7 @@ export const Text = styled.p`
 `;
 
 export const AccentText = styled.span`
-  color: #bedbb0;
+  color: ${props => props.theme.needHelpModal.accent};
 `;
 
 export const ButtonWrapper = styled.div`
@@ -71,7 +71,7 @@ export const CircleIcon = styled.svg`
 export const ButtonText = styled.p`
   font-family: 'Poppins';
   font-weight: 500;
-  color: white;
+  color: ${props => props.theme.buttonPlus.color};
   font-size: 12px;
   letter-spacing: -0.24px;
 `;

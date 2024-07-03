@@ -27,16 +27,16 @@ export const List = styled.ul`
 
   @media screen and (min-height: 780px) {
     max-height: calc(154px * 3 + 16px);
-    width: ${props => (props.length < 4 ? '342px' : '350px')};
+    width: ${props => (props.$length < 4 ? '342px' : '350px')};
   }
 
   @media screen and (min-height: 942px) {
     max-height: calc(154px * 4 + 24px);
-    width: ${props => (props.length < 5 ? '342px' : '350px')};
+    width: ${props => (props.$length < 5 ? '342px' : '350px')};
   }
 
   @media screen and (min-height: 1104px) {
     max-height: calc(154px * 5 + 32px);
-    width: ${props => (props.length < 6 ? '342px' : '350px')};
+    width: ${props => (props.$length < 6 ? '342px' : '350px')};
   }
 `;

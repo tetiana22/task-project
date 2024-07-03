@@ -1,10 +1,10 @@
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { editColumnSchema } from 'components/validation/schema';
+import { editColumnSchema } from 'validation/schema';
 import {
   Input,
   Error,
   Form,
-} from 'components/Auth/RegistrationPg/RegistrationPg.styled';
+} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
