@@ -7,7 +7,6 @@ import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 
 import ColumnList from '../ColumnList/ColumnList';
 
-
 const MainDashboard = ({ board }) => {
   const [open, setOpen] = useState(false);
 

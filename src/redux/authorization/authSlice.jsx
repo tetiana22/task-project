@@ -45,7 +45,7 @@ const authSlice = createSlice({
       .addCase(changeTheme.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.userData.theme = action.payload;
+        state.userData.theme = action.payload.theme;
       })
       .addCase(signin.fulfilled, (state, action) => {
         state.isLoading = false;

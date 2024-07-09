@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrap = styled.div`
   position: relative;
   width: 100%;
+  background: ${props => props.theme.needHelp.background};
   button {
     display: flex;
     position: absolute;

@@ -14,7 +14,7 @@ export const BoardTitle = styled.h2`
   display: block;
   width: 100%;
   padding: 20px 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${props => props.theme.sidebar.textSecondary};
   font-size: 14px;
   font-family: Poppins;
   font-weight: 500;
@@ -45,17 +45,17 @@ export const Board = styled.div`
   &:focus,
   &:hover {
     border-radius: 8px;
-    background: rgba(78, 77, 77, 0.4);
+    background: ${props => props.theme.sidebar.boardHover};
 
     ${StyledLink} {
-      color: white;
+      color: ${props => props.theme.sidebar.textMain};
 
       svg {
-        stroke: white;
+        stroke: ${props => props.theme.sidebar.textMain};
       }
 
       ${BoardTitle} {
-        color: white;
+        color: ${props => props.theme.sidebar.textMain};
       }
     }
   }
@@ -66,7 +66,7 @@ export const BoardIcon = styled.svg`
   width: 18px;
   margin-right: 8px;
   fill: transparent;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: ${props => props.theme.sidebar.textSecondary};
   transition: all 150ms linear;
 `;
 
@@ -79,12 +79,12 @@ export const IconEdit = styled.svg`
   height: 16px;
   width: 16px;
   fill: transparent;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: ${props => props.theme.sidebar.textSecondary};
   margin: 0 8px;
   transition: all 150ms linear;
 
   &:hover {
-    stroke: white;
+    stroke: ${props => props.theme.sidebar.textMain};
   }
 `;
 
@@ -93,10 +93,10 @@ export const IconDel = styled.svg`
   height: 16px;
   width: 16px;
   fill: transparent;
-  stroke: rgba(255, 255, 255, 0.5);
+  stroke: ${props => props.theme.sidebar.textSecondary};
   transition: all 150ms linear;
 
   &:hover {
-    stroke: white;
+    stroke: ${props => props.theme.sidebar.textMain};
   }
 `;

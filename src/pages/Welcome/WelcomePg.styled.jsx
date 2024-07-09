@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: ${props => props.theme.container.lightGreenGradient};
+  background: linear-gradient(180deg, #ffffff 25%, #bedbb0 92.19%);
 `;
 export const Container = styled.div`
   display: flex;

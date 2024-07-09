@@ -6,8 +6,9 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import AddColumn from 'components/AddColumn/AddColumn';
 const AddColumModal = ({ onClose, boardId }) => {
   return (
@@ -16,7 +17,9 @@ const AddColumModal = ({ onClose, boardId }) => {
         <ModalHeader>
           <ModalTitle>Add column</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <AddColumn boardId={boardId} onClose={onClose} />

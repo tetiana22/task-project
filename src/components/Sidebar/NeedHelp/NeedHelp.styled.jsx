@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   padding: 14px;
   margin: 0 auto 24px;
   width: calc(100% - 28px);
-  background: rgba(78, 77, 77, 0.4);
+  background: ${props => props.theme.needHelp.background};
 
   border-radius: 8px;
 
@@ -62,7 +62,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CircleIcon = styled.svg`
-  stroke: white;
+  stroke: ${props => props.theme.needHelp.icon};
   fill: transparent;
   width: 20px;
   height: 20px;
@@ -71,7 +71,7 @@ export const CircleIcon = styled.svg`
 export const ButtonText = styled.p`
   font-family: 'Poppins';
   font-weight: 500;
-  color: ${props => props.theme.buttonPlus.color};
+  color: ${props => props.theme.sidebar.textMain};
   font-size: 12px;
   letter-spacing: -0.24px;
 `;

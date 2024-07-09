@@ -13,7 +13,7 @@ export const Wrapper = styled.button`
 `;
 
 export const Text = styled.h2`
-  color: rgba(255, 255, 255, 0.8);
+  color: ${props => props.theme.modal.textMain};
   font-size: 14px;
 
   font-weight: 500;
@@ -24,7 +24,7 @@ export const Text = styled.h2`
 export const Icon = styled.svg`
   width: 18px;
   height: 18px;
-  stroke: rgba(255, 255, 255, 0.8);
+  stroke: ${props => props.theme.modal.textMain};
   transition: all 250ms linear;
   fill: transparent;
 

@@ -5,8 +5,15 @@ export const CloseModalCrossStyled = styled.button`
   border: none;
   cursor: pointer;
   float: inline-end;
+  stroke: ${props => props.theme.column.textMain};
 `;
-
+export const Icon = styled.svg`
+  height: 16px;
+  width: 16px;
+  stroke: ${props => props.theme.themePopup.textSecondary};
+  fill: transparent;
+  transition: stroke 250ms linear;
+`;
 export const Div = styled.div`
   width: 100vw;
   height: 100vh;

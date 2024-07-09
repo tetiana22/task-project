@@ -6,7 +6,6 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-
   margin-bottom: 24px;
 
   &:last-of-type {
@@ -70,7 +69,6 @@ export const CustomRadioBtn = styled.div`
   background-image: url(${props => props.$url});
   background-position: center;
   background-size: cover;
-
   cursor: pointer;
   transition: all 250ms linear;
 
@@ -78,7 +76,20 @@ export const CustomRadioBtn = styled.div`
     scale: 1.1;
   }
 `;
+export const DefaultImage = styled.img`
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 250ms linear;
 
+  &.active {
+    scale: 1.1;
+  }
+`;
 export const BgcItem = styled.div`
   border-radius: 8px;
   border: none;
@@ -87,12 +98,81 @@ export const BgcItem = styled.div`
   height: 28px;
   background-position: center;
   background-size: contain;
-  background-color: ${props => props.theme.modal.iconClose};
-
+  background-color: ${props => props.theme.modal.backgroundImg};
   cursor: pointer;
   transition: all 250ms linear;
 
   &.active {
     scale: 1.1;
   }
+`;
+
+export const Img = styled.img`
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+`;
+
+export const RadioFieldBg = styled.input`
+  appearance: none;
+  position: absolute;
+
+  &:checked + ${Img} {
+    transform: scale(0.95);
+    outline: 1px solid var(--color-green);
+  }
+`;
+export const Input = styled.input`
+  width: calc(100% - 0%);
+  padding: 14px 18px;
+  color: ${props => props.theme.modal.inputText};
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  border: 1px solid ${props => props.theme.modal.addBorder};
+  opacity: 0.4;
+  background: ${props => props.theme.modal.inputBackround};
+  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
+  outline: none;
+  transition: all 150ms ease;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    opacity: 1;
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.modal.inputText};
+  }
+
+  &::after {
+    color: #fc8181;
+    border-color: #fc8181;
+
+    &::placeholder {
+      color: #fc8181;
+    }
+  }
+  @media screen and (min-width: 375px) {
+    width: calc(100% - 0%);
+  }
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 0%);
+  }
+`;
+
+export const Error = styled.p`
+  font-size: 12px;
+  line-height: normal;
+  color: #fc8181;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 `;

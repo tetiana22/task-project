@@ -79,9 +79,9 @@ export const currentUser = createAsyncThunk(
 );
 export const changeTheme = createAsyncThunk(
   'users/theme',
-  async ({ theme }, thunkAPI) => {
+  async ( theme , thunkAPI) => {
     try {
-      const { data } = await authInstance.patch('users/theme', { theme });
+      const { data } = await authInstance.patch('users/theme',  theme );
 
       return data;
     } catch (error) {

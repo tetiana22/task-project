@@ -5,8 +5,10 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 
 import AddCard from 'components/AddCard/AddCard';
 
@@ -17,7 +19,9 @@ const AddCardModal = ({ onClose, boardId, columnId }) => {
         <ModalHeader>
           <ModalTitle>Add Card</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <AddCard boardId={boardId} columnId={columnId} onClose={onClose} />

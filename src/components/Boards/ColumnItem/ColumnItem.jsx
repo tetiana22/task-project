@@ -58,11 +58,7 @@ const ColumnItem = ({ column, columnId, boardId }) => {
           boardId={boardId}
           columnId={columnId}
         />
-        <ButtonPlus
-          approve={true}
-          text="Add anotner card"
-          onOpen={handleOpenCard}
-        />
+        <ButtonPlus text="Add anotner card" onOpen={handleOpenCard} />
         {openCard && (
           <AddCardModal
             onClose={handleCloseCard}

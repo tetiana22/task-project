@@ -79,7 +79,7 @@ export const BurgerBtn = styled.button`
 
   svg,
   path {
-    stroke: #fff;
+    stroke: ${props => props.theme.header.menuIcon};
     width: 24px;
     height: 24px;
     transition: transform 0.3s ease-out;

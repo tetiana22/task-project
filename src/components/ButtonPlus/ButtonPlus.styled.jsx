@@ -17,16 +17,16 @@ export const Button = styled.button`
   letter-spacing: -0.28px;
   background-color: ${props =>
     props.$approve
-      ? props.theme.buttonPlus.green
-      : props.theme.buttonPlus.background};
+      ? props.theme.buttonPlus.bgdBtNotApprove
+      : props.theme.buttonPlus.bgdBtApprove};
   border-radius: 8px;
 
   &:hover {
     transition: opacity 200ms linear;
     background-color: ${props =>
       props.$approve
-        ? props.theme.buttonPlus.accent
-        : props.theme.buttonPlus.background};
+        ? props.theme.buttonPlus.bgdBtNotApproveHover
+        : props.theme.buttonPlus.bgdBtApproveHover};
   }
 `;
 
@@ -37,12 +37,20 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background-color: ${props => props.theme.buttonPlus.background};
+  background-color: ${props =>
+    props.$approve
+      ? props.theme.buttonPlus.plusBgdNotApprove
+      : props.theme.buttonPlus.plusBgdApprove};
+
   transition: all 250ms linear;
   cursor: pointer;
 
   &:hover {
     transform: scale(1.1);
+    background-color: ${props =>
+      props.$approve
+        ? props.theme.buttonPlus.plusBgdNotApproveHover
+        : props.theme.buttonPlus.plusBgdApprove};
   }
 `;
 export const Wrap = styled.div`
@@ -50,15 +58,21 @@ export const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  color: ${props =>
+    props.$approve
+      ? props.theme.buttonPlus.textNotApprove
+      : props.theme.buttonPlus.textApprove};
 `;
 export const Icon = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: ${props => props.theme.buttonPlus.color};
+  stroke: ${props =>
+    props.$approve
+      ? props.theme.buttonPlus.iconNotApprove
+      : props.theme.buttonPlus.iconApprove};
 `;
 
 export const Text = styled.p`
-  color: ${props => props.theme.buttonPlus.plusText};
   font-size: 14px;
   font-family: 'Poppins';
   font-style: normal;

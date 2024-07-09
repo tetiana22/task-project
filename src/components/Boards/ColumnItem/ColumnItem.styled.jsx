@@ -22,6 +22,6 @@ export const Column = styled.div`
   padding: 14px 78px 14px 79px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${props => props.theme.buttonPlus.background};
+  background-color: ${props => props.theme.column.backgroundMain};
   border-radius: 8px;
 `;

@@ -11,7 +11,7 @@ export function Close() {
     >
       <path
         d="M6 18L18 6M6 6L18 18"
-        stroke="#fff"
+        stroke="none"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

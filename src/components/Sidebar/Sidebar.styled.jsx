@@ -59,6 +59,7 @@ export const Logo = styled(NavLink)`
 export const IconLogo = styled.svg`
   height: 32px;
   width: 32px;
+  fill: ${props => props.theme.sidebar.logo};
 `;
 
 export const LogoText = styled.h1`
@@ -74,15 +75,18 @@ export const MyBoardsText = styled.p`
   font-size: 14px;
   letter-spacing: -0.24px;
   margin-bottom: 8px;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${props => props.theme.sidebar.textSecondary};
+  &:hover {
+    color: ${props => props.theme.sidebar.textMain};
+  }
 `;
 
 export const AddBoardBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid ${props => props.theme.underlineColor};
-  border-bottom: 1px solid ${props => props.theme.underlineColor};
+  border-top: 1px solid ${props => props.theme.sidebar.vector};
+  border-bottom: 1px solid ${props => props.theme.sidebar.vector};
   padding: 14px 0;
 `;
 
@@ -91,7 +95,7 @@ export const CreateNewBoard = styled.p`
   font-family: Poppins;
   font-weight: 500;
   letter-spacing: -0.28px;
-  color: white;
+  color: ${props => props.theme.sidebar.textMain};
   width: 76px;
   cursor: pointer;
 `;

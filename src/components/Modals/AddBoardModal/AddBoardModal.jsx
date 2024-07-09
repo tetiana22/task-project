@@ -5,8 +5,9 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import AddBoard from 'components/AddBoard/AddBoard';
 
 const AddBoardModal = ({ onClose }) => {
@@ -16,7 +17,9 @@ const AddBoardModal = ({ onClose }) => {
         <ModalHeader>
           <ModalTitle>New board</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <AddBoard onClose={onClose} />

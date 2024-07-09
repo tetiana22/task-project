@@ -65,6 +65,10 @@ export const theme = [
       iconDefault: '#1F1F1F',
       unactiveDay: 'rgba(255, 255, 255, 0.2)',
       today: '#1F1F1F',
+      backgroundImg: '#1F1F1F',
+      addBorder: '#1F1F1F',
+      inputBackround: '#1F1F1F;',
+      inputText: '#FFFFFF',
     },
     sidebar: {
       background: '#121212',
@@ -82,6 +86,8 @@ export const theme = [
       projectBorder: '#BEDBB0',
       iconLogout: '#BEDBB0',
       iconClose: '#FFFFFF',
+      bordHover: 'rgba(255, 255, 255, 0.5)',
+      vector: 'rgba(255, 255, 255, 0.10)',
     },
     editProfileModal: {
       background: '#151515',
@@ -120,6 +126,8 @@ export const theme = [
     name: 'light',
     container: {
       background: '#F6F6F7',
+      lightGreenGradient:
+        'linear-gradient(180deg, #ffffff 25%, #bedbb0 92.19%)',
     },
     header: {
       background: '#FCFCFC',
@@ -168,6 +176,10 @@ export const theme = [
       iconDefault: '#F6F6F7',
       unactiveDay: 'rgba(22, 22, 22, 0.2)',
       today: '#161616',
+      backgroundImg: '#F6F6F7',
+      addBorder: '#BEDBB0',
+      inputBackround: '#FCFCFC',
+      inputText: '#161616',
     },
     sidebar: {
       background: '#FFFFFF',
@@ -185,6 +197,8 @@ export const theme = [
       projectBorder: '#BEDBB0',
       iconLogout: '#BEDBB0',
       iconClose: '#161616',
+      bordHover: '#F6F6F7',
+      vector: 'rgba(22, 22, 22, 0.10)',
     },
     editProfileModal: {
       background: '#FCFCFC',
@@ -210,17 +224,23 @@ export const theme = [
       scrollThumb: 'rgba(22, 22, 22, 0.4)',
       scrollBorder: 'transparent',
     },
-    addColumnButton: {
-      background: '#FFFFFF',
-      color: '#161616',
+    buttonPlus: {
+      background: '#161616',
+      color: '#FFFFFF',
       plusBackground: '#161616',
-      plusColor: '#FFFFFF',
+
+      green: '#BEDBB0',
+      accent: '#9DC888',
+
+      plusText: '#121212',
     },
   },
   {
     name: 'violet',
     container: {
       background: '#ECEDFD',
+      lightGreenGradient:
+        'linear-gradient(180deg, #ffffff 25%, #bedbb0 92.19%)',
     },
     header: {
       background: '#FCFCFC',
@@ -240,10 +260,10 @@ export const theme = [
       backgroundBell: 'transparent',
     },
     needHelp: {
-      background: '#ECEDFD',
       textMain: '#161616',
       textAccent: '#5255BC',
       icon: '#161616',
+      background: 'rgba(236, 237, 253, 0.4)',
     },
     needHelpModal: {
       textMain: '#161616',
@@ -269,14 +289,18 @@ export const theme = [
       iconDefault: '#ECEDFD',
       unactiveDay: 'rgba(22, 22, 22, 0.2)',
       today: '#161616',
+      backgroundImg: '#ECEDFD',
+      addBorder: '#5255BC',
+      inputBackround: '#FCFCFC',
+      inputText: '#161616',
     },
     sidebar: {
-      background: '#FFFFFF',
+      background: ' #5255BC;',
       textMain: '#161616',
       textSecondary: 'rgba(22, 22, 22, 0.5)',
       textAccent: '#5255BC',
       border: 'rgba(22, 22, 22, 0.1)',
-      addButtonBackground: '#5255BC',
+      addButtonBackground: '#B8BCFD',
       addButtonColor: '#121212',
       addButtonHover: 'rgba(190, 219, 176, 0.8)',
       projectActive: '#ECEDFD',
@@ -286,6 +310,8 @@ export const theme = [
       projectBorder: '#5255BC',
       iconLogout: '#5255BC',
       iconClose: '#161616',
+      bordHover: ' rgba(255, 255, 255, 0.50)',
+      vector: 'rgba(255, 255, 255, 0.10)',
     },
     editProfileModal: {
       background: '#FCFCFC',
@@ -311,11 +337,30 @@ export const theme = [
       scrollThumb: 'rgba(22, 22, 22, 0.4)',
       scrollBorder: 'transparent',
     },
-    addColumnButton: {
-      background: '#FFFFFF',
-      color: '#161616',
-      plusBackground: '#161616',
-      plusColor: '#FFFFFF',
+    buttonPlus: {
+      bgdBtNotApprove: '#FFFFFF',
+      bgdBtNotApproveHover: '#FFFFFF',
+      plusBgdNotApprove: '#7B7EDE',
+      plusBgdNotApproveHover: '#5255BC',
+      iconNotApprove: '#FFFFFF',
+      textNotApprove: '#161616',
+
+      bgdBtApprove: '#7B7EDE',
+      bgdBtApproveHover: '#5255BC',
+      plusBgdApprove: '#FFFFFF',
+      iconApprove: '#161616',
+      textApprove: '#FFFFFF',
+    },
+    calendar: {
+      background: '#FFF',
+      calendar: '#5255BC',
+      month: '#1F1F1F',
+      icon: '255, 255, 255, 0.8',
+      noActiveDay: '#1F1F1F',
+      activeDay: '#1F1F1F',
+      day: 'rgba(22, 22, 22, 0.20)',
+      hover: '#5255BC',
+      border: '#5255BC',
     },
   },
 ];

@@ -15,6 +15,33 @@ export const Wrap = styled.div`
     opacity: 0.4;
   }
 `;
+export const Button = styled.button`
+  width: calc(100% + 0%);
+  color: #161616;
+  text-align: center;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  background-color: #bedbb0;
+  border-radius: 8px;
+  padding: 14px;
+  &:hover {
+    transition: opacity 200ms linear;
+    background-color: #9dc888;
+  }
+  @media screen and (min-width: 320px) {
+  }
+  @media screen and (min-width: 375px) {
+    width: 284px;
+  }
+  @media screen and (min-width: 765px) {
+    width: 344px;
+  }
+`;
 
 export const Input = styled.input`
   width: calc(100% - 0%);
@@ -65,33 +92,6 @@ export const Error = styled.p`
   color: #fc8181;
 `;
 
-export const Button = styled.button`
-  width: calc(100% + 0%);
-  color: #161616;
-  text-align: center;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.28px;
-  background-color: #bedbb0;
-  border-radius: 8px;
-  padding: 14px;
-  &:hover {
-    transition: opacity 200ms linear;
-    background-color: #9dc888;
-  }
-  @media screen and (min-width: 320px) {
-  }
-  @media screen and (min-width: 375px) {
-    width: 284px;
-  }
-  @media screen and (min-width: 765px) {
-    width: 344px;
-  }
-`;
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

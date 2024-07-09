@@ -44,7 +44,7 @@ const Header = () => {
         onClick={() => dispatch(openMenuMode())}
         $isOpen={menuMode}
       >
-        <Burger width={24} height={24} fillColor={'#161616'} />
+        <Burger width={24} height={24}  />
       </BurgerBtn>
       <Div>
         <ThemePicker />

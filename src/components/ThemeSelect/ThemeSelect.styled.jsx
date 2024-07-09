@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const Text = styled.span`
   font-family: Poppins;
-  color: rgba(255, 255, 255, 0.8);
+  color: ${props => props.theme.header.menuIcon};
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
@@ -21,7 +21,7 @@ export const Text = styled.span`
 export const Icon = styled.svg`
   width: 16px;
   height: 16px;
-  stroke: rgba(255, 255, 255, 0.8);
+  stroke: ${props => props.theme.header.menuIcon};
   transition: all 250ms linear;
   fill: transparent;
   ${props => props.$isOpen && 'transform: rotate(-180deg)'};

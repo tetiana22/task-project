@@ -1,27 +1,35 @@
-import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-import { editColumnSchema } from 'validation/schema';
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createBoard } from '../../redux/cards/cardsReducers';
 import {
   Input,
   Error,
   Form,
 } from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
+import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 import {
   DefaultRadioBtn,
   CustomRadioBtn,
   BgcItem,
-  FormWrapper,
-  RadioBtnWrapper,
-  FormTitle,
   Icon,
   IconWrapper,
+  DefaultImage,
+  RadioBtnWrapper,
+  FormWrapper,
+  FormTitle,
 } from './AddBoard.styled';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
 import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
-import { useState } from 'react';
 import data from '../../assets/fonts/images/backs-small/backs.json';
-import { createBoard } from '../../redux/cards/cardsReducers';
+import { editColumnSchema } from 'validation/schema';
+
+const dark =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1720275344/xkosk1k9mub6qfc5peic.jpg';
+const light =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275361/xx6y5faroqzgq3vxxuwk.jpg';
+const violet =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275212/fpw7ed7f3hpymsxw0vhf.jpg';
 
 const AddBoard = ({ onClose }) => {
   const options = [
@@ -38,38 +46,75 @@ const AddBoard = ({ onClose }) => {
   const [bgdImg, setBgdImg] = useState('');
   const [icons, setIcon] = useState(options[0]);
   const dispatch = useDispatch();
+  const theme = useSelector(state => state.auth.userData.theme);
 
   const {
     register,
     handleSubmit,
+    setValue, // Include setValue from useForm
     formState: { errors, touched = {} },
     reset,
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
       title: '',
-      background: bgdImg,
+      background: '', // Ensure to set default value of background to ''
       icon: icons,
     },
     resolver: yupResolver(editColumnSchema),
   });
 
+  useEffect(() => {
+    // Set default background image when theme changes or initial load
+    switch (theme) {
+      case 'dark':
+        setBgdImg(dark);
+        break;
+      case 'light':
+        setBgdImg(light);
+        break;
+      case 'violet':
+        setBgdImg(violet);
+        break;
+      default:
+        setBgdImg(dark); // Default to dark theme if theme is not set
+    }
+  }, [theme]); // Watch for changes in theme
+
   const onSubmit = data => {
     const { title, icon, background } = data;
     console.log(data);
 
-    dispatch(createBoard({ title, icon, background }));
+    dispatch(createBoard({ title, icon, background })); // Не включайте theme у відправлену інформацію
     reset();
     onClose();
   };
 
   const handleBgDImg = url => {
     setBgdImg(url);
+    setValue('background', url); // Set the value of 'background' in the form
   };
 
   const handleIcon = icon => {
     setIcon(icon);
   };
+
+  let defaultImage = dark; // Define defaultImage here
+
+  // Determine defaultImage based on theme
+  switch (theme) {
+    case 'dark':
+      defaultImage = dark;
+      break;
+    case 'light':
+      defaultImage = light;
+      break;
+    case 'violet':
+      defaultImage = violet;
+      break;
+    default:
+      defaultImage = dark; // Default to dark theme if theme is not set
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -129,6 +174,14 @@ const AddBoard = ({ onClose }) => {
               />
             </label>
           ))}
+          {theme && (
+            <DefaultImage
+              src={defaultImage}
+              alt="Default Background"
+              className={bgdImg === defaultImage ? 'active' : ''}
+              onClick={() => handleBgDImg(defaultImage)}
+            />
+          )}
         </RadioBtnWrapper>
       </FormWrapper>
 

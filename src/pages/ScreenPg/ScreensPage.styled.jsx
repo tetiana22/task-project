@@ -18,8 +18,8 @@ export const Wrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${props => props.$currentBg});
-
+  background: ${props => `url(${props.$currentBg})`};
+  /* background-image: url(${props => props.$currentBg}); */
   @media screen and (min-width: 768px) {
     height: calc(100vh - 68px);
     padding: 26px 32px 0 32px;
