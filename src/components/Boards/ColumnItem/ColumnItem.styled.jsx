@@ -9,7 +9,7 @@ export const Title = styled.p`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  color: ${props => props.theme.buttonPlus.color};
+  color: ${props => props.theme.card.title};
 `;
 export const Column = styled.div`
   width: 100%;
@@ -22,6 +22,6 @@ export const Column = styled.div`
   padding: 14px 78px 14px 79px;
   justify-content: space-between;
   align-items: center;
-  background-color: ${props => props.theme.column.backgroundMain};
+  background-color: ${props => props.theme.modal.backgroundMain};
   border-radius: 8px;
 `;

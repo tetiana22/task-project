@@ -27,15 +27,8 @@ const ScreensPage = () => {
   const [currentBg, setCurrentBg] = useState('');
 
   const updateBackground = (theme, board) => {
-    console.log(
-      `Updating background. Theme: ${theme}, Board: ${
-        board ? board._id : 'none'
-      }`
-    );
-
     if (board) {
       const bg = board.background;
-      console.log(`Board background: ${bg}`);
 
       if (!bg || DefaultImages.includes(bg)) {
         switch (theme) {

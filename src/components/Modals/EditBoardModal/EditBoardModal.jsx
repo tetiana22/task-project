@@ -1,6 +1,3 @@
-// import { Modal } from '../../mainModal/MainModal';
-// import { modalNames } from '../../../constant/constant';
-
 import EditBoard from 'components/EditBoard/EditBoard';
 import {
   Div,
@@ -8,25 +5,26 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 
 const EditBoardModal = ({ isOpen, onClose, boardId }) => {
   if (!isOpen) return null;
   return (
-    // <Modal modalId={modalNames.EDIT_BOARD}>
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
           <ModalTitle>Edit board</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <EditBoard onClose={onClose} boardId={boardId} />
       </ModalContainer>
     </Div>
-    // </Modal>
   );
 };
 export default EditBoardModal;

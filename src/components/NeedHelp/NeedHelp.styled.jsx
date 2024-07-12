@@ -20,15 +20,15 @@ export const Wrap = styled.div`
 export const Input = styled.input`
   width: calc(100% - 0%);
   padding: 14px 18px;
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.needHelp.textMain};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 2px solid ${props => props.theme.needHelpModal.border};
+  border: 2px solid ${props => props.theme.modal.addBorder};
   opacity: 0.4;
-  background: ${props => props.theme.needHelpModal.buttonColor};
+  background: ${props => props.theme.modal.inputBackround};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
@@ -41,7 +41,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #fff;
+    color: ${props => props.theme.modal.inputText};
   }
 
   &::after {
@@ -68,7 +68,7 @@ export const Error = styled.p`
 
 export const Button = styled.button`
   width: 100%;
-  color: ${props => props.theme.needHelpModal.buttonColor};
+  color: ${props => props.theme.modal.buttonText};
   text-align: center;
   border: none;
   text-decoration: none;
@@ -77,12 +77,12 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  background-color: ${props => props.theme.needHelpModal.buttonBackground};
+  background-color: ${props => props.theme.modal.buttonBackground};
   border-radius: 8px;
   padding: 14px;
   &:hover {
     transition: opacity 200ms linear;
-    background-color: ${props => props.theme.needHelpModal.buttonBackground};
+    background-color: ${props => props.theme.modal.buttonBackgroundHove};
   }
 `;
 export const Form = styled.form`
@@ -98,16 +98,16 @@ export const Container = styled.div`
 `;
 export const TextInput = styled.input`
   padding: 14px 19px 109px 18px;
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.needHelp.textMain};
   height: 49px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid ${props => props.theme.needHelpModal.border};
+  border: 1px solid ${props => props.theme.modal.border};
   opacity: 0.4;
-  background: ${props => props.theme.needHelpModal.inputBackround};
+  background: ${props => props.theme.modal.inputBackround};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
@@ -121,7 +121,7 @@ export const TextInput = styled.input`
   }
 
   &::placeholder {
-    color: #fff;
+    color: ${props => props.theme.modal.inputText};
   }
 
   &::after {

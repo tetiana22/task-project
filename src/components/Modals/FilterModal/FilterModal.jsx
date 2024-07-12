@@ -5,8 +5,9 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
-} from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+  Icon,
+} from '../EditCardModal/EditCardModal.styled';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 
 const FilterModal = ({ onClose }) => {
   return (
@@ -15,7 +16,9 @@ const FilterModal = ({ onClose }) => {
         <ModalHeader>
           <ModalTitle>Filter</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <FilterSettings onClose={onClose} />

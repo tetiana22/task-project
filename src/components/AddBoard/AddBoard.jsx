@@ -3,11 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createBoard } from '../../redux/cards/cardsReducers';
-import {
-  Input,
-  Error,
-  Form,
-} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
+import { Input, Error, Form } from '../AddBoard/AddBoard.styled';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 import {
   DefaultRadioBtn,
@@ -185,7 +181,7 @@ const AddBoard = ({ onClose }) => {
         </RadioBtnWrapper>
       </FormWrapper>
 
-      <ButtonPlus type="submit" approve={true} text="Create" />
+      <ButtonPlus type="submit" text="Create" />
     </Form>
   );
 };

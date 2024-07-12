@@ -5,12 +5,12 @@ export const CloseModalCrossStyled = styled.button`
   border: none;
   cursor: pointer;
   float: inline-end;
-  stroke: ${props => props.theme.column.textMain};
+  stroke: ${props => props.theme.modal.textMain};
 `;
 export const Icon = styled.svg`
   height: 16px;
   width: 16px;
-  stroke: ${props => props.theme.themePopup.textSecondary};
+  stroke: ${props => props.theme.sidebar.iconClose};
   fill: transparent;
   transition: stroke 250ms linear;
 `;
@@ -53,7 +53,7 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalTitle = styled.h2`
-  color: ${props => props.theme.editProfileModal.textMain};
+  color: ${props => props.theme.modal.textMain};
   font-size: 18px;
   font-style: normal;
   font-weight: 500;

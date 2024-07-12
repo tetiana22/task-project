@@ -37,7 +37,7 @@ export const Text = styled.p`
   font-size: 14px;
   line-height: 1.42;
   letter-spacing: -0.28px;
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.modal.textMain};
   margin-bottom: 18px;
 
   @media screen and (max-height: 720px) {
@@ -46,7 +46,7 @@ export const Text = styled.p`
 `;
 
 export const AccentText = styled.span`
-  color: ${props => props.theme.needHelpModal.accent};
+  color: ${props => props.theme.modal.textAccent};
 `;
 
 export const ButtonWrapper = styled.div`
@@ -62,7 +62,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CircleIcon = styled.svg`
-  stroke: ${props => props.theme.needHelp.icon};
+  stroke: ${props => props.theme.sidebar.textMain};
   fill: transparent;
   width: 20px;
   height: 20px;

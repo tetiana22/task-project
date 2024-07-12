@@ -13,7 +13,7 @@ export const Form = styled.form`
   gap: 14px;
 `;
 export const FormTitle = styled.h3`
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.modal.textMain};
   font-size: 14px;
   font-family: 'Poppins';
   font-weight: 500;
@@ -36,7 +36,7 @@ export const DefaultRadioBtn = styled.input`
 `;
 
 export const ShowAllLabel = styled.p`
-  color: rgba(255, 255, 255, 0.5);
+  color: ${props => props.theme.modal.textSecondary};
   font-size: 12px;
   font-family: Poppins;
   letter-spacing: -0.24px;
@@ -65,9 +65,13 @@ export const Label = styled.label`
     font-size: 12px;
     font-weight: 400;
     letter-spacing: -0.24px;
-    color: rgba(255, 255, 255, 0.5);
-    &.active {
-      color: white;
+    color: ${props => props.theme.modal.textSecondary};
+    &:hover {
+      color: ${props => props.theme.modal.textMain};
+    }
+
+    &:active {
+      color: ${props => props.theme.modal.textMain};
     }
   }
 `;

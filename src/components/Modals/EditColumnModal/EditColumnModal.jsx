@@ -1,30 +1,29 @@
-// import { Modal } from '../../mainModal/MainModal';
-// import { modalNames } from '../../../constant/constant';
 import {
   Div,
   ModalContainer,
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import EditColumn from '../../EditColumn/EditColumn';
 
 const EditColumnModal = ({ onClose, columnId }) => {
   return (
-    // <Modal modalId={modalNames.EDIT_COLUMN}>
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
           <ModalTitle>Edit column</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <EditColumn onClose={onClose} columnId={columnId} />
       </ModalContainer>
     </Div>
-    // </Modal>
   );
 };
 export default EditColumnModal;

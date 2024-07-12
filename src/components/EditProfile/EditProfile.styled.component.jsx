@@ -38,7 +38,7 @@ export const UserButton = styled.button`
   width: 28px;
   height: 28px;
   border: none;
-  background-color: ${props => props.theme.editProfileModal.buttonBackground};
+  background-color: ${props => props.theme.modal.buttonBackground};
   transition: all 150ms linear;
   cursor: pointer;
 
@@ -57,7 +57,7 @@ export const Image = styled.img`
 export const Icon = styled.svg`
   width: 14px;
   height: 14px;
-  stroke: ${props => props.theme.editProfileModal.iconPlusColor};
+  stroke: ${props => props.theme.buttonPlus.iconApprove};
 `;
 
 export const HiddenInput = styled.input`
@@ -83,15 +83,15 @@ export const Wrap = styled.div`
 export const Input = styled.input`
   width: 100%;
   padding: 14px 18px;
-  color: ${props => props.theme.editProfileModal.textMain};
+  color: ${props => props.theme.modal.textMain};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-  border: 1px solid ${props => props.theme.editProfileModal.inputBorder};
+  border: 1px solid ${props => props.theme.modal.border};
   opacity: 0.4;
-  background: ${props => props.theme.editProfileModal.background};
+  background: ${props => props.theme.modal.backgroundMain};
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   outline: none;
   transition: all 150ms ease;
@@ -104,7 +104,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #fff;
+    color: ${props => props.theme.modal.inputText};
   }
 `;
 
@@ -119,7 +119,7 @@ export const Error = styled.p`
 
 export const Button = styled.button`
   width: 100%;
-  color: ${props => props.theme.editProfileModal.buttonText};
+  color: ${props => props.theme.modal.buttonText};
   text-align: center;
   border: none;
   text-decoration: none;
@@ -128,7 +128,7 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  background-color: ${props => props.theme.editProfileModal.buttonBackground};
+  background-color: ${props => props.theme.modal.buttonBackground};
   border-radius: 8px;
   padding: 14px;
   &:hover {

@@ -63,7 +63,7 @@ export const IconLogo = styled.svg`
 `;
 
 export const LogoText = styled.h1`
-  color: ${props => props.theme.sidebar.textMain};
+  color: ${props => props.theme.sidebar.logoTitle};
   font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
@@ -104,7 +104,7 @@ export const BtnAdd = styled.button`
   width: 40px;
   height: 36px;
   border-radius: 6px;
-  background-color: ${props => props.theme.sidebar.addButtonBackground};
+  background-color: ${props => props.theme.buttonPlus.bgdBtApprove};
   border: none;
   outline: none;
   padding: 8px 10px;
@@ -112,14 +112,14 @@ export const BtnAdd = styled.button`
   transition: all 150ms linear;
 
   &:hover {
-    background-color: ${props => props.theme.sidebar.addButtonHover};
+    background-color: ${props => props.theme.buttonPlus.bgdBtApproveHover};
   }
 `;
 
 export const IconPlus = styled.svg`
   height: 20px;
   width: 20px;
-  stroke: ${props => props.theme.sidebar.addButtonColor};
+  stroke: ${props => props.theme.modal.buttonText};
 `;
 
 export const ContentWrapper = styled.div`
@@ -142,7 +142,7 @@ export const BtnLogOut = styled.button`
 export const IconLogOut = styled.svg`
   height: 32px;
   width: 32px;
-  stroke: #bedbb0;
+  stroke: ${props => props.theme.sidebar.logoOut};
   fill: transparent;
   transition: all 150ms linear;
 
@@ -156,7 +156,7 @@ export const TextLogOut = styled.p`
   font-family: Poppins;
   font-weight: 500;
   transition: all 150ms linear;
-  color: #fff;
+  color: ${props => props.theme.sidebar.textMain};
 
   &:hover {
     opacity: 0.5;

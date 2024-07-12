@@ -23,7 +23,7 @@ export const Div = styled.div`
 `;
 export const UserNameText = styled.p`
   font-family: Poppins;
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.header.text};
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
@@ -55,7 +55,7 @@ export const HeaderSection = styled.header`
   height: 60px;
   padding: 18px 20px;
   background-color: ${props => props.theme.header.background};
-  color: ${props => props.theme.needHelpModal.textMain};
+  color: ${props => props.theme.header.text};
   @media screen and (min-width: 768px) {
     height: 68px;
     padding-left: 32px;

@@ -53,3 +53,11 @@ export const ModalTitle = styled.h2`
   line-height: normal;
   letter-spacing: -0.36px;
 `;
+export const Icon = styled.svg`
+  height: 16px;
+  width: 16px;
+
+  stroke: ${props => props.theme.sidebar.iconClose};
+  fill: transparent;
+  transition: stroke 250ms linear;
+`;

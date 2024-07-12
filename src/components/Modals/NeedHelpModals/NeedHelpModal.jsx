@@ -1,13 +1,14 @@
 import NeedHelp from 'components/NeedHelp/NeedHelp';
-import { Close } from 'assets/fonts/images/icons/Close';
+
 import {
   Div,
   ModalContainer,
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 const NeedHelpModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (
@@ -16,7 +17,9 @@ const NeedHelpModal = ({ isOpen, onClose }) => {
         <ModalHeader>
           <ModalTitle>Need help</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <NeedHelp onClose={onClose} />

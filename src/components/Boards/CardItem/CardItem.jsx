@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { IconDel, IconEdit } from 'components/Sidebar/BordItem/BordItem.styled';
 import {
   ActiveIcon,
   BottomWrapper,
@@ -19,6 +18,8 @@ import {
   Title,
   TopWrapper,
   Div,
+  IconDel,
+  IconEdit,
 } from './CardItem.styled';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 
@@ -142,6 +143,7 @@ const CardItem = ({ item, columnTitle, columnId, boardId, cardId }) => {
               </IconEdit>
               {openCardModal && (
                 <EditCardModal
+                 
                   isOpen={openCardModal}
                   onClose={handleClose}
                   cardId={cardId}

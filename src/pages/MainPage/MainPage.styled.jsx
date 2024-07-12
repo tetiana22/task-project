@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   background-color: ${props => props.theme.container.background};
   padding: 20px;
-  color: ${props => props.theme.sidebar.textMain};
+  color: ${props => props.theme.header.text};
   @media screen and (min-width: 768px) {
     padding: 32px;
   }

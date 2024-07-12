@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React from 'react';
 import { theme } from '../../constant/theme';
 import Header from '../../components/Header/Header';
 import { HomePageContainer, MainContainer } from './Home.styled';
@@ -24,12 +24,6 @@ const HomePage = () => {
       return 2;
     }
   };
-
-  // const selectedTheme = useMemo(() => {
-  //   const index = selectThemeIndex();
-  //   console.log(`Selected theme index: ${index}`);
-  //   return theme[index];
-  // }, [selectThemeIndex]);
 
   return (
     <ThemeProvider theme={theme[selectThemeIndex()]}>

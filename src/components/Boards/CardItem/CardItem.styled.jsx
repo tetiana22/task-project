@@ -1,8 +1,20 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
 import { AiOutlineClockCircle } from 'react-icons/ai';
 
+export const blink = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const CardWrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,10 +22,9 @@ export const CardWrapper = styled.div`
   width: 100%;
   min-height: 154px;
   border-radius: 8px;
-  background-color: #121212;
-
+  background-color: ${props => props.theme.card.bgdcolor};
   overflow: hidden;
-  opacity: ${props => (props.$expired ? 0.4 : 1)};
+
   border-left: 8px solid
     ${props =>
       props.$priority === 'Without priority'
@@ -35,7 +46,7 @@ export const TopWrapper = styled.div`
 `;
 
 export const Title = styled.h4`
-  color: #e0e0e0;
+  color: ${props => props.theme.card.title};
   font-size: 14px;
   font-family: 'Poppins';
   font-weight: 600;
@@ -83,7 +94,7 @@ export const Priority = styled.p`
   padding-left: 16px;
   padding-top: 15px;
   gap: 4px;
-  color: #ffffff;
+  color: ${props => props.theme.card.title};
   font-size: 12px;
   font-family: 'Poppins';
   font-weight: 500;
@@ -126,7 +137,7 @@ export const Deadline = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   gap: 4px;
-  color: #fff;
+  color: ${props => props.theme.card.title};
   font-size: 12px;
   font-family: 'Poppins';
   font-weight: 400;
@@ -142,11 +153,11 @@ export const Deadline = styled.div`
 `;
 
 export const DelayIcon = styled(AiOutlineClockCircle)`
-  color: #b0b0b0;
+  color: ${props => props.theme.card.icon};
   cursor: pointer;
   transition: color 0.3s ease;
   &:hover {
-    color: #e0e0e0;
+    stroke: ${props => props.theme.card.iconHover};
   }
 `;
 
@@ -161,11 +172,11 @@ export const ActiveIcon = styled.svg`
   height: 16px;
   width: 16px;
   fill: transparent;
-  stroke: #b0b0b0;
+  stroke: ${props => props.theme.card.icon};
   transition: all 150ms linear;
   cursor: pointer;
   &:hover {
-    stroke: #e0e0e0;
+    stroke: ${props => props.theme.card.iconHover};
   }
 `;
 
@@ -173,9 +184,10 @@ export const IconBell = styled.svg`
   position: absolute;
   height: 16px;
   width: 16px;
-  stroke: #90ee90;
+  stroke: ${props => props.theme.card.iconBell};
   fill: transparent;
   transition: all 150ms linear;
+  animation: ${blink} 1s infinite;
 `;
 
 export const MoverWrapper = styled.div`
@@ -197,13 +209,14 @@ export const PopupWrapper = styled.ul`
   flex-direction: column;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid #518661;
-  background: #000;
+  border: 1px solid ${props => props.theme.modal.border};
+  background: ${props => props.theme.modal.backgroundMain};
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
   gap: 4px;
   z-index: 99;
   overflow-y: auto;
   max-height: 112px;
+
   ::-webkit-scrollbar {
     width: 5px;
   }
@@ -219,14 +232,19 @@ export const PopupItem = styled.li`
   align-items: center;
   gap: 8px;
   width: 100%;
-  color: #b0b0b0;
+  color: ${props => props.theme.sidebar.icon};
   fill: transparent;
-  transition: all 250ms linear;
+
   cursor: pointer;
   &:hover {
-    color: ${props => props.theme.themePopup.textAccent};
+    color: ${props => props.theme.modal.textAccent};
     svg {
-      stroke: ${props => props.theme.themePopup.textAccent};
+      stroke: ${props => props.theme.modal.textAccent};
+      transition: all 250ms linear;
+    }
+    p {
+      color: ${props => props.theme.modal.textAccent};
+      transition: all 250ms linear;
     }
   }
 `;
@@ -235,14 +253,43 @@ export const PopupText = styled.p`
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.28px;
+  color: ${props => props.theme.modal.textMain};
 `;
 
 export const PopupIcon = styled.svg`
   height: 16px;
   width: 16px;
-  stroke: ${props => props.theme.themePopup.textSecondary};
+  stroke: ${props => props.theme.modal.textMain};
   fill: transparent;
-  transition: stroke 250ms linear;
+`;
+export const IconEdit = styled.svg`
+  z-index: 99;
+  height: 16px;
+  width: 16px;
+  fill: transparent;
+  stroke: ${props => props.theme.card.icon};
+
+  margin: 0 8px;
+  transition: all 150ms linear;
+
+  &:hover {
+    stroke: ${props => props.theme.card.iconHover};
+  }
+`;
+export const IconsBlock = styled.div`
+  display: flex;
+`;
+export const IconDel = styled.svg`
+  z-index: 99;
+  height: 16px;
+  width: 16px;
+  fill: transparent;
+  stroke: ${props => props.theme.card.icon};
+  transition: all 150ms linear;
+
+  &:hover {
+    stroke: ${props => props.theme.card.iconHover};
+  }
 `;
 
 export const Div = styled.div`

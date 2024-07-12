@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import { useDispatch } from 'react-redux';
 import EditColumnModal from 'components/Modals/EditColumnModal/EditColumnModal';
-import {
-  IconDel,
-  IconsBlock,
-  IconEdit,
-} from 'components/Sidebar/BordItem/BordItem.styled';
+import { IconDel, IconsBlock, IconEdit } from '../CardItem/CardItem.styled';
 import { deleteColumn } from '../../../redux/cards/cardsReducers';
 import { Column, Wrap, Title } from './ColumnItem.styled';
 import CardList from '../CardList/CardList';

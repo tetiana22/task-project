@@ -21,7 +21,7 @@ export const Text = styled.span`
 export const Icon = styled.svg`
   width: 16px;
   height: 16px;
-  stroke: ${props => props.theme.header.menuIcon};
+  stroke: ${props => props.theme.header.text};
   transition: all 250ms linear;
   fill: transparent;
   ${props => props.$isOpen && 'transform: rotate(-180deg)'};
@@ -37,8 +37,8 @@ export const PopupBlock = styled.ul`
   flex-direction: column;
   justify-content: center;
   border-radius: 8px;
-  border: 1px solid #bedbb0;
-  background: #151515;
+  border: 1px solid ${props => props.theme.modal.border};
+  background: ${props => props.theme.modal.backgroundMain};
   box-shadow: 0px 4px 16px 0px;
   gap: 4px;
   z-index: 99;
@@ -46,13 +46,13 @@ export const PopupBlock = styled.ul`
 
 export const PopupItem = styled.li`
   font-family: Poppins;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${props => props.theme.modal.textMain};
   font-size: 14px;
   letter-spacing: -0.28px;
   list-style: none;
-  &.active,
-  &.hover {
-    color: #bedbb0;
+  &.active {
+    color: ${props => props.theme.modal.textAccent};
   }
+
   cursor: pointer;
 `;

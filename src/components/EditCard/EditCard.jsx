@@ -7,11 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 import { editColumnSchema } from 'validation/schema';
 import { editCard } from '../../redux/cards/cardsReducers';
-import {
-  Input,
-  Form,
-  Error,
-} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
+import { Input, Form, Error } from '../AddBoard/AddBoard.styled';
 import { FormTitle } from 'components/AddBoard/AddBoard.styled';
 import {
   Wrapper,
@@ -151,7 +147,7 @@ const EditCard = ({ onClose, cardId }) => {
         </Wrapper>
       </FormWrapper>
 
-      <ButtonPlus type="submit" approve={true} text="Edit" />
+      <ButtonPlus type="submit" text="Edit" />
     </Form>
   );
 };

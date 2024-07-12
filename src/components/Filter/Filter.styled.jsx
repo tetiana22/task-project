@@ -24,7 +24,7 @@ export const Text = styled.h2`
 export const Icon = styled.svg`
   width: 18px;
   height: 18px;
-  stroke: ${props => props.theme.modal.textMain};
+  stroke: ${props => props.theme.header.text};
   transition: all 250ms linear;
   fill: transparent;
 

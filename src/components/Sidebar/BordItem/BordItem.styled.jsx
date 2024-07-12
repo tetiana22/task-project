@@ -66,7 +66,7 @@ export const BoardIcon = styled.svg`
   width: 18px;
   margin-right: 8px;
   fill: transparent;
-  stroke: ${props => props.theme.sidebar.textSecondary};
+  stroke: ${props => props.theme.sidebar.icon};
   transition: all 150ms linear;
 `;
 
@@ -79,12 +79,12 @@ export const IconEdit = styled.svg`
   height: 16px;
   width: 16px;
   fill: transparent;
-  stroke: ${props => props.theme.sidebar.textSecondary};
+  stroke: ${props => props.theme.sidebar.icon};
   margin: 0 8px;
   transition: all 150ms linear;
 
   &:hover {
-    stroke: ${props => props.theme.sidebar.textMain};
+    stroke: ${props => props.theme.card.iconHover};
   }
 `;
 
@@ -93,10 +93,10 @@ export const IconDel = styled.svg`
   height: 16px;
   width: 16px;
   fill: transparent;
-  stroke: ${props => props.theme.sidebar.textSecondary};
+  stroke: ${props => props.theme.sidebar.icon};
   transition: all 150ms linear;
 
   &:hover {
-    stroke: ${props => props.theme.sidebar.textMain};
+    stroke: ${props => props.theme.card.iconHover};
   }
 `;

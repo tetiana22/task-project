@@ -4,26 +4,26 @@ import {
   ModalHeader,
   ModalTitle,
   CloseModalCrossStyled,
+  Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import { Close } from 'assets/fonts/images/icons/Close';
-// import { Modal } from '../../mainModal/MainModal';
+import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
 import EditProfile from 'components/EditProfile/EditProfile';
 
 const EditProfileModal = ({ onClose }) => {
   return (
-    // <Modal modalId={modalNames.EDIT_PROFILE}>
     <Div onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
           <ModalTitle>Edit profile</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>
-            <Close />
+            <Icon aria-label="bell icon">
+              <use href={`${sprite}#icon-x-close`} />
+            </Icon>
           </CloseModalCrossStyled>
         </ModalHeader>
         <EditProfile onClose={onClose} />
       </ModalContainer>
     </Div>
-    // </Modal>
   );
 };
 
