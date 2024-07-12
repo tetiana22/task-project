@@ -8,7 +8,7 @@ import {
   PopupIcon,
   PopTextWrap,
 } from './CardItem.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 import { toast } from 'react-toastify';
 
 const CardmovePopup = ({ card, columnTitle, columnId, boardId }) => {

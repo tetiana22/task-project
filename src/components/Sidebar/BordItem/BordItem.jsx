@@ -7,7 +7,7 @@ import {
 } from '../../../redux/cards/cardsReducers';
 import { closeMenuMode } from '../../../redux/menu/menuSlice';
 import EditBoardModal from 'components/Modals/EditBoardModal/EditBoardModal';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 import { setCurrentBoardId } from '../../../redux/cards/cardsSlice';
 import {
   Board,
@@ -71,11 +71,13 @@ const BoardItem = ({ boardId, index, onActive, activePojectIndex, board }) => {
           <IconEdit aria-label="edit icon" onClick={handleOpen}>
             <use href={sprite + `#icon-pencil`} />
           </IconEdit>
-          <EditBoardModal
-            onClose={handleClose}
-            $isOpen={open}
-            boardId={boardId}
-          />
+          {open && (
+            <EditBoardModal
+              onClose={handleClose}
+              isOpen={open}
+              boardId={boardId}
+            />
+          )}
           <IconDel aria-label="delete icon" onClick={handleDelete}>
             <use href={sprite + `#icon-trash`} />
           </IconDel>

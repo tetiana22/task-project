@@ -1,5 +1,5 @@
 import { Icon, Text, Wrapper } from './Filter.styled';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../images/icons-sprite.svg';
 
 import { useState } from 'react';
 

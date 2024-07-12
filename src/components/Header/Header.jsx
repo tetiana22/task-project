@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Burger from 'assets/fonts/images/icons/Burger';
+import Burger from '../../images/Burger';
 import EditProfileModal from 'components/Modals/EditProfileModal/EditProfileModal';
 import {
   HeaderSection,
@@ -12,8 +12,8 @@ import {
   Div,
 } from './Header.styled';
 import { selectUserData } from '../../redux/selectors';
-import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
-import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
+import userLight from '../../images/userLogo/userLight.jpg';
+import userDark from '../../images/userLogo/userDark.jpg';
 import { openMenuMode } from '../../redux/menu/menuSlice';
 import { selectIsMenuOpen } from '../../redux/menu/selectors';
 import ThemePicker from 'components/ThemeSelect/ThemeSelect';
@@ -44,7 +44,7 @@ const Header = () => {
         onClick={() => dispatch(openMenuMode())}
         $isOpen={menuMode}
       >
-        <Burger width={24} height={24}  />
+        <Burger width={24} height={24} />
       </BurgerBtn>
       <Div>
         <ThemePicker />

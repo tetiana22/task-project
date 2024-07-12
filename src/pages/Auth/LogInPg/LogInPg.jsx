@@ -2,8 +2,8 @@ import { logInSchema } from '../../../validation/schema';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { Eye } from 'assets/fonts/images/icons/Eye';
-import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
+import { Eye } from '../../../images/Eye';
+import { EyeSlash } from '../../../images/EyeCrossed';
 import { signin } from '../../../redux/authorization/authReducer';
 import { yupResolver } from '@hookform/resolvers/yup';
 

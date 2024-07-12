@@ -1,10 +1,6 @@
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
 import { editColumnSchema } from 'validation/schema';
-import {
-  Input,
-  Error,
-  Form,
-} from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
+import { Input, Error, Form } from '../AddBoard/AddBoard.styled';
 import {
   DefaultRadioBtn,
   CustomRadioBtn,
@@ -14,18 +10,26 @@ import {
   FormTitle,
   Icon,
   IconWrapper,
+  DefaultImage,
 } from '../AddBoard/AddBoard.styled';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import sprite from '../../images/icons-sprite.svg';
 import { useState } from 'react';
-import data from '../../assets/fonts/images/backs-small/backs.json';
+import data from '../../images/backs.json';
 import { editBoard } from '../../redux/cards/cardsReducers';
+
+const dark =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1720275344/xkosk1k9mub6qfc5peic.jpg';
+const light =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275361/xx6y5faroqzgq3vxxuwk.jpg';
+const violet =
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275212/fpw7ed7f3hpymsxw0vhf.jpg';
 
 const EditBoard = ({ boardId, onClose }) => {
   const [bgdImg, setBgdImg] = useState('');
-
+  const theme = useSelector(state => state.auth.userData.theme);
   const [icons, setIcon] = useState('');
   const dispatch = useDispatch();
   const options = [
@@ -53,11 +57,10 @@ const EditBoard = ({ boardId, onClose }) => {
     },
     resolver: yupResolver(editColumnSchema),
   });
+
   const onSubmit = values => {
     const { title, icon, background } = values;
-
     const updatedData = { title, icon, background };
-
     dispatch(editBoard({ _id: boardId, updatedData }));
     console.log({ _id: boardId });
     reset();
@@ -69,6 +72,21 @@ const EditBoard = ({ boardId, onClose }) => {
   const handleIcon = el => {
     setIcon(el);
   };
+  let defaultImage = dark;
+
+  switch (theme) {
+    case 'dark':
+      defaultImage = dark;
+      break;
+    case 'light':
+      defaultImage = light;
+      break;
+    case 'violet':
+      defaultImage = violet;
+      break;
+    default:
+      defaultImage = dark;
+  }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -127,10 +145,18 @@ const EditBoard = ({ boardId, onClose }) => {
               />
             </label>
           ))}
+          {theme && (
+            <DefaultImage
+              src={defaultImage}
+              alt="Default Background"
+              className={bgdImg === defaultImage ? 'active' : ''}
+              onClick={() => handleBgDImg(defaultImage)}
+            />
+          )}
         </RadioBtnWrapper>
       </FormWrapper>
 
-      <ButtonPlus type="submit" approve={true} text="Edit" />
+      <ButtonPlus type="submit" text="Edit" />
     </Form>
   );
 };

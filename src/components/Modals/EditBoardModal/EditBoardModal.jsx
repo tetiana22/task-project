@@ -7,7 +7,7 @@ import {
   CloseModalCrossStyled,
   Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 
 const EditBoardModal = ({ isOpen, onClose, boardId }) => {
   if (!isOpen) return null;

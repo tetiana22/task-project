@@ -8,13 +8,13 @@ import {
   CloseModalCrossStyled,
   Icon,
 } from './EditCardModal.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 
 const EditCardModal = ({ isOpen, onClose, cardId }) => {
   if (!isOpen) return null;
   return (
     <Div onClick={onClose}>
-      <ModalContainer onClick={e => e.stopPropagation()} >
+      <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalHeader>
           <ModalTitle>Edit card</ModalTitle>
           <CloseModalCrossStyled type="button" onClick={onClose}>

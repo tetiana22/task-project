@@ -6,7 +6,7 @@ import {
   CloseModalCrossStyled,
   Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 import EditProfile from 'components/EditProfile/EditProfile';
 
 const EditProfileModal = ({ onClose }) => {

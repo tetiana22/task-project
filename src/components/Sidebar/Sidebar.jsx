@@ -4,7 +4,7 @@ import { closeMenuMode } from '../../redux/menu/menuSlice';
 import { selectIsMenuOpen } from '../../redux/menu/selectors';
 import BoardList from './BorderList/BorderList';
 import AddBoardModal from '../Modals/AddBoardModal/AddBoardModal';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../images/icons-sprite.svg';
 
 import {
   Aside,

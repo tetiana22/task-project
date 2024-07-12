@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,14 +16,14 @@ import {
   FormWrapper,
   FormTitle,
 } from './AddBoard.styled';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
-import data from '../../assets/fonts/images/backs-small/backs.json';
+import sprite from '../../images/icons-sprite.svg';
+import data from '../../images/backs.json';
 import { editColumnSchema } from 'validation/schema';
 
 const dark =
   'https://res.cloudinary.com/ddkbhl3s4/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1720275344/xkosk1k9mub6qfc5peic.jpg';
 const light =
-  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275361/xx6y5faroqzgq3vxxuwk.jpg';
+  'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720811431/xlepiw4bdq0rvgxirtnb.png';
 const violet =
   'https://res.cloudinary.com/ddkbhl3s4/image/upload/v1720275212/fpw7ed7f3hpymsxw0vhf.jpg';
 
@@ -47,57 +47,37 @@ const AddBoard = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    setValue, // Include setValue from useForm
-    formState: { errors, touched = {} },
+    setValue,
+    formState: { errors, touchedFields },
     reset,
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
       title: '',
-      background: '', // Ensure to set default value of background to ''
+      background: '',
       icon: icons,
     },
     resolver: yupResolver(editColumnSchema),
   });
 
-  useEffect(() => {
-    // Set default background image when theme changes or initial load
-    switch (theme) {
-      case 'dark':
-        setBgdImg(dark);
-        break;
-      case 'light':
-        setBgdImg(light);
-        break;
-      case 'violet':
-        setBgdImg(violet);
-        break;
-      default:
-        setBgdImg(dark); // Default to dark theme if theme is not set
-    }
-  }, [theme]); // Watch for changes in theme
-
   const onSubmit = data => {
     const { title, icon, background } = data;
-    console.log(data);
-
-    dispatch(createBoard({ title, icon, background })); // Не включайте theme у відправлену інформацію
+    dispatch(createBoard({ title, icon, background }));
     reset();
     onClose();
   };
 
   const handleBgDImg = url => {
     setBgdImg(url);
-    setValue('background', url); // Set the value of 'background' in the form
+    setValue('background', url);
   };
 
   const handleIcon = icon => {
     setIcon(icon);
   };
 
-  let defaultImage = dark; // Define defaultImage here
+  let defaultImage = dark;
 
-  // Determine defaultImage based on theme
   switch (theme) {
     case 'dark':
       defaultImage = dark;
@@ -109,7 +89,7 @@ const AddBoard = ({ onClose }) => {
       defaultImage = violet;
       break;
     default:
-      defaultImage = dark; // Default to dark theme if theme is not set
+      defaultImage = dark;
   }
 
   return (
@@ -119,7 +99,7 @@ const AddBoard = ({ onClose }) => {
         id="title"
         placeholder="Title"
         {...register('title')}
-        error={touched.title && errors.title && errors.title.message}
+        error={touchedFields.title && errors.title && errors.title.message}
       />
       {errors.title && <Error>{errors.title.message}</Error>}
 

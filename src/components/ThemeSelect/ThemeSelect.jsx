@@ -8,7 +8,7 @@ import {
   Text,
   Wrapper,
 } from './ThemeSelect.styled';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../images/icons-sprite.svg';
 import { changeTheme } from '../../redux/authorization/authReducer';
 
 const ThemePicker = () => {

@@ -1,10 +1,10 @@
-import welcomemob1x from '../../assets/fonts/images/welcome/welcome-mob-1x.png';
-import welcomemob2x from '../../assets/fonts/images/welcome/welcome-mob-2x.png';
-import welcomemtab1x from '../../assets/fonts/images/welcome/welcome-tab-1x.png';
-import welcomemtab2x from '../../assets/fonts/images/welcome/welcome-tab-2x.png';
-import welcomemdes1x from '../../assets/fonts/images/welcome/welcome-desk-1x.png';
-import welcomemdes2x from '../../assets/fonts/images/welcome/welcome-desk-2x.png';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import welcomemob1x from '../../images/welcome/welcome-mob-1x.png';
+import welcomemob2x from '../../images/welcome/welcome-mob-2x.png';
+import welcomemtab1x from '../../images/welcome/welcome-tab-1x.png';
+import welcomemtab2x from '../../images/welcome/welcome-tab-2x.png';
+import welcomemdes1x from '../../images/welcome/welcome-desk-1x.png';
+import welcomemdes2x from '../../images/welcome/welcome-desk-2x.png';
+import sprite from '../../images/icons-sprite.svg';
 import {
   Wrapper,
   Container,

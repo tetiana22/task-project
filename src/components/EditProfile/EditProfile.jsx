@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { updateUser } from '../../redux/authorization/authReducer';
-import userLight from '../../assets/fonts/images/userLogo/userLight.jpg';
-import userDark from '../../assets/fonts/images/userLogo/userDark.jpg';
+import userLight from '../..//images/userLogo/userLight.jpg';
+import userDark from '../../images/userLogo/userDark.jpg';
 import { updateUserSchema } from 'validation/schema';
 import {
   Wrapper,
@@ -17,10 +17,10 @@ import {
   Error,
   Wrap,
 } from './EditProfile.styled.component';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../images/icons-sprite.svg';
 import { Container } from 'pages/Auth/RegistrationPg/RegistrationPg.styled';
-import { Eye } from 'assets/fonts/images/icons/Eye';
-import { EyeSlash } from 'assets/fonts/images/icons/EyeCrossed';
+import { Eye } from '../../images/Eye';
+import { EyeSlash } from '../../images/EyeCrossed';
 import { useState } from 'react';
 
 const EditProfile = ({ onClose }) => {
@@ -54,31 +54,7 @@ const EditProfile = ({ onClose }) => {
     setlocalAvatarUrl(URL.createObjectURL(e.currentTarget.files[0]));
     setavatarFile(e.currentTarget.files[0]);
   };
-  // const handleChange = event => {
-  //   const file = event.target.files[0];
-  //   if (!file) return;
-  //   if (file.size > 5 * 1024 * 1024) {
-  //     toast.error('The file size must not exceed 5 MB');
-  //     return;
-  //   }
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     setlocalAvatarUrl(reader.result);
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
 
-  // const onSubmit = data => {
-  //   data.avatarURL = localAvatarUrl;
-
-  //   console.log('Selected avatar URL:', localAvatarUrl);
-  //   console.log('Form data before dispatch:', data);
-
-  //   dispatch(updateUser(data));
-
-  //   reset();
-  //   onClose();
-  // };
   const onSubmit = data => {
     const formData = new FormData();
     formData.append('name', data.name);

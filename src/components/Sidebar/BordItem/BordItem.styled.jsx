@@ -75,7 +75,7 @@ export const IconsBlock = styled.div`
 `;
 
 export const IconEdit = styled.svg`
-  z-index: 99;
+  cursor: pointer;
   height: 16px;
   width: 16px;
   fill: transparent;
@@ -84,12 +84,12 @@ export const IconEdit = styled.svg`
   transition: all 150ms linear;
 
   &:hover {
-    stroke: ${props => props.theme.card.iconHover};
+    stroke: ${props => props.theme.sidebar.textMain};
   }
 `;
 
 export const IconDel = styled.svg`
-  z-index: 99;
+  cursor: pointer;
   height: 16px;
   width: 16px;
   fill: transparent;
@@ -97,6 +97,6 @@ export const IconDel = styled.svg`
   transition: all 150ms linear;
 
   &:hover {
-    stroke: ${props => props.theme.card.iconHover};
+    stroke: ${props => props.theme.sidebar.textMain};
   }
 `;

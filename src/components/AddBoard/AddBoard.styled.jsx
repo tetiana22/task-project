@@ -78,7 +78,7 @@ export const CustomRadioBtn = styled.div`
 `;
 export const DefaultImage = styled.img`
   border-radius: 8px;
-  border: none;
+  border: 1px solid grey;
   outline: none;
   width: 28px;
   height: 28px;
@@ -92,7 +92,7 @@ export const DefaultImage = styled.img`
 `;
 export const BgcItem = styled.div`
   border-radius: 8px;
-  border: none;
+  border: 1px solid grey;
   outline: none;
   width: 28px;
   height: 28px;

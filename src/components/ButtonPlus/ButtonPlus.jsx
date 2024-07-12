@@ -1,5 +1,5 @@
 import { Button, IconWrapper, Icon, Wrap } from './ButtonPlus.styled';
-import sprite from '../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../images/icons-sprite.svg';
 
 const ButtonPlus = ({ text, approve, onOpen }) => {
   return (

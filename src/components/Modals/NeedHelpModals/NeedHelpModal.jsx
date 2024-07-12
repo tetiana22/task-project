@@ -8,7 +8,8 @@ import {
   CloseModalCrossStyled,
   Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
+
 const NeedHelpModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (

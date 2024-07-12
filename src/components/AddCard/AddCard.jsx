@@ -19,7 +19,7 @@ import {
   FormWrapper,
   Label,
 } from './AddCard.styled';
-import 'react-datepicker/dist/react-datepicker.css'; // Ensure this is imported
+import 'react-datepicker/dist/react-datepicker.css';
 
 const options = ['Low', 'Medium', 'High', 'Without priority'];
 const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };

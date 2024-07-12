@@ -1,5 +1,3 @@
-// import { Modal } from '../../mainModal/MainModal';
-// import { modalNames } from '../../../constant/constant';
 import {
   Div,
   ModalContainer,
@@ -8,7 +6,7 @@ import {
   CloseModalCrossStyled,
   Icon,
 } from '../EditProfileModal/EditProfileModal.styled';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 import AddColumn from 'components/AddColumn/AddColumn';
 const AddColumModal = ({ onClose, boardId }) => {
   return (

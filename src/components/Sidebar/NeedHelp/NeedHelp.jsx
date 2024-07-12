@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import sprite from '../../../assets/fonts/images/icons/icons-sprite.svg';
+import sprite from '../../../images/icons-sprite.svg';
 import {
   AccentText,
   Image,
@@ -10,7 +10,7 @@ import {
   CircleIcon,
 } from './NeedHelp.styled';
 import NeedHelpModal from '../../Modals/NeedHelpModals/NeedHelpModal';
-import plant from '../../../assets/fonts/images/sidebar/plant.png';
+import plant from '../../../images/sidebar/plant.png';
 
 const NeedHelpBlock = () => {
   const [open, setOpen] = useState(false);
