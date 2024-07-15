@@ -43,7 +43,7 @@ export const Icon = styled.svg`
   &:focus {
     scale: 1.3;
     transform: rotate(360deg);
-    stroke: ${props => props.theme.modal.iconClose};
+    stroke: ${props => props.theme.modal.iconActive};
   }
 `;
 

@@ -45,6 +45,7 @@ export const theme = [
       addBorder: '#BEDBB0',
       inputBackround: '#1F1F1F;',
       inputText: '#FFFFFF',
+      iconActive: '#FFFFFF',
     },
     sidebar: {
       background: '#121212',
@@ -121,6 +122,7 @@ export const theme = [
       addBorder: '#BEDBB0',
       inputBackround: '#FCFCFC',
       inputText: '#161616',
+      iconActive: '#161616',
     },
     sidebar: {
       background: '#FFFFFF',
@@ -208,6 +210,7 @@ export const theme = [
       addBorder: '#5255BC',
       inputBackround: '#FCFCFC',
       inputText: '#161616',
+      iconActive: '#161616',
     },
     sidebar: {
       background: ' #5255BC;',

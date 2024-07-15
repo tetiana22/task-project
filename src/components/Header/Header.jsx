@@ -23,7 +23,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const userData = useSelector(selectUserData);
   const avatarURL = userData?.avatarURL;
-  const theme = useSelector(state => state.auth.theme);
+  const theme = useSelector(state => state.auth.userData.theme);
   const userEmail = userData?.email;
   const userEmailSplit = userEmail?.split('@')[0];
   const userName = userData?.name;
@@ -59,7 +59,7 @@ const Header = () => {
           {avatarURL ? (
             <Avatar src={avatarURL} alt="userPhoto" />
           ) : (
-            <Ava src={theme === 'light' ? userLight : userDark} alt="Avatar" />
+            <Ava src={theme === 'dark' ? userDark : userLight} alt="Avatar" />
           )}
         </UserLogoContainer>
         {isModalOpen && <EditProfileModal onClose={closeModal} />}

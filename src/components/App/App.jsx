@@ -5,7 +5,13 @@ import PublicRoute from 'components/Routes/PublicRoute';
 
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import {
+  useNavigate,
+  useLocation,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { currentUser } from '../../redux/authorization/authReducer';
 import { selectIsRefreshing } from '../../redux/selectors';
@@ -22,16 +28,31 @@ const Registration = lazy(() =>
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    localStorage.setItem('lastPath', location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const lastPath = localStorage.getItem('lastPath');
+    if (lastPath) {
+      navigate(lastPath, { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     dispatch(currentUser());
   }, [dispatch]);
+
   return (
     <>
       {isRefreshing ? (
         <Loader />
       ) : (
         <Routes>
+          <Route path="*" element={<Navigate to="/" />} />
           <Route path="/" element={<Layout />}>
             <Route
               index
@@ -43,7 +64,6 @@ export const App = () => {
               path="/home"
               element={<PrivateRoute redirectTo="/" component={<HomePage />} />}
             >
-              {' '}
               <Route path="/home/:boardId" element={<ScreensPage />} />
             </Route>
             <Route

@@ -62,18 +62,6 @@ export const getAllDashboards = createAsyncThunk(
     }
   }
 );
-// export const getDashboardById = createAsyncThunk(
-//   'dashboards/getById',
-//   async (_id, thunkAPI) => {
-//     try {
-//       const { data } = await authInstance.get(`boards/${_id}`);
-
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const deleteDashboard = createAsyncThunk(
   'dashboards/deleteDashboard',
@@ -90,10 +78,8 @@ export const deleteDashboard = createAsyncThunk(
 export const createBoard = createAsyncThunk(
   'addBoard',
   async (formData, thunkAPI) => {
-    console.log('formData:', formData);
     try {
       const { data } = await authInstance.post('boards/', formData);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -103,11 +89,9 @@ export const createBoard = createAsyncThunk(
 export const editBoard = createAsyncThunk(
   'editBoard',
   async ({ _id, updatedData }, thunkAPI) => {
-    console.log(_id);
     try {
       const { data } = await authInstance.put(`boards/${_id}`, updatedData);
-
-      return data;
+  return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -177,17 +161,14 @@ export const moveCard = createAsyncThunk(
   'cards/moveCard',
   async ({ cardId, columnId, index }, thunkAPI) => {
     try {
-      console.log('Dispatching moveCard with:', { cardId, columnId, index });
+      
       const response = await authInstance.patch(`cards/${cardId}`, {
         columnId,
         index,
-      });
-      console.log('Move card response:', response);
-      const { data } = response;
-      console.log('Move card data:', data);
+      });   
+      const { data } = response;  
       return data;
     } catch (error) {
-      console.error('Move card error:', error);
       return thunkAPI.rejectWithValue(error.response?.data || 'Unknown error');
     }
   }

@@ -123,9 +123,10 @@ export const IconPlus = styled.svg`
 `;
 
 export const ContentWrapper = styled.div`
-  flex-grow: 1;
+  overflow-y: scroll;
   width: 100%;
-  overflow-y: auto;
+  height: 100%;
+  user-select: none;
 `;
 
 export const BtnLogOut = styled.button`

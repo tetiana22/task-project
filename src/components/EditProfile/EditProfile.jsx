@@ -78,7 +78,7 @@ const EditProfile = ({ onClose }) => {
           src={
             localAvatarUrl ||
             avatarURL ||
-            (theme === 'dark' ? userLight : userDark)
+            (theme === 'dark' ? userDark : userLight)
           }
           alt="Avatar"
         />

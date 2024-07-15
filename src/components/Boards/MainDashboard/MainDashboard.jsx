@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-
 import { ContentWrapper, Wrapper } from './MainDashboard.styled';
 import AddColumnModal from '../../Modals/AddColumModal/AddColumnModal';
-
 import ButtonPlus from 'components/ButtonPlus/ButtonPlus';
-
 import ColumnList from '../ColumnList/ColumnList';
 
 const MainDashboard = ({ board }) => {
   const [open, setOpen] = useState(false);
+
+  if (!board) return null;
 
   const boardId = board._id;
   const onOpen = () => {

@@ -49,12 +49,11 @@ export const signin = createAsyncThunk(
     try {
       const { data } = await authInstance.post('users/login', formData);
       setToken(data.token);
-      console.log(data.user);
+
       return {
         token: data.token,
         userData: data.user,
       };
-      // return data;
     } catch (error) {
       toast.error('Please write a correct email or password!');
       return thunkApi.rejectWithValue(error.message);
@@ -77,11 +76,12 @@ export const currentUser = createAsyncThunk(
     }
   }
 );
+
 export const changeTheme = createAsyncThunk(
   'users/theme',
-  async ( theme , thunkAPI) => {
+  async (theme, thunkAPI) => {
     try {
-      const { data } = await authInstance.patch('users/theme',  theme );
+      const { data } = await authInstance.patch('users/theme', theme);
 
       return data;
     } catch (error) {
@@ -94,14 +94,10 @@ export const updateUser = createAsyncThunk(
   'users/profile',
   async (dataUser, thunkAPI) => {
     try {
-      console.log('Sending data:', dataUser);
       const { data } = await authInstance.put('users/update', dataUser, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       toast.success('Your changes have been successfully accepted');
-      // const { avatarURL, email, name, theme, updatedAt, _id } = data;
-      // return { avatarURL, email, name, theme, updatedAt, _id };
-      // return data;
       const { updatedUser } = data;
       return updatedUser;
     } catch (error) {

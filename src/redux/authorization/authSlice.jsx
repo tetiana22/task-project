@@ -35,7 +35,6 @@ const authSlice = createSlice({
         state.token = action.payload.token;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        console.log('Update user fulfilled:', action.payload);
         state.userData = action.payload;
       })
       .addCase(needHelp.fulfilled, (state, action) => {
@@ -51,7 +50,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.userData = action.payload.userData;
-        console.log(state.userData);
         state.token = action.payload.token;
       })
       .addCase(currentUser.fulfilled, (state, action) => {

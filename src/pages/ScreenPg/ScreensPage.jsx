@@ -67,10 +67,10 @@ const ScreensPage = () => {
       $currentBg={currentBg}
     >
       <Div>
-        <HeaderDashboard board={currentBoard} />
+        {currentBoard && <HeaderDashboard board={currentBoard} />}
         <Filter />
       </Div>
-      <MainDashboard board={currentBoard} />
+      {currentBoard && <MainDashboard board={currentBoard} />}
     </Wrapper>
   );
 };

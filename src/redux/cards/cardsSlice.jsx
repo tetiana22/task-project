@@ -100,16 +100,10 @@ const boardsSlice = createSlice({
         );
       })
       .addCase(moveCard.fulfilled, (state, action) => {
-        console.log('moveCard.fulfilled action payload:', action.payload);
-
         state.isLoading = false;
         state.error = null;
         const { cardId, columnId, updatedCards } = action.payload;
-
-        // Видалення картки з попередньої колонки
         state.cards = state.cards.filter(card => card._id !== cardId);
-
-        // Додавання картки в нову колонку на правильну позицію
         updatedCards.forEach(updatedCard => {
           const cardIndex = state.cards.findIndex(
             card => card._id === updatedCard._id
@@ -121,7 +115,6 @@ const boardsSlice = createSlice({
           }
         });
 
-        // Оновлення колонок
         state.columns = state.columns.map(column => {
           if (column._id === columnId) {
             column.cards = updatedCards;

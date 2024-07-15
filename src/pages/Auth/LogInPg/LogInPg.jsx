@@ -31,7 +31,6 @@ function LogIn() {
   });
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(signin(data));
     reset();
   };
