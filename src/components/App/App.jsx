@@ -5,13 +5,7 @@ import PublicRoute from 'components/Routes/PublicRoute';
 
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  useNavigate,
-  useLocation,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { currentUser } from '../../redux/authorization/authReducer';
 import { selectIsRefreshing } from '../../redux/selectors';
@@ -28,19 +22,6 @@ const Registration = lazy(() =>
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    localStorage.setItem('lastPath', location.pathname);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const lastPath = localStorage.getItem('lastPath');
-    if (lastPath) {
-      navigate(lastPath, { replace: true });
-    }
-  }, [navigate]);
 
   useEffect(() => {
     dispatch(currentUser());
