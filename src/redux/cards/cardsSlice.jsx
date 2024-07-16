@@ -14,7 +14,6 @@ import {
   deleteCard,
   moveCard,
 } from './cardsReducers';
-import { toast } from 'react-toastify';
 
 const initialState = {
   boards: [],
@@ -99,6 +98,7 @@ const boardsSlice = createSlice({
           column => column._id !== action.payload._id
         );
       })
+
       .addCase(moveCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -121,7 +121,6 @@ const boardsSlice = createSlice({
           }
           return column;
         });
-        toast.success('Card moved successfully');
       })
       .addCase(addCard.fulfilled, (state, action) => {
         state.isLoading = false;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { moveCard } from '../../../redux/cards/cardsReducers';
+import { allCards, moveCard } from '../../../redux/cards/cardsReducers';
 import {
   PopupWrapper,
   PopupItem,
@@ -25,6 +25,7 @@ const CardmovePopup = ({ card, columnTitle, columnId, boardId }) => {
     const index = currColumnCardsLgth;
 
     dispatch(moveCard({ cardId, columnId: newColumnId, index }));
+    dispatch(allCards(boardId));
   };
 
   const columnMap = columns.reduce((map, column) => {
