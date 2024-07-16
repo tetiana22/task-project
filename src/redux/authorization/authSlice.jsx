@@ -20,7 +20,7 @@ const initialState = {
   isLoggedIn: false,
   error: null,
   isLoading: false,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 const authSlice = createSlice({
@@ -55,7 +55,6 @@ const authSlice = createSlice({
       .addCase(currentUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
         state.userData = action.payload;
         state.isRefreshing = false;
       })
