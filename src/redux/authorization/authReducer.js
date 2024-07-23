@@ -21,7 +21,10 @@ export const registration = createAsyncThunk(
       const { data } = await authInstance.post('users/register', formData);
       toast.success('Registration successful!');
       setToken(data.token);
-      return data;
+      return {
+        token: data.token,
+        userData: data.user,
+      };
     } catch (error) {
       toast.error('Please write a correct email or password!');
       return thunkApi.rejectWithValue(error.message);

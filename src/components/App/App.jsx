@@ -1,12 +1,11 @@
+import React, { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from 'components/Layout/Layout';
 import Loader from 'components/Loader/Loader';
 import PrivateRoute from 'components/Routes/PrivateRoute';
 import PublicRoute from 'components/Routes/PublicRoute';
-
-import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import { currentUser } from '../../redux/authorization/authReducer';
 import { selectIsRefreshing } from '../../redux/selectors';
 

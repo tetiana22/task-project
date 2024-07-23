@@ -31,7 +31,7 @@ const authSlice = createSlice({
       .addCase(registration.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.userData = action.payload;
+        state.userData = action.payload.userData;
         state.token = action.payload.token;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
@@ -66,7 +66,10 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(logoutUser.fulfilled, () => {
-        return initialState;
+        return {
+          ...initialState,
+          isRefreshing: false,
+        };
       })
 
       .addMatcher(

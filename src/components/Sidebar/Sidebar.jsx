@@ -5,7 +5,7 @@ import { selectIsMenuOpen } from '../../redux/menu/selectors';
 import BoardList from './BorderList/BorderList';
 import AddBoardModal from '../Modals/AddBoardModal/AddBoardModal';
 import sprite from '../../images/icons-sprite.svg';
-
+import { useNavigate } from 'react-router-dom';
 import {
   Aside,
   Logo,
@@ -24,14 +24,17 @@ import {
 } from './Sidebar.styled';
 import { logoutUser } from '../../redux/authorization/authReducer';
 import NeedHelpBlock from './NeedHelp/NeedHelp';
-import { selectTheme } from '../../redux/selectors';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const menuMode = useSelector(selectIsMenuOpen);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 1440);
-  const activeUserTheme = useSelector(selectTheme);
+  const activeUserTheme = useSelector(
+    state => state.auth.userData?.theme ?? 'light'
+  );
+
   useEffect(() => {
     const handleResize = () => {
       setIsWideScreen(window.innerWidth >= 1440);
@@ -56,6 +59,12 @@ const Sidebar = () => {
       dispatch(closeMenuMode());
     }
   };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate('/');
+  };
+
   const setIconLogo = () => {
     if (activeUserTheme === 'dark' || activeUserTheme === 'light') {
       return '#icon-logo';
@@ -63,6 +72,7 @@ const Sidebar = () => {
       return '#icon-logo-violet';
     }
   };
+
   return (
     <>
       <Backdrop
@@ -94,7 +104,7 @@ const Sidebar = () => {
           <BoardList />
         </ContentWrapper>
         <NeedHelpBlock />
-        <BtnLogOut type="button" onClick={() => dispatch(logoutUser())}>
+        <BtnLogOut type="button" onClick={handleLogout}>
           <IconLogOut aria-label="logout icon">
             <use href={sprite + `#icon-login`} />
           </IconLogOut>
